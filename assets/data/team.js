@@ -80,10 +80,26 @@ window.SCC_TEAM = {
       email: 'lindawahyuni25@gmail.com',
       // linkedin: 'https://www.linkedin.com/in/username'
     },
-    { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
+    {
+      name: 'Dummy',
+      role: 'Carbon Accounting Expert',
+      field: 'Carbon accounting',
+      bio: 'lorem ipsum dolor sit amet consectetur adipiscing elit officia omnis cillum eos laborum labore eiusmod labore in tempor distinctio in ut molestias do occaecat et et sunt officia.',
+      tags: ['Forest carbon']
+      // linkedin: 'https://www.linkedin.com/in/username'
+    },
+    {
+      name: 'Dummy',
+      role: 'Remote Sensing Expert',
+      field: 'Remote sensing',
+      bio: 'lorem ipsum dolor sit amet consectetur adipiscing elit officia omnis cillum eos laborum labore eiusmod labore in tempor distinctio in ut molestias do occaecat et et sunt officia.',
+      tags: ['Spatial data science']
+      // linkedin: 'https://www.linkedin.com/in/username'
+    },
+    // { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
+    // { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
+    // { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
+    // { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Environmental governance' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Spatial data science' }
 
