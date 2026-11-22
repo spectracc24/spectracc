@@ -1,66 +1,40 @@
+/* ==========================================================================
+   Spectra CC: core script
+   Order of this file: utilities, loading screens, lazy loader, modal, theme, home,
+   contact and "Find us", router. Page modules live in assets/js/pages/ and are loaded
+   only when a visitor opens that page. Content lives in assets/data/.
+   ========================================================================== */
 (function(){
 'use strict';
+var SCC=window.SCC=window.SCC||{};
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 var root=document.documentElement;
+var SITE=SCC.site=window.SCC_SITE||{contact:{},links:[],pages:{}};
+var delay=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+
 function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function ic(n,c){return '<svg class="ic'+(c?' '+c:'')+'" aria-hidden="true"><use href="#'+n+'"/></svg>'}
+function bic(n,c){return '<svg class="ic brand'+(c?' '+c:'')+'" aria-hidden="true"><use href="#b-'+n+'"/></svg>'}
 function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)}
-
-/* ---------- Content (team data: assets/data/team.js) ---------- */
-var CONTACT={address:'',email:'',phone:'',website:''};
-var STAGES=[
- {t:'Scientific and Expert Mobilization',i:'i-network',d:'We match client needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.'},
- {t:'Methodological and Spatial Execution',i:'i-layers',d:'We deliver geospatial consulting, spatial analysis, applied research, environmental assessments and tailored technical solutions grounded in scientific methods.'},
- {t:'Decision-Grade Project Quality',i:'i-check',d:'We strengthen scientific rigor and technical reliability, so that decisions rest on evidence a donor, investor or regulator can check.'},
- {t:'Institutional Technical Independence',i:'i-db',d:'We build internal competencies through knowledge transfer, standardized workflows, institutional procedures, spatial data infrastructure and applied analytical skills.'},
- {t:'Sectoral Leadership and Collective Impact',i:'i-globe',d:'We contribute to a growing network of capable practitioners and institutions that together advance environmental sustainability.'}
-];
-var FIELDS=SCC_TEAM.fields,FIELD_DESC=SCC_TEAM.fieldDescriptions,TEAM=SCC_TEAM.members; /* data lives in assets/data/team.js */
-var CASES=[
- {id:'c1',title:'Forest cover change analysis',pillar:'Geospatial consulting',client:'[Client name]',period:'[Month Year]',tags:['Remote sensing','LULCC','Forest cover'],
-  context:'A growing forest management initiative needed a defensible record of where forest cover had changed before it planned protection and restoration work.',
-  approach:['Assembled and corrected multi-temporal imagery for the project area.','Classified land cover for each period and checked the classes against field survey points.','Measured change by class and mapped where it concentrated.'],
-  outcome:'A land-cover change map and area statistics the team can defend to donors and regulators, plus a documented workflow their own staff can repeat.',fig:'compare'},
- {id:'c2',title:'Baseline assessment of village forest areas',pillar:'Applied research',client:'[Client name]',period:'[Month Year]',tags:['Baseline','Village forest','Field survey'],
-  context:'Village managers needed reference conditions for their forest area before setting management targets.',
-  approach:['Derived land-cover classes from satellite imagery and verified them with field points.','Ran a landscape diagnostic to identify constraints and opportunities.','Defined indicators that the village team can track over time.'],
-  outcome:'A baseline report with maps, indicators and a monitoring starting point that village managers can plan with.',fig:'grid',seed:8},
- {id:'c3',title:'Building an in-house GIS routine',pillar:'Training and capacity',client:'[Client name]',period:'[Month Year]',tags:['Capacity building','QC/QA','Spatial database'],
-  context:'A growing organization collected field data in many formats and had no shared spatial database.',
-  approach:['Set up a standard spatial database and naming workflow.','Wrote QC/QA protocols for field data collection.','Ran hands-on sessions in applied GIS and map production with the team.'],
-  outcome:'A team that manages its own spatial data, with written procedures that outlast the engagement.',fig:'carbon',seed:14}
-];
-var PROJECTS=[
- {t:'Spatial carbon stock estimation',pl:'Consulting',area:'Carbon and climate analytics',kind:'carbon',seed:4,del:['Carbon stock map','Method note','Uncertainty summary']},
- {t:'Land-use and land-cover change mapping',pl:'Consulting',area:'Remote sensing',kind:'lc',seed:31,del:['Classified maps by period','Change statistics','Accuracy assessment']},
- {t:'Environmental baseline and landscape diagnostic',pl:'Research',area:'Environmental baseline assessments',kind:'lc',seed:17,del:['Baseline report','Reference condition maps','Constraints and opportunities']},
- {t:'Monitoring framework and indicator design',pl:'Research',area:'Monitoring, evaluation and performance',kind:'grid',seed:22,del:['Indicator set','Monitoring protocol','Reporting template']},
- {t:'Applied GIS and cartography training',pl:'Training',area:'Capacity development',kind:'grid',seed:6,del:['Training modules','Practice datasets','Participant map portfolio']},
- {t:'Geospatial database and field data QC/QA',pl:'Training',area:'Geospatial data engineering',kind:'carbon',seed:27,del:['Spatial database structure','QC/QA checklist','Field data protocol']}
-];
-
-/* ---------- Helpers ---------- */
-function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-function makeNoise(seed){var r=mulberry32(seed),S=64,g=new Float32Array(S*S);for(var i=0;i<g.length;i++)g[i]=r();
-  var sm=function(t){return t*t*(3-2*t)};
-  return function(x,y){var xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
-    var a=g[((yi&63)*S)+(xi&63)],b=g[((yi&63)*S)+((xi+1)&63)],c=g[(((yi+1)&63)*S)+(xi&63)],d=g[(((yi+1)&63)*S)+((xi+1)&63)];
-    var u=sm(xf),v=sm(yf);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v}}
-function smoothPath(c,pts,ox,oy,s){var n=pts.length;
-  var P=function(i){var p=pts[(i+n)%n];return [(p[0]+ox)*s,(p[1]+oy)*s]};
-  var p=P(0);c.moveTo(p[0],p[1]);
-  for(var i=0;i<n;i++){var p0=P(i-1),p1=P(i),p2=P(i+1),p3=P(i+2);
-    c.bezierCurveTo(p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6,p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6,p2[0],p2[1])}
-  c.closePath()}
+function paras(t){return String(t||'').split(/\n\s*\n/).map(function(p){return p.trim()}).filter(Boolean).map(function(p){return '<p>'+esc(p)+'</p>'}).join('')}
+function fmtDate(d){if(!d)return '';var m=String(d).match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?$/);if(!m)return String(d);
+  if(!m[2])return m[1];var dt=new Date(Date.UTC(+m[1],+m[2]-1,+(m[3]||1)));
+  try{return dt.toLocaleDateString('en-GB',m[3]?{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}:{month:'short',year:'numeric',timeZone:'UTC'})}catch(e){return String(d)}}
 function copyText(text,srcEl,msgEl){
   var done=function(ok){if(msgEl)msgEl.textContent=ok?'Copied':'Select the text and copy it manually'};
   var fallback=function(){try{var r=document.createRange();r.selectNodeContents(srcEl);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}done(false)};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},fallback)}else fallback()}
+SCC.$=$;SCC.$$=$$;SCC.RM=RM;SCC.esc=esc;SCC.ic=ic;SCC.bic=bic;SCC.isDark=isDark;SCC.paras=paras;SCC.fmtDate=fmtDate;SCC.copyText=copyText;SCC.delay=delay;
+
+/* ---------- Settings (defaults, then settings.js on top) ---------- */
+var DEF={loader:{bootMinMs:700,viewMinMs:450},team:{columns:4,photoRatio:'1/1',bioLines:3,showNetwork:true,showFilters:true}};
+SCC.cfg=function(name){var u=(window.SCC_SETTINGS||{})[name]||{},d=DEF[name]||{},o={},k;for(k in d)o[k]=d[k];for(k in u)o[k]=u[k];return o};
 
 /* ---------- Logo ---------- */
 var MARK='<svg viewBox="-210 -210 420 420" class="mk" aria-hidden="true" fill="none" stroke-width="32" stroke-linecap="round"><path d="M-90.5 -165.9A189 189 0 1 0 163.8 -94.2" style="stroke:var(--lg-o)"/><path d="M67.5 -112.3A131 131 0 1 0 112.8 66.7" style="stroke:var(--lg-m)"/><path d="M71 0A71 71 0 1 0 0 71" style="stroke:var(--lg-i)"/><circle r="19" stroke="none" style="fill:var(--lg-d)"/></svg>';
+SCC.MARK=MARK;
 $$('[data-logo]').forEach(function(e){e.innerHTML=MARK+'<span class="wm"><b>Spectra CC</b><i>Citra Cendekia</i></span>'});
 
 /* ---------- Theme ---------- */
@@ -70,45 +44,92 @@ $('#themeBtn').addEventListener('click',function(){var n=isDark()?'light':'dark'
 if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',themeChanged)}
 $('#themeUse').setAttribute('href',isDark()?'#i-sun':'#i-moon');
 
-/* ---------- Land cover generator ---------- */
-var PAL=[[54,122,85],[169,198,178],[217,203,160],[156,195,213]];
-function makeLC(w,h,seed,yr){
-  var r=mulberry32(seed),r2=mulberry32(seed+99),nz=makeNoise(seed+5),n=26,S=[];
-  for(var i=0;i<n;i++){var x=r()*w,y=r()*h,c=r(),base=c<.52?0:(c<.72?1:2),q=r2();
-    var c25=base===0?(q<.17?2:(q<.27?1:0)):(base===1?(q<.25?2:1):2);
-    S.push({x:x,y:y,c:yr===25?c25:base})}
-  var map=new Uint8Array(w*h);
-  for(var yy=0;yy<h;yy++){for(var xx=0;xx<w;xx++){
-    var j=(nz(xx/26,yy/26)-.5)*w*.07,best=1e9,bc=0;
-    for(var k=0;k<n;k++){var s=S[k],dx=xx-s.x,dy=yy-s.y,d=Math.sqrt(dx*dx+dy*dy)+((k%2)?j:-j);if(d<best){best=d;bc=s.c}}
-    var ry=h*.55+h*.12*Math.sin(xx/(w*.15)+seed)+(nz(xx/30,7)-.5)*14;
-    if(Math.abs(yy-ry)<h*.011)bc=3;
-    map[yy*w+xx]=bc}}
-  return {map:map,w:w,h:h,share:function(c){var k=0;for(var i=0;i<map.length;i++)if(map[i]===c)k++;return k/map.length}}}
-function paintLC(cv,L){var ctx=cv.getContext('2d');cv.width=L.w;cv.height=L.h;var id=ctx.createImageData(L.w,L.h),d=id.data;
-  for(var i=0;i<L.map.length;i++){var p=PAL[L.map[i]];d[i*4]=p[0];d[i*4+1]=p[1];d[i*4+2]=p[2];d[i*4+3]=255}
-  ctx.putImageData(id,0,0)}
-var RAMP=[[0,[220,234,240]],[.3,[169,198,178]],[.6,[22,140,145]],[1,[23,50,77]]];
-function ramp(v){for(var i=1;i<RAMP.length;i++){if(v<=RAMP[i][0]){var a=RAMP[i-1],b=RAMP[i],t=(v-a[0])/(b[0]-a[0]);return [a[1][0]+(b[1][0]-a[1][0])*t,a[1][1]+(b[1][1]-a[1][1])*t,a[1][2]+(b[1][2]-a[1][2])*t]}}return RAMP[RAMP.length-1][1]}
-function fillCarbon(cv,seed){var w=cv.width,h=cv.height,ctx=cv.getContext('2d'),id=ctx.createImageData(w,h),d=id.data,r=mulberry32(seed),C=[],nz=makeNoise(seed+3);
-  for(var i=0;i<9;i++)C.push([r()*w,r()*h,Math.min(w,h)*(.12+r()*.16),.5+r()*.5]);
-  for(var y=0;y<h;y++)for(var x=0;x<w;x++){var v=0;for(var k=0;k<C.length;k++){var c=C[k],dx=x-c[0],dy=y-c[1];v+=c[3]*Math.exp(-(dx*dx+dy*dy)/(2*c[2]*c[2]))}
-    v=Math.max(0,Math.min(1,v*.9+(nz(x/16,y/16)-.5)*.12));var p=ramp(v),o=(y*w+x)*4;d[o]=p[0];d[o+1]=p[1];d[o+2]=p[2];d[o+3]=235}
-  ctx.putImageData(id,0,0)}
-function gridOver(ctx,w,h,a,step){ctx.save();ctx.strokeStyle='rgba(255,255,255,'+a+')';ctx.lineWidth=1;ctx.beginPath();
-  for(var x=step;x<w;x+=step){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(var y=step;y<h;y+=step){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();ctx.restore()}
-function gridFig(cv,seed){var w=cv.width,h=cv.height,ctx=cv.getContext('2d'),r=mulberry32(seed);
-  ctx.fillStyle='#DCEAF0';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#B7CBD6';ctx.lineWidth=1;ctx.beginPath();
-  for(var x=w/10;x<w;x+=w/10){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(var y=h/7;y<h;y+=h/7){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();
-  var pts=[];for(var i=0;i<5;i++)pts.push([w*(.12+i*.18+r()*.06),h*(.18+r()*.64)]);
-  ctx.setLineDash([7,6]);ctx.strokeStyle='#17324D';ctx.lineWidth=2;ctx.beginPath();pts.forEach(function(p,i){i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.stroke();ctx.setLineDash([]);
-  ctx.strokeStyle='#168C91';ctx.lineWidth=2.5;ctx.fillStyle='#17324D';ctx.font='500 '+Math.round(w/46)+'px Inter, sans-serif';
-  pts.forEach(function(p,i){ctx.beginPath();ctx.moveTo(p[0]-9,p[1]);ctx.lineTo(p[0]+9,p[1]);ctx.moveTo(p[0],p[1]-9);ctx.lineTo(p[0],p[1]+9);ctx.stroke();ctx.fillText('00° 00′',p[0]+12,p[1]-8)})}
-function drawThumb(cv){if(cv.dataset.done)return;var kind=cv.dataset.kind,seed=+cv.dataset.seed||3;
-  if(kind==='lc'){paintLC(cv,makeLC(cv.width,cv.height,seed,25));gridOver(cv.getContext('2d'),cv.width,cv.height,.2,Math.round(cv.width/10))}
-  else if(kind==='carbon'){fillCarbon(cv,seed);gridOver(cv.getContext('2d'),cv.width,cv.height,.22,Math.round(cv.width/10))}
-  else gridFig(cv,seed);
-  cv.dataset.done='1'}
+/* ==========================================================================
+   LOADING SCREENS
+   1. Boot screen      full screen, first visit to the site
+   2. Top bar          thin line while anything loads
+   3. Page loader      shown in place of a page's content while it loads for the first time
+   4. Area loader      small overlay on one area (the map, a list)
+   ========================================================================== */
+if(RM)$$('#boot animateTransform').forEach(function(a){a.parentNode.removeChild(a)});
+var Boot=(function(){
+  var el=$('#boot'),fill=$('#bootFill'),msg=$('#bootMsg'),t0=Date.now(),gone=false;
+  function set(p,m){if(gone||!el)return;if(fill)fill.style.width=p+'%';if(m&&msg)msg.textContent=m}
+  function hide(){if(gone||!el)return;gone=true;SCC.booted=true;var min=SCC.cfg('loader').bootMinMs,wait=Math.max(0,min-(Date.now()-t0));
+    set(100,'Ready');setTimeout(function(){el.classList.add('out');setTimeout(function(){el.hidden=true;root.classList.remove('booting')},RM?0:420)},wait)}
+  return {set:set,hide:hide}})();
+SCC.boot=Boot;
+
+var Loader=SCC.loader=(function(){
+  var bar=$('#topbar'),fill=bar&&bar.firstElementChild,n=0,w=0,timer=null;
+  function tick(){w+=(88-w)*.12;fill.style.width=w.toFixed(1)+'%'}
+  function start(){n++;if(n>1||!bar)return;w=6;fill.style.width='6%';bar.classList.add('on');clearInterval(timer);timer=setInterval(tick,220);root.setAttribute('aria-busy','true')}
+  function done(){n=Math.max(0,n-1);if(n>0||!bar)return;clearInterval(timer);fill.style.width='100%';root.removeAttribute('aria-busy');
+    setTimeout(function(){if(n===0){bar.classList.remove('on');fill.style.width='0'}},260)}
+  function mk(cls,label){var d=document.createElement('div');d.className=cls;d.setAttribute('role','status');d.setAttribute('aria-live','polite');
+    d.innerHTML='<div class="spin" aria-hidden="true"></div><p class="vl-t"></p><div class="vl-bar" aria-hidden="true"><i></i></div><div class="vl-err" hidden></div>';
+    d.querySelector('.vl-t').textContent=label;return d}
+  function make(host,cls,label,before){var el=mk(cls,label),t0=Date.now();
+    if(before)host.insertBefore(el,before);else host.appendChild(el);
+    return {el:el,label:function(t){el.querySelector('.vl-t').textContent=t},
+      done:function(minMs,cb){var wait=Math.max(0,(minMs||0)-(Date.now()-t0));setTimeout(function(){el.classList.add('out');setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);host.classList.remove('is-loading');host.classList.remove('has-ovl');if(cb)cb()},RM?0:220)},wait)},
+      fail:function(text,retry){el.classList.add('is-err');el.querySelector('.spin').hidden=true;el.querySelector('.vl-bar').hidden=true;
+        var box=el.querySelector('.vl-err');box.hidden=false;box.innerHTML='<p></p>'+(retry?'<button class="btn btn-p" type="button">Try again</button>':'');
+        box.firstChild.textContent=text;var b=box.querySelector('button');if(b)b.addEventListener('click',retry)}}}
+  /* page-level: sits under the page header and hides the page body */
+  function view(host,label){host.classList.add('is-loading');var head=host.querySelector('.page-head');return make(host,'vload',label,head?head.nextSibling:host.firstChild)}
+  /* area-level: overlay on top of one element */
+  function over(host,label){host.classList.add('has-ovl');return make(host,'ovl',label)}
+  return {start:start,done:done,view:view,over:over}})();
+
+/* ---------- Lazy loader for page modules, data and libraries ---------- */
+var loadP={},loadOK={};
+function loadOne(url){
+  if(loadP[url])return loadP[url];
+  var v=SITE.version,u=url+(v?'?v='+encodeURIComponent(v):'');
+  var p=new Promise(function(res,rej){
+    if(/\.css$/.test(url)){var l=document.createElement('link');l.rel='stylesheet';l.href=u;l.onload=res;l.onerror=function(){rej(new Error('Could not load '+url))};document.head.appendChild(l)}
+    else{var s=document.createElement('script');s.src=u;s.async=false;s.onload=res;s.onerror=function(){rej(new Error('Could not load '+url))};document.body.appendChild(s)}});
+  loadP[url]=p;p.then(function(){loadOK[url]=1},function(){delete loadP[url]});return p}
+SCC.load=function(list){var seq=Promise.resolve();list.forEach(function(g){seq=seq.then(function(){return Promise.all([].concat(g).map(loadOne))})});return seq};
+SCC.isLoaded=function(list){return [].concat.apply([],list).every(function(u){return loadOK[u]})};
+
+/* ---------- Images with a loading skeleton and a fallback ---------- */
+SCC.hydrate=function(rootEl){$$('.imgw img',rootEl).forEach(function(im){
+  if(im.dataset.h)return;im.dataset.h='1';var w=im.parentNode;
+  var ok=function(){w.classList.remove('is-loading')},bad=function(){w.classList.remove('is-loading');w.classList.add('is-bad');w.innerHTML=MARK};
+  if(im.complete){im.naturalWidth?ok():bad()}else{im.addEventListener('load',ok);im.addEventListener('error',bad)}})};
+SCC.img=function(src,alt,fit){return '<div class="imgw is-loading"><img src="'+esc(src)+'" alt="'+esc(alt||'')+'" loading="lazy" decoding="async" style="object-fit:'+(fit||'cover')+'"></div>'};
+
+/* ---------- Modal ---------- */
+var Modal=SCC.modal=(function(){
+  var m=document.createElement('div');m.className='modal';m.hidden=true;
+  m.innerHTML='<div class="m-back" data-close></div><div class="m-box" role="dialog" aria-modal="true" tabindex="-1"><button class="icon-btn m-close" type="button" aria-label="Close" data-close>'+ic('i-close')+'</button><div class="m-body"></div></div>';
+  document.body.appendChild(m);
+  var box=$('.m-box',m),body=$('.m-body',m),opener=null,onClose=null;
+  function focusables(){return $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])',box).filter(function(e){return !e.hidden&&e.offsetParent!==null})}
+  function open(o){opener=document.activeElement;onClose=o.onClose||null;box.className='m-box'+(o.cls?' '+o.cls:'');body.innerHTML=o.html;
+    box.setAttribute('aria-labelledby',o.labelId||'mTitle');m.hidden=false;document.body.classList.add('noscroll');m.classList.add('in');box.scrollTop=0;SCC.hydrate(body);
+    if(o.onOpen)o.onOpen(body);setTimeout(function(){box.focus()},0)}
+  function close(){if(m.hidden)return;m.classList.remove('in');m.hidden=true;document.body.classList.remove('noscroll');body.innerHTML='';
+    if(onClose){var f=onClose;onClose=null;f()}if(opener&&opener.focus)try{opener.focus()}catch(e){}opener=null}
+  m.addEventListener('click',function(e){if(e.target.closest('[data-close]'))close()});
+  document.addEventListener('keydown',function(e){if(m.hidden)return;
+    if(e.key==='Escape'){e.preventDefault();close()}
+    else if(e.key==='Tab'){var f=focusables();if(!f.length){e.preventDefault();box.focus();return}
+      var a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===box)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+  return {open:open,close:close}})();
+
+/* ==========================================================================
+   HOME
+   ========================================================================== */
+var STAGES=[
+ {t:'Scientific and Expert Mobilization',i:'i-network',d:'We match client needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.'},
+ {t:'Methodological and Spatial Execution',i:'i-layers',d:'We deliver geospatial consulting, spatial analysis, applied research, environmental assessments and tailored technical solutions grounded in scientific methods.'},
+ {t:'Decision-Grade Project Quality',i:'i-check',d:'We strengthen scientific rigor and technical reliability, so that decisions rest on evidence a donor, investor or regulator can check.'},
+ {t:'Institutional Technical Independence',i:'i-db',d:'We build internal competencies through knowledge transfer, standardized workflows, institutional procedures, spatial data infrastructure and applied analytical skills.'},
+ {t:'Sectoral Leadership and Collective Impact',i:'i-globe',d:'We contribute to a growing network of capable practitioners and institutions that together advance environmental sustainability.'}
+];
 
 /* ---------- Hero ---------- */
 var heroApi=(function(){
@@ -146,82 +167,19 @@ var heroApi=(function(){
   show(0);
 })();
 
-/* ---------- About: team and network ---------- */
+
+/* ==========================================================================
+   CONTACT, FIND US, FOOTER, COMING-SOON PAGE
+   ========================================================================== */
 (function(){
-  var net=$('#net'),grid=$('#teamGrid'),fil=$('#teamFilters'),sel=null;
-  var cx=320,cy=190,rx=200,ry=135,nodes=[];
-  var svg='<defs></defs>';
-  FIELDS.forEach(function(f,i){var a=(-90+i*60)*Math.PI/180;nodes.push({f:f,x:cx+Math.cos(a)*rx,y:cy+Math.sin(a)*ry,c:Math.cos(a)})});
-  nodes.forEach(function(n,i){svg+='<line class="edge" data-i="'+i+'" x1="'+cx+'" y1="'+cy+'" x2="'+n.x.toFixed(1)+'" y2="'+n.y.toFixed(1)+'"/>'});
-  svg+='<circle cx="'+cx+'" cy="'+cy+'" r="46" fill="#17324D"/><svg x="'+(cx-30)+'" y="'+(cy-30)+'" width="60" height="60" viewBox="-210 -210 420 420" fill="none" stroke-width="32" stroke-linecap="round" style="--lg-o:#fff;--lg-m:#2DB1B7;--lg-i:#A9C6B2;--lg-d:#fff"><path d="M-90.5 -165.9A189 189 0 1 0 163.8 -94.2" style="stroke:var(--lg-o)"/><path d="M67.5 -112.3A131 131 0 1 0 112.8 66.7" style="stroke:var(--lg-m)"/><path d="M71 0A71 71 0 1 0 0 71" style="stroke:var(--lg-i)"/><circle r="19" stroke="none" style="fill:var(--lg-d)"/></svg>';
-  nodes.forEach(function(n,i){var anchor=n.c>.3?'start':(n.c<-.3?'end':'middle'),tx=n.x+(n.c>.3?26:(n.c<-.3?-26:0)),ty=n.y+(Math.abs(n.c)<=.3?(n.y<cy?-26:34):5);
-    svg+='<g class="node" data-i="'+i+'" tabindex="0" role="button" aria-pressed="false" aria-label="'+n.f+'"><circle cx="'+n.x.toFixed(1)+'" cy="'+n.y.toFixed(1)+'" r="17"/><text x="'+tx.toFixed(1)+'" y="'+ty.toFixed(1)+'" style="text-anchor:'+anchor+'">'+n.f+'</text></g>'});
-  net.innerHTML=svg;
-  function card(m){
-    var fields=[].concat(m.field||[]),isPh=/^\[.*\]$/.test(m.name||'');
-    var ph=m.photo?'<img src="'+esc(m.photo)+'" alt="'+esc('Photo of '+m.name)+'" loading="lazy" decoding="async">':MARK;
-    var bio=m.bio||FIELD_DESC[fields[0]]||'';
-    var tags=(m.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('');
-    var links=[];
-    if(m.email)links.push('<a href="mailto:'+esc(m.email)+'">'+ic('i-mail')+'Email</a>');
-    if(m.linkedin)links.push('<a href="'+esc(m.linkedin)+'" target="_blank" rel="noopener">'+ic('i-globe')+'LinkedIn</a>');
-    if(m.website)links.push('<a href="'+esc(m.website)+'" target="_blank" rel="noopener">'+ic('i-globe')+'Website</a>');
-    return '<article class="card member"><div class="ph">'+ph+'</div><div class="mb"><h3>'+esc(m.name)+'</h3><p class="role">'+esc(m.role)+'</p>'+
-      '<div class="chips">'+fields.map(function(f){return '<span class="chip">'+ic('i-network')+esc(f)+'</span>'}).join('')+'</div>'+
-      (bio?'<p class="bio">'+esc(bio)+'</p>':'')+(tags?'<div class="tags">'+tags+'</div>':'')+(links.length?'<div class="links">'+links.join('')+'</div>':'')+'</div></article>'}
-  function render(){grid.innerHTML=TEAM.filter(function(m){return !sel||[].concat(m.field||[]).indexOf(sel)>-1}).map(card).join('');
-    $$('.ph img',grid).forEach(function(im){im.addEventListener('error',function(){im.outerHTML=MARK})});
-    $$('.node',net).forEach(function(g,i){var on=FIELDS[i]===sel;g.classList.toggle('on',on);g.setAttribute('aria-pressed',on?'true':'false')});
-    $$('.edge',net).forEach(function(l,i){l.classList.toggle('on',FIELDS[i]===sel)});
-    $$('.fbtn',fil).forEach(function(b){b.setAttribute('aria-pressed',((b.dataset.f||null)===sel)?'true':'false')})}
-  function set(f){sel=(f===sel)?null:f;render()}
-  fil.innerHTML='<button class="fbtn" data-f="" aria-pressed="true">All disciplines</button>'+FIELDS.map(function(f){return '<button class="fbtn" data-f="'+f+'" aria-pressed="false">'+f+'</button>'}).join('');
-  $$('.fbtn',fil).forEach(function(b){b.addEventListener('click',function(){sel=b.dataset.f||null;render()})});
-  $$('.node',net).forEach(function(g,i){g.addEventListener('click',function(){set(FIELDS[i])});g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();set(FIELDS[i])}})});
-  render();
-  $$('[data-jump]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.dataset.jump);if(t)t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})})});
-})();
-
-/* ---------- Case studies ---------- */
-var caseDone=false;
-function initCases(){if(caseDone)return;caseDone=true;
-  var html=CASES.map(function(c){var fig='';
-    if(c.fig==='compare')fig='<figure class="fig"><div class="cmp" id="cmp" style="--p:50%"><canvas class="before" aria-hidden="true"></canvas><canvas class="after" aria-hidden="true"></canvas><span class="yr l">2015</span><span class="yr r">2025</span><div class="hd"></div><input type="range" min="2" max="98" value="50" id="cmpIn" aria-label="Compare land cover between 2015 and 2025"></div>'+
-      '<div class="legend"><span><i style="background:#367A55"></i>Forest</span><span><i style="background:#A9C6B2"></i>Regrowth</span><span><i style="background:#D9CBA0"></i>Cleared</span><span><i style="background:#9CC3D5"></i>Water</span></div>'+
-      '<div class="stats" style="margin-top:12px"><div class="stat"><b id="cm15">0%</b><span>Forest share, 2015</span></div><div class="stat"><b id="cm25">0%</b><span>Forest share, 2025</span></div></div>'+
-      '<figcaption>Drag the slider to compare periods. Generated illustrative data, not a real site.</figcaption></figure>';
-    else fig='<figure class="fig"><canvas class="thumb" data-kind="'+c.fig+'" data-seed="'+(c.seed||3)+'" width="560" height="360" role="img" aria-label="Illustrative figure for this case study"></canvas><figcaption>Illustrative figure built from generated data.</figcaption></figure>';
-    return '<article class="case" id="'+c.id+'"><div><div class="chips"><span class="chip">'+c.pillar+'</span><span class="chip ghost">Sample case</span></div><h2>'+c.title+'</h2><p class="meta">'+c.client+' · '+c.period+'</p>'+
-      '<h3>Context</h3><p>'+c.context+'</p><h3>Approach</h3><ul class="ticks">'+c.approach.map(function(a){return '<li>'+ic('i-check')+'<span>'+a+'</span></li>'}).join('')+'</ul><h3>Outcome</h3><p>'+c.outcome+'</p>'+
-      '<div class="tags" style="margin-top:16px">'+c.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div></div><div class="case-fig">'+fig+'</div></article>'}).join('');
-  $('#caseList').innerHTML=html;
-  var root=$('#cmp');if(root){var a=makeLC(560,360,21,15),b=makeLC(560,360,21,25);paintLC($('canvas.before',root),a);paintLC($('canvas.after',root),b);
-    $('#cm15').textContent=Math.round(a.share(0)*100)+'%';$('#cm25').textContent=Math.round(b.share(0)*100)+'%';
-    $('#cmpIn').addEventListener('input',function(e){root.style.setProperty('--p',e.target.value+'%')})}
-  $$('#caseList canvas.thumb').forEach(drawThumb)}
-
-/* ---------- Projects ---------- */
-var projDone=false;
-function initProjects(){if(projDone)return;projDone=true;
-  var grid=$('#pGrid'),fil=$('#pFilters'),q=$('#pSearch'),pl='All';
-  var pillars=['All','Consulting','Research','Training'];
-  fil.innerHTML=pillars.map(function(p,i){return '<button class="fbtn" data-p="'+p+'" aria-pressed="'+(i===0?'true':'false')+'">'+p+'</button>'}).join('');
-  grid.innerHTML=PROJECTS.map(function(p,i){return '<article class="pcard" data-pl="'+p.pl+'" data-t="'+(p.t+' '+p.area).toLowerCase()+'"><canvas class="thumb" data-kind="'+p.kind+'" data-seed="'+p.seed+'" width="400" height="250" role="img" aria-label="Illustrative map for '+p.t+'"></canvas>'+
-    '<div class="pb"><div class="chips"><span class="chip">'+p.pl+'</span><span class="chip ghost">Sample entry</span></div><h3>'+p.t+'</h3><p class="meta" style="margin:0">'+p.area+'</p>'+
-    '<details><summary>'+ic('i-chev')+'Details</summary><dl><dt>Client</dt><dd>[Client]</dd><dt>Location</dt><dd>[Location]</dd><dt>Year</dt><dd>[Year]</dd><dt>Deliverables</dt><dd>'+p.del.join(', ')+'</dd></dl></details></div></article>'}).join('');
-  function apply(){var term=q.value.trim().toLowerCase(),n=0;$$('.pcard',grid).forEach(function(c){var ok=(pl==='All'||c.dataset.pl===pl)&&(!term||c.dataset.t.indexOf(term)>-1);c.hidden=!ok;if(ok)n++});
-    $('#pEmpty').hidden=n>0;$$('.fbtn',fil).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===pl?'true':'false')})}
-  $$('.fbtn',fil).forEach(function(b){b.addEventListener('click',function(){pl=b.dataset.p;apply()})});
-  q.addEventListener('input',apply);
-  $$('#pGrid canvas.thumb').forEach(drawThumb)}
-
-/* ---------- Contact ---------- */
-(function(){
+  var C=SITE.contact||{};
   var rows=[['i-pin','Address','address','[ADDRESS]'],['i-mail','Email','email','[EMAIL]'],['i-phone','Phone','phone','[PHONE]'],['i-globe','Website','website','[WEBSITE]']];
-  var h=rows.map(function(r){var v=CONTACT[r[2]];return '<div class="crow"><span class="ico">'+ic(r[0])+'</span><div><small>'+r[1]+'</small><span class="v'+(v?'':' ph')+'">'+(v||r[3])+'</span></div><button class="icon-btn" data-copy="'+(v||'')+'" aria-label="Copy '+r[1].toLowerCase()+'"'+(v?'':' disabled')+'>'+ic('i-copy')+'</button></div>'}).join('');
-  h+='<div class="crow"><span class="ico">'+ic('i-compass')+'</span><div><small>Registered office region</small><span class="v">Kubu Raya, West Kalimantan, Indonesia</span></div><button class="icon-btn" data-copy="Kubu Raya, West Kalimantan, Indonesia" aria-label="Copy registered office region">'+ic('i-copy')+'</button></div>';
+  var region=SITE.region||'Kubu Raya, West Kalimantan, Indonesia';
+  var h=rows.map(function(r){var v=C[r[2]];return '<div class="crow"><span class="ico">'+ic(r[0])+'</span><div><small>'+r[1]+'</small><span class="v'+(v?'':' ph')+'">'+esc(v||r[3])+'</span></div><button class="icon-btn" data-copy="'+esc(v||'')+'" aria-label="Copy '+r[1].toLowerCase()+'"'+(v?'':' disabled')+'>'+ic('i-copy')+'</button></div>'}).join('');
+  h+='<div class="crow"><span class="ico">'+ic('i-compass')+'</span><div><small>Registered office region</small><span class="v">'+esc(region)+'</span></div><button class="icon-btn" data-copy="'+esc(region)+'" aria-label="Copy registered office region">'+ic('i-copy')+'</button></div>';
   $('#cinfo').innerHTML=h;
   $$('#cinfo [data-copy]').forEach(function(b){b.addEventListener('click',function(){copyText(b.dataset.copy,b.parentNode.querySelector('.v'),null)})});
+
   var form=$('#cform'),box=$('#draftBox'),txt=$('#draftText'),err=$('#cfErr');
   form.addEventListener('submit',function(e){e.preventDefault();
     var name=$('#cf-name').value.trim(),mail=$('#cf-mail').value.trim(),org=$('#cf-org').value.trim(),stage=$('#cf-stage').value,msg=$('#cf-msg').value.trim();
@@ -231,20 +189,93 @@ function initProjects(){if(projDone)return;projDone=true;
     txt.textContent='Subject: Inquiry to Spectra Citra Cendekia\n\nHello Spectra CC team,\n\nMy name is '+name+(org?' from '+org:'')+'.\nProject stage: '+stage+'.\nServices of interest: '+(svc.length?svc.join(', '):'to be discussed')+'.\n\n'+(msg||'I would like to discuss my project.')+'\n\nYou can reach me at '+mail+'.\n\nThank you,\n'+name;
     box.hidden=false;$('#copyMsg').textContent=''});
   $('#copyDraft').addEventListener('click',function(){copyText(txt.textContent,txt,$('#copyMsg'))});
+
+  /* Find us */
+  var links=(SITE.links||[]).filter(function(l){return l&&l.platform});
+  var known=window.SCC_BRANDS||[];
+  $('#findGrid').innerHTML=links.map(function(l){
+    var live=!!l.url,icon=known.indexOf(l.platform)>-1?bic(l.platform):ic('i-globe'),
+      inner='<span class="find-ico">'+icon+'</span><span class="find-tx"><b>'+esc(l.label||l.platform)+'</b>'+(l.handle?'<small>'+esc(l.handle)+'</small>':'')+(l.desc?'<span class="find-d">'+esc(l.desc)+'</span>':'')+'</span>'+
+        (live?'<span class="find-cta">'+esc(l.cta||'Open')+ic('i-external')+'</span>':'<span class="soon-b">Coming soon</span>'),
+      cls='find-card'+(l.featured?' featured':'')+(live?'':' is-soon');
+    return live?'<a class="'+cls+'" href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc((l.label||l.platform)+' (opens in a new tab)')+'">'+inner+'</a>'
+      :'<div class="'+cls+'" aria-disabled="true">'+inner+'</div>'}).join('');
+  var fs=$('#ftrSocial');
+  if(fs){fs.innerHTML=links.filter(function(l){return l.url}).map(function(l){return '<a class="soc" href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(l.label||l.platform)+'">'+(known.indexOf(l.platform)>-1?bic(l.platform):ic('i-globe'))+'</a>'}).join('');fs.hidden=!fs.innerHTML}
 })();
 
-/* ---------- Router ---------- */
-var ROUTES={'home':'v-home','about':'v-about','team':'v-about','case-studies':'v-case','projects':'v-projects','contact':'v-contact'};
-function route(){var h=(location.hash||'#home').slice(1),key=ROUTES[h]?h:'home',id=ROUTES[key];
-  $$('.view').forEach(function(v){v.hidden=v.id!==id});
-  $$('[data-r]').forEach(function(a){var on=a.dataset.r.split(',').indexOf(key)>-1;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+/* ==========================================================================
+   ROUTER
+   Every route says which view it shows and which files must be loaded first.
+   ========================================================================== */
+var D='assets/data/',J='assets/js/',V='assets/vendor/leaflet/';
+var ROUTES={
+  'home':{view:'v-home',title:'Home'},
+  'about':{view:'v-about',page:'about',label:'About Us',deps:[D+'team.js',J+'pages/about.js']},
+  'team':{alias:'about',scroll:'team-section',flag:'team',label:'Our Team'},
+  'case-studies':{view:'v-case',page:'cases',label:'Case Studies',flag:'case-studies',deps:[D+'case-studies.js',[J+'lib/figures.js',J+'lib/collection.js'],J+'pages/showcase.js']},
+  'projects':{view:'v-projects',page:'projects',label:'Projects',flag:'projects',deps:[D+'projects.js',[J+'lib/figures.js',J+'lib/collection.js'],J+'pages/showcase.js']},
+  'publications':{view:'v-pubs',page:'publications',label:'Publications',flag:'publications',deps:[D+'publications.js',[J+'lib/figures.js',J+'lib/collection.js'],J+'pages/publications.js']},
+  'map':{view:'v-map',page:'map',label:'Map',flag:'map',deps:[[D+'map.js',V+'leaflet.css'],V+'leaflet.js',J+'pages/map.js']},
+  'contact':{view:'v-contact',title:'Contact'},
+  'find-us':{alias:'contact',scroll:'find-us',label:'Find Us'}
+};
+var PAGES=SCC.pages={};
+SCC.registerPage=function(name,obj){PAGES[name]=obj};
+function statusOf(key){var d=ROUTES[key];return (SITE.pages&&SITE.pages[d.flag||key])||'live'}
+
+/* menu: hide or badge pages according to site.js */
+$$('[data-r]').forEach(function(a){var keys=a.dataset.r.split(','),sts=keys.map(function(k){return ROUTES[k]?statusOf(k):'live'});
+  if(sts.every(function(s){return s==='hidden'})){var li=a.closest('li');if(li)li.hidden=true}
+  else if(keys.length===1&&sts[0]==='soon'){a.insertAdjacentHTML('beforeend','<span class="soon-b sm">Soon</span>')}});
+$$('.ftr [data-r]').forEach(function(a){var k=a.dataset.r;if(ROUTES[k]&&statusOf(k)==='hidden'){var li=a.closest('li');if(li)li.hidden=true}});
+
+var token=0,firstRoute=true;
+function showView(id){$$('.view').forEach(function(v){v.hidden=v.id!==id})}
+function setNav(key){$$('[data-r]').forEach(function(a){var on=a.dataset.r.split(',').indexOf(key)>-1;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+function route(){
+  var raw=(location.hash||'#home').slice(1).split('/')[0],my=++token;
+  var key=ROUTES[raw]?raw:'home',def=ROUTES[key],tkey=def.alias||key,tdef=ROUTES[tkey],st=statusOf(key);
+  if(st==='hidden'){location.replace('#home');return}
   $('#navPanel').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false');
-  if(id==='v-home')heroApi.size();
-  if(id==='v-case')initCases();
-  if(id==='v-projects')initProjects();
-  if(key==='team')requestAnimationFrame(function(){$('#team-section').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
-  else window.scrollTo(0,0)}
+  Modal.close();setNav(key);
+  var label=def.label||tdef.label||tdef.title||'Page';
+  document.title=(label==='Home'?'':label+' | ')+'Spectra Citra Cendekia';
+  function finish(){
+    if(my!==token)return;
+    if(tdef.view==='v-home')heroApi.size();
+    if(def.scroll)requestAnimationFrame(function(){var t=document.getElementById(def.scroll);if(t)t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
+    else window.scrollTo(0,0);
+    if(firstRoute){firstRoute=false;Boot.set(85,'Almost ready…')}}
+  if(st==='soon'){showView('v-soon');$('#soonTitle').textContent=label;finish();return}
+  showView(tdef.view);
+  if(!tdef.deps){finish();return}
+  var viewEl=$('#'+tdef.view),cached=SCC.isLoaded(tdef.deps)&&PAGES[tdef.page]&&PAGES[tdef.page].ready;
+  var ov=cached?null:Loader.view(viewEl,'Loading '+label.toLowerCase()+'…');
+  var min=cached?Promise.resolve():delay(SCC.cfg('loader').viewMinMs);
+  if(firstRoute)Boot.set(55,'Loading '+label.toLowerCase()+'…');
+  Loader.start();
+  SCC.load(tdef.deps).then(function(){
+    var pg=PAGES[tdef.page];if(!pg)throw new Error('Page module did not register');
+    if(ov)ov.label('Preparing '+label.toLowerCase()+'…');
+    if(!pg.ready)pg.ready=Promise.resolve(pg.init(viewEl,ov)).then(function(){pg.ready=true});
+    return pg.ready===true?true:pg.ready}).then(function(){return min}).then(function(){
+    if(my!==token){if(ov)ov.done(0);return}
+    var pg=PAGES[tdef.page],sh=function(){if(pg.show)pg.show(viewEl)};if(ov)ov.done(0,sh);else sh();finish()
+  }).catch(function(e){
+    var pg=PAGES[tdef.page];if(pg&&pg.ready&&pg.ready!==true)pg.ready=null;
+    if(ov)ov.fail('This page could not be loaded. Check your connection and try again.',function(){route()});else viewEl.classList.remove('is-loading');
+    if(window.console)console.error(e);
+    if(my===token&&firstRoute){firstRoute=false}
+  }).then(Loader.done)}
 window.addEventListener('hashchange',route);
 $('#menuBtn').addEventListener('click',function(){var o=$('#navPanel').classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o?'true':'false')});
+$$('[data-jump]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.dataset.jump);if(t)t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})})});
+
+Boot.set(30,'Preparing the page…');
 route();
+var fontsReady=(document.fonts&&document.fonts.ready)?Promise.race([document.fonts.ready,delay(3500)]):Promise.resolve();
+var winLoaded=document.readyState==='complete'?Promise.resolve():new Promise(function(r){window.addEventListener('load',r)});
+Promise.all([fontsReady,Promise.race([winLoaded,delay(5000)])]).then(function(){
+  var wait=setInterval(function(){if(!root.hasAttribute('aria-busy')){clearInterval(wait);Boot.hide()}},80);setTimeout(function(){clearInterval(wait);Boot.hide()},9000)});
 })();

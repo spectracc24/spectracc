@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="booting">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -8,8 +8,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>#boot{position:fixed;inset:0;z-index:999;background:#17324D}html.booting{overflow:hidden}</style>
+<noscript><style>#boot,#topbar{display:none!important}html.booting{overflow:auto}</style></noscript>
 </head>
 <body>
+<div id="boot" role="status" aria-live="polite" aria-label="Loading Spectra CC">
+  <div class="boot-in">
+    <svg class="boot-mk" viewBox="-210 -210 420 420" fill="none" stroke-width="32" stroke-linecap="round" aria-hidden="true"><path class="r1" d="M-90.5 -165.9A189 189 0 1 0 163.8 -94.2" stroke="#fff"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite"/></path><path class="r2" d="M67.5 -112.3A131 131 0 1 0 112.8 66.7" stroke="#2DB1B7"><animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="4.2s" repeatCount="indefinite"/></path><path class="r3" d="M71 0A71 71 0 1 0 0 71" stroke="#A9C6B2"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite"/></path><circle r="19" fill="#fff" stroke="none"/></svg>
+    <p class="boot-t">Spectra CC</p>
+    <p class="boot-s" id="bootMsg">Loading…</p>
+    <div class="boot-bar" aria-hidden="true"><i id="bootFill"></i></div>
+  </div>
+</div>
+<div id="topbar" aria-hidden="true"><i></i></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5l9 4.5 9-4.5"/></symbol>
 <symbol id="i-satellite" viewBox="0 0 24 24"><path d="M12 8.5l3.5 3.5-3.5 3.5L8.5 12z"/><path d="M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/><path d="M15.5 20.5a8.5 8.5 0 0 0 5-5"/><path d="M13 21a10 10 0 0 0 8-8" opacity=".6"/></symbol>
@@ -42,6 +53,13 @@
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
 <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
 <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 20h14"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h10"/></symbol>
+<symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 16L16 3l5 5L8 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7.5 9L12 4.5 16.5 9M5 20h14"/></symbol>
 </defs></svg>
 
 <header class="hdr"><div class="wrap hdr-in">
@@ -54,7 +72,10 @@
         <ul class="sub"><li><a href="#about" data-r="about">Main</a></li><li><a href="#team" data-r="team">Our Team</a></li></ul></li>
       <li class="has-sub"><a href="#case-studies" data-r="case-studies,projects">Showcase</a>
         <ul class="sub"><li><a href="#case-studies" data-r="case-studies">Case Studies</a></li><li><a href="#projects" data-r="projects">Projects</a></li></ul></li>
-      <li><a href="#contact" data-r="contact">Contact</a></li>
+      <li><a href="#publications" data-r="publications">Publications</a></li>
+      <li><a href="#map" data-r="map">Map</a></li>
+      <li class="has-sub"><a href="#contact" data-r="contact,find-us">Contact</a>
+        <ul class="sub"><li><a href="#contact" data-r="contact">Contact us</a></li><li><a href="#find-us" data-r="find-us">Find us</a></li></ul></li>
     </ul>
   </nav>
   <button class="icon-btn" id="themeBtn" aria-label="Switch between light and dark theme"><svg class="ic"><use id="themeUse" href="#i-moon"/></svg></button>
@@ -222,14 +243,9 @@
 
   <section class="sec band" id="team-section">
     <div class="wrap">
-      <div class="sec-h"><p class="eyebrow">Our Team</p><h2>A multidisciplinary expert network</h2>
-        <p>We match each engagement with qualified specialists. Select a discipline in the network to see who covers it.</p></div>
-      <div class="net-wrap">
-        <svg class="net" id="net" viewBox="0 0 520 380" role="group" aria-label="Expert network by discipline"></svg>
-        <div><h3>Specialists, mobilized by need</h3><p>Rather than one fixed bench, Spectra CC assembles the right mix of disciplines for each project and hands the know-how over to the client team.</p>
-          <div class="filters" id="teamFilters"></div></div>
-      </div>
-      <div class="team" id="teamGrid"></div>
+      <div class="sec-h"><p class="eyebrow">Our Team</p><h2>People and expertise behind Spectra CC</h2>
+        <p>A management team that runs the organization, and a network of experts mobilized for each project. Select a person to read their profile.</p></div>
+      <div id="teamRoot"></div>
     </div>
   </section>
 </main>
@@ -240,12 +256,9 @@
     <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="160" ry="106"/><ellipse cx="330" cy="150" rx="120" ry="78"/><ellipse cx="330" cy="150" rx="80" ry="50"/><ellipse cx="330" cy="150" rx="40" ry="22"/></svg>
     <div class="wrap"><p class="eyebrow">Showcase</p><h1>Case Studies</h1>
       <p>Each case follows one route from context to approach to outcome, told from the data.</p>
-      <div class="subnav"><a href="#case-studies" aria-current="page">Case Studies</a><a href="#projects">Projects</a></div></div>
+      <div class="subnav"><a href="#case-studies" aria-current="page">Case Studies</a><a href="#projects">Projects</a><a href="#publications">Publications</a></div></div>
   </section>
-  <section class="sec"><div class="wrap">
-    <p class="note">These entries are sample structures. Client names, periods and results marked in square brackets are replaced with real ones before launch. Figures use generated illustrative data.</p>
-    <div id="caseList"></div>
-  </div></section>
+  <section class="sec"><div class="wrap"><div id="caseRoot"></div></div></section>
 </main>
 
 <!-- ============ PROJECTS ============ -->
@@ -254,17 +267,40 @@
     <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="150" ry="100"/><ellipse cx="330" cy="150" rx="100" ry="64"/><ellipse cx="330" cy="150" rx="50" ry="28"/></svg>
     <div class="wrap"><p class="eyebrow">Showcase</p><h1>Projects</h1>
       <p>A working portfolio of deliverables across our three practice areas. Filter by service or search by topic.</p>
-      <div class="subnav"><a href="#case-studies">Case Studies</a><a href="#projects" aria-current="page">Projects</a></div></div>
+      <div class="subnav"><a href="#case-studies">Case Studies</a><a href="#projects" aria-current="page">Projects</a><a href="#publications">Publications</a></div></div>
   </section>
-  <section class="sec"><div class="wrap">
-    <p class="note">These entries are sample listings. Client, location and year fields in square brackets are replaced with real project details before launch.</p>
-    <div class="toolbar">
-      <div class="filters" id="pFilters" style="margin:0"></div>
-      <label class="search"><svg class="ic" style="color:var(--muted)"><use href="#i-search"/></svg><input id="pSearch" type="search" placeholder="Search projects" aria-label="Search projects"></label>
-    </div>
-    <div class="pgrid" id="pGrid"></div>
-    <p class="muted" id="pEmpty" hidden>No project matches this filter. Clear the search or pick another service.</p>
-  </div></section>
+  <section class="sec"><div class="wrap"><div id="projRoot"></div></div></section>
+</main>
+
+<!-- ============ PUBLICATIONS ============ -->
+<main class="view" id="v-pubs" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="165" ry="110"/><ellipse cx="330" cy="150" rx="130" ry="84"/><ellipse cx="330" cy="150" rx="95" ry="58"/><ellipse cx="330" cy="150" rx="60" ry="32"/></svg>
+    <div class="wrap"><p class="eyebrow">Knowledge</p><h1>Publications</h1>
+      <p>Articles, guidelines, institutional reports and scientific papers, with files you can download.</p></div>
+  </section>
+  <section class="sec"><div class="wrap"><div id="pubRoot"></div></div></section>
+</main>
+
+<!-- ============ MAP ============ -->
+<main class="view" id="v-map" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="165" ry="110"/><ellipse cx="330" cy="150" rx="130" ry="84"/><ellipse cx="330" cy="150" rx="95" ry="58"/><ellipse cx="330" cy="150" rx="60" ry="32"/></svg>
+    <div class="wrap"><p class="eyebrow">Interactive map</p><h1>Explore our spatial work.</h1>
+      <p>Switch layers on and off, read the legend, and measure or analyze directly on the map.</p></div>
+  </section>
+  <section class="sec map-sec"><div class="wrap"><div id="mapRoot"></div></div></section>
+</main>
+
+<!-- ============ COMING SOON ============ -->
+<main class="view" id="v-soon" hidden>
+  <section class="sec"><div class="wrap"><div class="soon-card">
+    <span class="ico"><svg class="ic"><use href="#i-clock"/></svg></span>
+    <p class="eyebrow">Coming soon</p>
+    <h1 id="soonTitle">This page</h1>
+    <p>We are still preparing this part of the site. Please check back soon, or contact us if you need something now.</p>
+    <a class="btn btn-p" href="#contact">Contact us<svg class="ic"><use href="#i-arrow"/></svg></a>
+  </div></div></section>
 </main>
 
 <!-- ============ CONTACT ============ -->
@@ -315,20 +351,33 @@
       </div>
     </div>
   </div></div></section>
+  <section class="sec band" id="find-us">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">Find us</p><h2>Follow our work, or hire us directly.</h2>
+        <p>Our channels in one place. Cards marked "Coming soon" will link to the profile once it goes live.</p></div>
+      <div class="find-grid" id="findGrid"></div>
+    </div>
+  </section>
 </main>
 
 <footer class="ftr">
   <div class="rule3 rev"></div>
   <div class="wrap">
-    <div><a class="logo rev" href="#home" aria-label="Spectra CC, home"><span data-logo></span></a><p class="tag-line">Science into Sustainable Solutions.</p><p>Geospatial · Research · Training</p></div>
-    <div><h4>Explore</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#team">Our Team</a></li><li><a href="#contact">Contact</a></li></ul></div>
-    <div><h4>Showcase</h4><ul><li><a href="#case-studies">Case Studies</a></li><li><a href="#projects">Projects</a></li></ul></div>
+    <div><a class="logo rev" href="#home" aria-label="Spectra CC, home"><span data-logo></span></a><p class="tag-line">Science into Sustainable Solutions.</p><p>Geospatial · Research · Training</p><div class="soc-row" id="ftrSocial" hidden></div></div>
+    <div><h4>Explore</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#team" data-r="team">Our Team</a></li><li><a href="#map" data-r="map">Map</a></li><li><a href="#contact">Contact</a></li><li><a href="#find-us">Find us</a></li></ul></div>
+    <div><h4>Showcase</h4><ul><li><a href="#case-studies">Case Studies</a></li><li><a href="#projects">Projects</a></li><li><a href="#publications">Publications</a></li></ul></div>
     <div><h4>Registered entity</h4><p>Spectra Citra Cendekia</p><p>Legal registration AHU-015113.AH.01.30 Year 2025</p><p>Kubu Raya, West Kalimantan, Indonesia</p></div>
   </div>
   <div class="legal"><div class="wrap">© 2026 Spectra Citra Cendekia. All rights reserved.</div></div>
 </footer>
 
-<script src="assets/data/team.js"></script>
+<script src="assets/data/site.js"></script>
+<script src="assets/data/settings.js"></script>
+<script src="assets/js/lib/icons.js"></script>
 <script src="script.js"></script>
+<script>
+/* If the main script never starts, replace the loading screen's text so people are not left waiting. */
+setTimeout(function(){var b=document.getElementById('boot');if(b&&!b.hidden&&!(window.SCC&&window.SCC.booted)){var s=document.getElementById('bootMsg');if(s)s.textContent='Still loading. If nothing changes, refresh the page.'}},12000);
+</script>
 </body>
 </html>
