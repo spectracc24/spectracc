@@ -4,10 +4,11 @@ var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 var root=document.documentElement;
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function ic(n,c){return '<svg class="ic'+(c?' '+c:'')+'" aria-hidden="true"><use href="#'+n+'"/></svg>'}
 function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)}
 
-/* ---------- Content (edit here) ---------- */
+/* ---------- Content (team data: assets/data/team.js) ---------- */
 var CONTACT={address:'',email:'',phone:'',website:''};
 var STAGES=[
  {t:'Scientific and Expert Mobilization',i:'i-network',d:'We match client needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.'},
@@ -16,15 +17,7 @@ var STAGES=[
  {t:'Institutional Technical Independence',i:'i-db',d:'We build internal competencies through knowledge transfer, standardized workflows, institutional procedures, spatial data infrastructure and applied analytical skills.'},
  {t:'Sectoral Leadership and Collective Impact',i:'i-globe',d:'We contribute to a growing network of capable practitioners and institutions that together advance environmental sustainability.'}
 ];
-var FIELDS=['Remote sensing','Forest ecology','Hydrology','Carbon accounting','Environmental governance','Spatial data science'];
-var FIELD_DESC={
- 'Remote sensing':'Optical, SAR and high-resolution imagery processing, land-cover mapping and change detection.',
- 'Forest ecology':'Forest structure, ecosystem condition and biodiversity assessment in the field and from imagery.',
- 'Hydrology':'Water, peat and catchment dynamics that shape land-use and carbon outcomes.',
- 'Carbon accounting':'Carbon stock estimation, emissions baselines and monitoring for climate mitigation.',
- 'Environmental governance':'Safeguards, policy context and institutional procedures that keep projects credible.',
- 'Spatial data science':'Predictive modeling, spatial classification, data fusion and geospatial database design.'};
-var TEAM=FIELDS.map(function(f){return {name:'[Full Name]',role:'[Job Title]',field:f,desc:FIELD_DESC[f]}});
+var FIELDS=SCC_TEAM.fields,FIELD_DESC=SCC_TEAM.fieldDescriptions,TEAM=SCC_TEAM.members; /* data lives in assets/data/team.js */
 var CASES=[
  {id:'c1',title:'Forest cover change analysis',pillar:'Geospatial consulting',client:'[Client name]',period:'[Month Year]',tags:['Remote sensing','LULCC','Forest cover'],
   context:'A growing forest management initiative needed a defensible record of where forest cover had changed before it planned protection and restoration work.',
@@ -164,8 +157,20 @@ var heroApi=(function(){
   nodes.forEach(function(n,i){var anchor=n.c>.3?'start':(n.c<-.3?'end':'middle'),tx=n.x+(n.c>.3?26:(n.c<-.3?-26:0)),ty=n.y+(Math.abs(n.c)<=.3?(n.y<cy?-26:34):5);
     svg+='<g class="node" data-i="'+i+'" tabindex="0" role="button" aria-pressed="false" aria-label="'+n.f+'"><circle cx="'+n.x.toFixed(1)+'" cy="'+n.y.toFixed(1)+'" r="17"/><text x="'+tx.toFixed(1)+'" y="'+ty.toFixed(1)+'" style="text-anchor:'+anchor+'">'+n.f+'</text></g>'});
   net.innerHTML=svg;
-  function render(){grid.innerHTML=TEAM.filter(function(m){return !sel||m.field===sel}).map(function(m){
-    return '<article class="card member"><div class="av">'+MARK+'</div><h3>'+m.name+'</h3><p class="role">'+m.role+'</p><div class="chips"><span class="chip">'+ic('i-network')+m.field+'</span></div><p>'+m.desc+'</p></article>'}).join('');
+  function card(m){
+    var fields=[].concat(m.field||[]),isPh=/^\[.*\]$/.test(m.name||'');
+    var ph=m.photo?'<img src="'+esc(m.photo)+'" alt="'+esc('Photo of '+m.name)+'" loading="lazy" decoding="async">':MARK;
+    var bio=m.bio||FIELD_DESC[fields[0]]||'';
+    var tags=(m.tags||[]).map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('');
+    var links=[];
+    if(m.email)links.push('<a href="mailto:'+esc(m.email)+'">'+ic('i-mail')+'Email</a>');
+    if(m.linkedin)links.push('<a href="'+esc(m.linkedin)+'" target="_blank" rel="noopener">'+ic('i-globe')+'LinkedIn</a>');
+    if(m.website)links.push('<a href="'+esc(m.website)+'" target="_blank" rel="noopener">'+ic('i-globe')+'Website</a>');
+    return '<article class="card member"><div class="ph">'+ph+'</div><div class="mb"><h3>'+esc(m.name)+'</h3><p class="role">'+esc(m.role)+'</p>'+
+      '<div class="chips">'+fields.map(function(f){return '<span class="chip">'+ic('i-network')+esc(f)+'</span>'}).join('')+'</div>'+
+      (bio?'<p class="bio">'+esc(bio)+'</p>':'')+(tags?'<div class="tags">'+tags+'</div>':'')+(links.length?'<div class="links">'+links.join('')+'</div>':'')+'</div></article>'}
+  function render(){grid.innerHTML=TEAM.filter(function(m){return !sel||[].concat(m.field||[]).indexOf(sel)>-1}).map(card).join('');
+    $$('.ph img',grid).forEach(function(im){im.addEventListener('error',function(){im.outerHTML=MARK})});
     $$('.node',net).forEach(function(g,i){var on=FIELDS[i]===sel;g.classList.toggle('on',on);g.setAttribute('aria-pressed',on?'true':'false')});
     $$('.edge',net).forEach(function(l,i){l.classList.toggle('on',FIELDS[i]===sel)});
     $$('.fbtn',fil).forEach(function(b){b.setAttribute('aria-pressed',((b.dataset.f||null)===sel)?'true':'false')})}
