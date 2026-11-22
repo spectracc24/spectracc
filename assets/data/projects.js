@@ -22,7 +22,7 @@
 
 window.SCC_PROJECTS = [
   {
-    id: 'p-platform', sample: true, 
+    id: 'p-platform', sample: false, 
     title: 'TAPAK (Teknologi Akuisisi dan Pencatatan Hutan Kita)', pillar: 'Consulting', area: 'Monitoring tools',
     client: 'Village Forest Management Institutions (LDPH)', 
     location: 'Kapuas Hulu District', 
