@@ -47,19 +47,6 @@ window.SCC_TEAM = {
   },
 
   members: [
-
-    /* ---- EXAMPLE (fully filled in). Replace the placeholders below with real people. ----
-    {
-      name: 'Budi Santoso',
-      role: 'Senior Remote Sensing Analyst',
-      field: 'Remote sensing',
-      photo: 'assets/img/team/budi-santoso.jpg',
-      bio: 'Maps land-cover change across peatland landscapes using Sentinel and Landsat time series.',
-      tags: ['Google Earth Engine', 'QGIS', 'Python'],
-      email: 'budi@example.com',
-      linkedin: 'https://www.linkedin.com/in/username'
-    },
-    ---------------------------------------------------------------------------------------- */
     {
       name: 'Ivannalis Saputra, S.P',
       role: 'Senior Gospatial Analyst',
@@ -67,8 +54,7 @@ window.SCC_TEAM = {
       photo: 'assets/img/team/ivan.jpg',
       bio: 'Senior Geospatial Analyst with 9 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, specializing in REDD+ projects and advanced geospatial analysis to support informed decision-making on land-use/land-cover change, land-use projections, deforestation and forest degradation, and emission reduction/removal assessments.',
       tags: ['Google Earth Engine', 'ArcGIS', 'Python'],
-      email: 'saputra.ivannalis24@gmail.com',
-      // linkedin: 'https://www.linkedin.com/in/username'
+      email: 'saputra.ivannalis24@gmail.com'
     },
     {
       name: 'Linda Wahyuni, S.P., M.P',
@@ -77,9 +63,14 @@ window.SCC_TEAM = {
       photo: 'assets/img/team/linda.jpg',
       bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
       tags: ['Food Security', 'Climage Change Adaptation', 'Good Agriculture Practices (GAP)'],
-      email: 'lindawahyuni25@gmail.com',
-      // linkedin: 'https://www.linkedin.com/in/username'
+      email: 'lindawahyuni25@gmail.com'
     },
+    { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Environmental governance' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Spatial data science' }
     // {
     //   name: 'Dummy',
     //   role: 'Carbon Accounting Expert',
@@ -96,12 +87,5 @@ window.SCC_TEAM = {
     //   tags: ['Spatial data science']
     //   // linkedin: 'https://www.linkedin.com/in/username'
     // }
-    { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Environmental governance' },
-    { name: '[Full Name]', role: '[Job Title]', field: 'Spatial data science' }
-
   ]
 };
