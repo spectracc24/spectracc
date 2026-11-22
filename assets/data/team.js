@@ -75,15 +75,15 @@ window.SCC_TEAM = {
       role: 'Food Security and Climate Change Adaptation Expert',
       field: 'Environmental governance',
       photo: 'assets/img/team/linda.jpg',
-      bio: 'Linda Wahyuni, SP., MP., is a Food Security and Climate Change Adaptation Expert with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute, where she contributes to teaching, research, and community engagement in sustainable agriculture and food systems.',
+      bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
       tags: ['Food Security', 'Climage Change Adaptation', 'Good Agriculture Practices (GAP)'],
       email: 'lindawahyuni25@gmail.com',
       // linkedin: 'https://www.linkedin.com/in/username'
     },
-    // { name: 'Ivannalis Saputra, S.P', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
-    // { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
-    // { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
-    // { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
+    { name: 'Ivannalis Saputra, S.P', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
+    { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Environmental governance' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Spatial data science' }
 
