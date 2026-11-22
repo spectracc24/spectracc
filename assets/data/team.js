@@ -65,7 +65,7 @@ window.SCC_TEAM = {
       role: 'Senior Gospatial Analyst',
       field: 'Spatial data science',
       photo: 'assets/img/team/ivan.jpg',
-      bio: 'Senior Geospatial Analyst with 9 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, specializing in REDD+ projects and advanced geospatial analysis to support informed decision-making on land-use/land-cover change, land-use projections, deforestation and forest degradation, and emission reduction/removal assessments.         Brings over five years of experience leading annual project monitoring and reporting subject to independent third-party audits, alongside expertise in applying international frameworks and methodologies, including SBIA, Plan Vivo PM001, VCS VM0047 for ARR interventions, and the IUCN Environmental and Social Management System (ESMS).',
+      bio: 'Senior Geospatial Analyst with 9 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, specializing in REDD+ projects and advanced geospatial analysis to support informed decision-making on land-use/land-cover change, land-use projections, deforestation and forest degradation, and emission reduction/removal assessments.',
       tags: ['Google Earth Engine', 'ArcGIS', 'Python'],
       email: 'saputra.ivannalis24@gmail.com',
       // linkedin: 'https://www.linkedin.com/in/username'
@@ -75,7 +75,7 @@ window.SCC_TEAM = {
       role: 'Food Security and Climate Change Adaptation Expert',
       field: 'Environmental governance',
       photo: 'assets/img/team/linda.jpg',
-      bio: 'Linda Wahyuni, SP., MP., is a Food Security and Climate Change Adaptation Expert with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. Her expertise includes supporting the implementation of Good Agricultural Practices (GAP), promoting sustainable farming systems, and strengthening smallholder capacity to improve agricultural productivity, environmental sustainability, and climate resilience. Her research interests focus on food security, climate change adaptation, and sustainable agroecosystem development, with particular emphasis on ensuring food availability, accessibility, and stability while strengthening the resilience of farming communities to climate-related risks. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute, where she contributes to teaching, research, and community engagement in sustainable agriculture and food systems.',
+      bio: 'Linda Wahyuni, SP., MP., is a Food Security and Climate Change Adaptation Expert with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute, where she contributes to teaching, research, and community engagement in sustainable agriculture and food systems.',
       tags: ['Food Security', 'Climage Change Adaptation', 'Good Agriculture Practices (GAP)'],
       email: 'lindawahyuni25@gmail.com',
       // linkedin: 'https://www.linkedin.com/in/username'
