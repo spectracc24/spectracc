@@ -1,0 +1,881 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Spectra Citra Cendekia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap">
+<style>
+/* Layout concept: a navy-led consultancy site built like a GIS project. Contour hero, then principles, services, pathway,
+   differentiators, case studies and projects. */
+:root{
+  --bg:#FFFFFF; --surface:#F3F8FA; --soft:#DCEAF0; --card:#FFFFFF; --line:#CBD9E1;
+  --ink:#343F46; --muted:#53616B; --head:#17324D;
+  --navy:#17324D; --teal:#168C91; --green:#367A55; --sage:#A9C6B2;
+  --teal-text:#0E6B70; --green-text:#2B6346;
+  --btn-bg:#17324D; --btn-fg:#FFFFFF; --btn2-bg:#367A55; --btn2-fg:#FFFFFF;
+  --hero:#17324D; --hero-ink:#DCE8EE;
+  --lg-o:#17324D; --lg-m:#168C91; --lg-i:#367A55; --lg-d:#17324D;
+  --shadow:0 1px 2px rgba(23,50,77,.06),0 10px 28px rgba(23,50,77,.09); --err:#A4262C;
+  --hf:'Manrope','Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bf:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1B2B; --surface:#10263A; --soft:#17324D; --card:#13293D; --line:#29465E;
+    --ink:#C9D6DE; --muted:#9BAEBB; --head:#F2F7FA;
+    --teal:#2DB1B7; --green:#4DA678; --teal-text:#5FCDD2; --green-text:#7CC9A0;
+    --btn-bg:#F2F7FA; --btn-fg:#17324D; --hero:#0A1827;
+    --lg-o:#FFFFFF; --lg-m:#2DB1B7; --lg-i:#A9C6B2; --lg-d:#FFFFFF;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35); --err:#FF9AA2;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1B2B; --surface:#10263A; --soft:#17324D; --card:#13293D; --line:#29465E;
+  --ink:#C9D6DE; --muted:#9BAEBB; --head:#F2F7FA;
+  --teal:#2DB1B7; --green:#4DA678; --teal-text:#5FCDD2; --green-text:#7CC9A0;
+  --btn-bg:#F2F7FA; --btn-fg:#17324D; --hero:#0A1827;
+  --lg-o:#FFFFFF; --lg-m:#2DB1B7; --lg-i:#A9C6B2; --lg-d:#FFFFFF;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35); --err:#FF9AA2;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--bf);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+h1,h2,h3,h4{font-family:var(--hf);color:var(--head);margin:0 0 .5em;text-wrap:balance;letter-spacing:-.015em}
+h2{font-weight:800;font-size:clamp(1.7rem,3.2vw,2.35rem);line-height:1.15}
+h3{font-weight:700;font-size:1.15rem;line-height:1.3}
+p{margin:0 0 1em}
+a{color:var(--head);text-decoration-color:var(--teal);text-underline-offset:3px}
+ul{margin:0;padding:0;list-style:none}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+.wrap{width:100%;max-width:1240px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.ic{width:1.25em;height:1.25em;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ico{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:10px;background:var(--soft);color:var(--head);flex:none}
+.ico .ic{width:24px;height:24px}
+.eyebrow{font:600 12px/1.4 var(--bf);letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text);margin:0 0 14px}
+.sec{padding-block:clamp(48px,7vw,96px);scroll-margin-top:72px}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.sec-h{max-width:740px;margin-bottom:clamp(28px,4vw,44px)}
+.sec-h p:last-child{margin-bottom:0}
+.muted{color:var(--muted)}
+.rule3{height:4px;background:linear-gradient(90deg,#17324D 0 33.34%,#168C91 33.34% 66.67%,#367A55 66.67%)}
+.rule3.rev{background:linear-gradient(90deg,#FFFFFF 0 33.34%,#168C91 33.34% 66.67%,#367A55 66.67%)}
+
+/* Logo */
+[data-logo]{display:inline-flex;align-items:center;gap:12px}
+.err{color:var(--err);font-size:14px;margin:12px 0 0}
+.logo{display:inline-flex;align-items:center;gap:12px;color:var(--head);text-decoration:none}
+.logo .mk{width:44px;height:44px;flex:none}
+.logo .wm{display:grid;line-height:1}
+.logo .wm b{font:800 24px/1 var(--hf);letter-spacing:-.02em}
+.logo .wm i{font:500 9.5px/1 var(--bf);letter-spacing:.3em;text-transform:uppercase;margin-top:6px;font-style:normal;opacity:.85}
+.logo.rev{--lg-o:#FFFFFF;--lg-m:#2DB1B7;--lg-i:#A9C6B2;--lg-d:#FFFFFF;color:#fff}
+
+/* Header */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:20px;min-height:72px;flex-wrap:wrap}
+.nav-panel{margin-left:auto}
+.nav{display:flex;align-items:center;gap:2px}
+.nav>li{position:relative}
+.nav a{display:flex;align-items:center;gap:6px;padding:10px 14px;font:700 14.5px var(--hf);color:var(--head);text-decoration:none;border-radius:6px}
+.nav a:hover{background:var(--soft)}
+.nav a[aria-current="page"]{color:var(--teal-text);box-shadow:inset 0 -2px 0 var(--teal);border-radius:0}
+.sub{position:absolute;top:100%;left:0;min-width:210px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:6px;display:none;border-radius:8px;z-index:5}
+.has-sub:hover>.sub,.has-sub:focus-within>.sub{display:block}
+.sub a{box-shadow:none!important;border-radius:6px!important}
+.icon-btn{appearance:none;display:inline-grid;place-items:center;width:42px;height:42px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--head);cursor:pointer}
+.icon-btn:hover{background:var(--soft)}
+.menu-btn{display:none;margin-left:auto}
+@media (max-width:900px){
+  .menu-btn{display:inline-grid}
+  .hdr-in{gap:12px}
+  .nav-panel{display:none;order:9;flex-basis:100%;margin-left:0;padding-bottom:12px}
+  .nav-panel.open{display:block}
+  .nav{flex-direction:column;align-items:stretch}
+  .sub{position:static;display:block;border:0;box-shadow:none;padding:0 0 0 14px;background:none}
+  .nav a[aria-current="page"]{box-shadow:none;background:var(--soft)}
+}
+
+/* Buttons */
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 20px;border-radius:6px;font:700 15px/1.2 var(--hf);border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:var(--btn-bg);color:var(--btn-fg)}
+.btn-s{background:var(--btn2-bg);color:var(--btn2-fg)}
+.btn-o{background:transparent;color:var(--head);border-color:var(--line)}
+.btn-o:hover{background:var(--soft)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Hero */
+.hero{position:relative;background:var(--hero);color:var(--hero-ink);overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;padding-block:clamp(52px,9vw,116px) clamp(36px,5vw,56px)}
+.hero h1{color:#fff;font-weight:800;font-size:clamp(2.4rem,6vw,4.1rem);line-height:1.04;letter-spacing:-.025em;max-width:11em;margin-bottom:.45em}
+.hero .eyebrow{color:#7FD6DA}
+.hero .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:36em;color:var(--hero-ink)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .btn-p{background:#fff;color:#17324D}
+.hero .btn-o{color:#fff;border-color:rgba(255,255,255,.55)}
+.hero .btn-o:hover{background:rgba(255,255,255,.1)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(40px,6vw,72px);padding-top:20px;border-top:1px solid rgba(255,255,255,.18);position:relative}
+.facts li{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--hero-ink);min-width:0}
+.facts .ic{color:#7FD6DA;width:22px;height:22px;margin-top:1px}
+.facts b{display:block;color:#fff;font:700 14px var(--hf)}
+.coord{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:18px;font:500 12px/1 var(--bf);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums;white-space:pre}
+@media (max-width:760px){.facts{grid-template-columns:1fr}.coord{font-size:10px}}
+
+/* Cards and grids */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:28px}
+.grid3>*{min-width:0}
+.pillar{border-top:3px solid var(--c);padding-top:20px}
+.pillar .ico{margin-bottom:14px}
+.pillar p{color:var(--muted);margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;min-width:0}
+.chips,.tags{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--head);font:600 12px/1.4 var(--bf)}
+.chip.ghost{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.tag{padding:3px 9px;border:1px solid var(--line);border-radius:4px;font:500 12px/1.5 var(--bf);color:var(--muted)}
+.meta{color:var(--muted);font-size:14px;margin-bottom:14px}
+.ticks li{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.ticks .ic{color:var(--green);margin-top:3px;width:18px;height:18px}
+
+/* Shared form controls */
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label,.lbl{font:600 14px var(--bf);color:var(--head)}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+.svc .card h3{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.svc .card>p{color:var(--muted);font-size:14.5px}
+.svc li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.5}
+.svc li .ic{color:var(--teal-text);margin-top:2px;width:19px;height:19px}
+.svc li b{color:var(--head);font-weight:600}
+
+/* Pathway */
+.stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;position:relative}
+.stg{appearance:none;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:14px;cursor:pointer;color:var(--head);display:grid;gap:10px;align-content:start;min-width:0}
+.stg:hover{border-color:var(--teal)}
+.stg[aria-selected="true"]{border-color:var(--teal);background:var(--soft)}
+.stg .n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font:800 14px var(--hf);position:relative}
+.stg[aria-selected="true"] .n{background:var(--teal)}
+.stg b{font:700 14.5px/1.3 var(--hf)}
+.stage-detail{margin-top:16px;display:flex;gap:16px;align-items:flex-start;background:var(--navy);color:#E3EDF2;padding:22px 24px;border-radius:10px}
+.stage-detail h3{color:#fff;margin-bottom:6px}
+.stage-detail p{margin:0}
+.stage-detail .ic{width:30px;height:30px;color:#7FD6DA;margin-top:2px}
+@media (max-width:900px){.stages{grid-template-columns:minmax(0,1fr)}.stg{grid-template-columns:auto 1fr;align-items:center}}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 36px}
+.diff>div{display:flex;gap:14px;padding:18px 0;border-top:1px solid var(--line);min-width:0}
+.diff h3{font-size:1.02rem;margin-bottom:4px}
+.diff p{margin:0;color:var(--muted);font-size:14.5px}
+.callout{background:var(--navy);color:#DCE8EE;border-radius:12px;padding:clamp(24px,4vw,44px);position:relative;overflow:hidden}
+.callout .eyebrow{color:#7FD6DA}
+.callout h2{color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);max-width:14em}
+.callout p{max-width:44em;margin:0 0 .8em}
+.callout svg.art{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:420px;height:300px;opacity:.5;pointer-events:none}
+.cta-band{background:var(--navy);color:#DCE8EE;text-align:left}
+.cta-band .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;padding-block:clamp(36px,5vw,56px)}
+.cta-band h2{color:#fff;margin:0;max-width:18em}
+.cta-band .btn-p{background:#fff;color:#17324D}
+
+/* Page heads */
+.page-head{background:var(--soft);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.page-head .wrap{padding-block:clamp(36px,6vw,72px);position:relative}
+.page-head h1{font-weight:800;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.08;max-width:15em;margin-bottom:.35em}
+.page-head p{max-width:40em;color:var(--ink);font-size:1.08rem;margin:0}
+.page-head .art{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:min(520px,70vw);opacity:.55;pointer-events:none}
+.subnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;position:relative}
+.subnav a,.subnav button{appearance:none;padding:9px 16px;border:1.5px solid var(--head);border-radius:99px;font:700 14px var(--hf);color:var(--head);text-decoration:none;background:transparent;cursor:pointer}
+.subnav a:hover,.subnav button:hover{background:var(--card)}
+.subnav [aria-current="page"]{background:var(--head);color:var(--bg)}
+
+/* About */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,56px);align-items:start}
+.two>*{min-width:0}
+@media (max-width:860px){.two{grid-template-columns:minmax(0,1fr)}}
+.vision{background:var(--navy);color:#fff;border-radius:12px;padding:clamp(22px,3vw,34px)}
+.vision .eyebrow{color:#7FD6DA}
+.vision p{font:800 clamp(1.4rem,2.6vw,2rem)/1.2 var(--hf);margin:0;color:#fff}
+.cmpcols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.cmpcols{grid-template-columns:minmax(0,1fr)}}
+.cmpcols .card h3{font-size:1rem;margin-bottom:10px}
+.cmpcols li{display:flex;gap:10px;margin-bottom:8px;font-size:14.5px;color:var(--ink)}
+.cmpcols .ic{margin-top:3px;width:18px;height:18px;color:var(--green)}
+.cmpcols .card.dim .ic{color:var(--muted)}
+.expertise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.expertise li{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid var(--line);background:var(--card);border-radius:10px;font:700 15px/1.3 var(--hf);color:var(--head)}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+.tbl th{width:32%;background:var(--soft);color:var(--head);font:700 14.5px var(--hf)}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;border-top:0}
+.net-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;margin-bottom:36px}
+@media (max-width:860px){.net-wrap{grid-template-columns:minmax(0,1fr)}}
+.net{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.net .node{cursor:pointer}
+.net .node circle{fill:var(--card);stroke:var(--teal);stroke-width:2;transition:fill .2s}
+.net .node text{fill:var(--head);font:700 13px var(--hf);text-anchor:middle}
+.net .node:hover circle,.net .node.on circle{fill:var(--teal)}
+.net .node.on text{fill:var(--head)}
+.net .edge{stroke:var(--muted);stroke-width:1.4;opacity:.6}
+.net .edge.on{stroke:var(--teal);opacity:1;stroke-width:2.4}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:20px}
+.member{padding:22px}
+.member .av{width:68px;height:68px;border-radius:50%;background:var(--soft);display:grid;place-items:center;margin-bottom:16px}
+.member .av .mk{width:44px;height:44px}
+.member h3{margin-bottom:2px}
+.member .role{color:var(--muted);font-size:14px;margin-bottom:12px}
+.member p{font-size:14.5px;color:var(--ink);margin:12px 0 0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.fbtn{appearance:none;padding:8px 14px;border:1.5px solid var(--line);border-radius:99px;background:var(--card);color:var(--head);font:600 13.5px var(--bf);cursor:pointer}
+.fbtn:hover{border-color:var(--teal)}
+.fbtn[aria-pressed="true"]{background:var(--head);color:var(--bg);border-color:var(--head)}
+
+/* Showcase */
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);padding-block:clamp(36px,5vw,60px);border-top:1px solid var(--line);align-items:start}
+.case:first-of-type{border-top:0}
+.case>*{min-width:0}
+.case:nth-of-type(even) .case-fig{order:-1}
+@media (max-width:900px){.case{grid-template-columns:minmax(0,1fr)}.case:nth-of-type(even) .case-fig{order:0}}
+.case h2{font-size:clamp(1.5rem,2.8vw,2rem);margin-top:14px}
+.case h3{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text);margin:22px 0 6px;font-family:var(--bf);font-weight:600}
+.fig{margin:0}
+.fig figcaption{font:500 12px/1.4 var(--bf);color:var(--muted);margin-top:8px}
+.thumb{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--soft)}
+.cmp{--p:50%;position:relative;aspect-ratio:14/9;overflow:hidden;border-radius:10px;border:1px solid var(--line);user-select:none;-webkit-user-select:none;background:var(--soft)}
+.cmp canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cmp .after{clip-path:inset(0 0 0 var(--p))}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:3}
+.cmp .hd{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff;box-shadow:0 0 0 1px rgba(23,50,77,.45);z-index:2;pointer-events:none}
+.cmp .hd::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(23,50,77,.4)}
+.cmp .hd::before{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;color:#17324D;font:700 15px var(--hf)}
+.cmp .yr{position:absolute;top:10px;z-index:2;padding:3px 10px;background:rgba(23,50,77,.85);color:#fff;border-radius:99px;font:700 12px var(--hf);pointer-events:none}
+.cmp .yr.l{left:10px}.cmp .yr.r{right:10px}
+.cmp:focus-within{outline:2px solid var(--teal);outline-offset:3px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:22px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.pcard .thumb{border:0;border-radius:0;aspect-ratio:16/10}
+.pcard .pb{padding:18px 20px 20px;display:grid;gap:10px;align-content:start}
+.pcard h3{margin:0}
+.pcard details summary{cursor:pointer;font:700 14px var(--hf);color:var(--head);list-style:none;display:flex;gap:6px;align-items:center}
+.pcard details summary::-webkit-details-marker{display:none}
+.pcard details[open] summary .ic{transform:rotate(90deg)}
+.pcard dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0 0;font-size:14px}
+.pcard dt{color:var(--muted)}
+.pcard dd{margin:0;color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:24px}
+.search{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:8px;padding:0 12px;background:var(--card);min-width:min(100%,260px)}
+.search input{border:0;background:none;padding:10px 0;font:400 15px var(--bf);color:var(--ink);width:100%;outline:none}
+.search:focus-within{border-color:var(--teal)}
+.note{padding:12px 16px;border:1px dashed var(--muted);border-radius:8px;color:var(--muted);font-size:14px;margin-bottom:28px}
+
+/* Contact */
+.cinfo{display:grid;gap:12px;margin-bottom:24px}
+.crow{display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);min-width:0}
+.crow>div{min-width:0;flex:1}
+.crow small{display:block;color:var(--muted);font-size:12.5px}
+.crow span.v{display:block;font:600 15px var(--bf);color:var(--head);overflow-wrap:anywhere;user-select:all}
+.crow span.v.ph{color:var(--muted);font-weight:500}
+.input,.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:400 15px var(--bf)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1.5px solid var(--line);border-radius:99px;font:600 13.5px var(--bf);color:var(--head);cursor:pointer;background:var(--card)}
+.checks input{accent-color:var(--teal);width:15px;height:15px}
+.checks label:has(input:checked){border-color:var(--teal);background:var(--soft)}
+.frow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.frow{grid-template-columns:minmax(0,1fr)}}
+.draft{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--soft);border-radius:8px;padding:16px;font:400 14px/1.6 var(--bf);color:var(--ink);margin:12px 0}
+.mapfig{margin:0}
+.mapfig svg{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line)}
+.ping{transform-origin:center;transform-box:fill-box;animation:ping 2.8s ease-out infinite}
+@keyframes ping{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+
+/* Footer */
+.ftr{background:var(--hero);color:#C5D5DE}
+.ftr .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr)) minmax(0,1.3fr);gap:32px;padding-block:48px 32px}
+@media (max-width:860px){.ftr .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.ftr .wrap{grid-template-columns:minmax(0,1fr)}}
+.ftr h4{color:#fff;font:700 13px var(--hf);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.ftr li{margin-bottom:8px}
+.ftr a{color:#C5D5DE;text-decoration:none;font-size:14.5px}
+.ftr a:hover{color:#fff;text-decoration:underline}
+.ftr p{font-size:14px;margin:0 0 .6em}
+.ftr .tag-line{font:700 15px var(--hf);color:#fff;margin-top:14px}
+.ftr .legal{border-top:1px solid rgba(255,255,255,.14);font-size:12.5px}
+.ftr .legal .wrap{display:block;padding-block:16px}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 4.5-9 4.5-9-4.5z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5l9 4.5 9-4.5"/></symbol>
+<symbol id="i-satellite" viewBox="0 0 24 24"><path d="M12 8.5l3.5 3.5-3.5 3.5L8.5 12z"/><path d="M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/><path d="M15.5 20.5a8.5 8.5 0 0 0 5-5"/><path d="M13 21a10 10 0 0 0 8-8" opacity=".6"/></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 21v-5"/><path d="M12 3l5 7h-3l4 6H6l4-6H7z"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19c3-5 6-8 10-10"/></symbol>
+<symbol id="i-carbon" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-7.9A5.5 5.5 0 0 1 17 8.6 4.7 4.7 0 0 1 17 18z"/><path d="M9.5 13.5h5" opacity=".7"/></symbol>
+<symbol id="i-water" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+<symbol id="i-network" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="6" r="1.8"/><circle cx="19" cy="6" r="1.8"/><circle cx="5" cy="18" r="1.8"/><circle cx="19" cy="18" r="1.8"/><path d="M10 10.3L6.3 7.2M14 10.3l3.7-3.1M10 13.7l-3.7 3.1M14 13.7l3.7 3.1"/></symbol>
+<symbol id="i-train" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></symbol>
+<symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+<symbol id="i-contour" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6.5"/><ellipse cx="12" cy="12" rx="5.5" ry="3.8"/><ellipse cx="12" cy="12" rx="2" ry="1.3"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M8 14h8"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16"/><path d="M8 15l4-4 3 3 5-6"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.2-4.2"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+<symbol id="i-model" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M8 7l2.5 4M8 17l2.5-4M14 12h2"/></symbol>
+<symbol id="i-govern" viewBox="0 0 24 24"><path d="M12 4v16M6 20h12M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></symbol>
+</defs></svg>
+
+<header class="hdr"><div class="wrap hdr-in">
+  <a class="logo" href="#home" aria-label="Spectra CC, home"><span data-logo></span></a>
+  <button class="icon-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+  <nav class="nav-panel" id="navPanel" aria-label="Main">
+    <ul class="nav">
+      <li><a href="#home" data-r="home">Home</a></li>
+      <li class="has-sub"><a href="#about" data-r="about,team">About Us</a>
+        <ul class="sub"><li><a href="#about" data-r="about">Main</a></li><li><a href="#team" data-r="team">Our Team</a></li></ul></li>
+      <li class="has-sub"><a href="#case-studies" data-r="case-studies,projects">Showcase</a>
+        <ul class="sub"><li><a href="#case-studies" data-r="case-studies">Case Studies</a></li><li><a href="#projects" data-r="projects">Projects</a></li></ul></li>
+      <li><a href="#contact" data-r="contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="icon-btn" id="themeBtn" aria-label="Switch between light and dark theme"><svg class="ic"><use id="themeUse" href="#i-moon"/></svg></button>
+</div></header>
+
+<!-- ============ HOME ============ -->
+<main class="view" id="v-home">
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="coord" id="heroCoord" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Geospatial science for environmental sustainability</p>
+        <h1>Science into Sustainable Solutions.</h1>
+        <p class="lead">Spectra Citra Cendekia is a geospatial consultancy that strengthens early and mid-stage environmental projects with decision-grade spatial analysis, applied research and hands-on capacity building.</p>
+        <div class="cta">
+          <a class="btn btn-p" href="#contact">Talk to our team<svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-o" href="#about">About Spectra CC<svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <ul class="facts">
+        <li><svg class="ic"><use href="#i-pin"/></svg><span><b>Registered in Kubu Raya</b>West Kalimantan, Indonesia</span></li>
+        <li><svg class="ic"><use href="#i-file"/></svg><span><b>Legal registration</b>AHU-015113.AH.01.30 Year 2025</span></li>
+        <li><svg class="ic"><use href="#i-tree"/></svg><span><b>Sector focus</b>Agriculture, Forestry and Other Land Use (AFOLU)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">How we work</p><h2>Three commitments in every engagement</h2>
+        <p>Each spatial model, framework and recommendation we deliver follows the same standard, whatever the size of the project.</p></div>
+      <div class="grid3">
+        <div class="pillar" style="--c:#17324D"><span class="ico"><svg class="ic"><use href="#i-flask"/></svg></span><h3>Science-driven</h3><p>Every spatial model, technical framework and analytical output rests on peer-reviewed methods, verifiable data and empirical rigor.</p></div>
+        <div class="pillar" style="--c:#168C91"><span class="ico"><svg class="ic"><use href="#i-layers"/></svg></span><h3>Geospatial-focused</h3><p>GIS, remote sensing and spatial data science are our core instruments for decoding environmental dynamics.</p></div>
+        <div class="pillar" style="--c:#367A55"><span class="ico"><svg class="ic"><use href="#i-leaf"/></svg></span><h3>Sustainability-oriented</h3><p>Our consulting, research and training services are built to support measurable environmental stewardship.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">Services</p><h2>Consulting, research and training in one suite</h2>
+        <p>Three practice areas work together so that each client moves toward independent technical maturity.</p></div>
+      <div class="svc">
+        <div class="card"><h3><span class="ico"><svg class="ic"><use href="#i-layers"/></svg></span>Geospatial Consulting and Spatial Analysis</h3>
+          <p>End-to-end spatial intelligence and technical advisory.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-db"/></svg><span><b>Geospatial data engineering.</b> QA/QC protocols and spatial database architecture.</span></li>
+            <li><svg class="ic"><use href="#i-target"/></svg><span><b>Spatial decision support.</b> Multi-criteria analysis and decision-support systems.</span></li>
+            <li><svg class="ic"><use href="#i-satellite"/></svg><span><b>Remote sensing.</b> Optical, SAR and high-resolution imagery processing.</span></li>
+            <li><svg class="ic"><use href="#i-model"/></svg><span><b>Spatial modeling and machine learning.</b> Prediction, classification and data fusion.</span></li>
+            <li><svg class="ic"><use href="#i-carbon"/></svg><span><b>Carbon and climate analytics.</b> Carbon stock, emissions baselines and climate risk.</span></li>
+            <li><svg class="ic"><use href="#i-map"/></svg><span><b>Cartography and visualization.</b> Publication-grade maps and atlases.</span></li>
+          </ul></div>
+        <div class="card"><h3><span class="ico"><svg class="ic"><use href="#i-flask"/></svg></span>Applied Research and Scientific Studies</h3>
+          <p>Evidence-based investigations that strengthen feasibility and performance assessment.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-contour"/></svg><span><b>Environmental baseline assessments.</b> Reference conditions and landscape diagnostics.</span></li>
+            <li><svg class="ic"><use href="#i-file"/></svg><span><b>Technical frameworks and protocols.</b> Methods, assessment frameworks and guidelines.</span></li>
+            <li><svg class="ic"><use href="#i-search"/></svg><span><b>Feasibility and due diligence.</b> Project viability and implementation readiness.</span></li>
+            <li><svg class="ic"><use href="#i-chart"/></svg><span><b>Monitoring, evaluation and performance.</b> Indicators, tracking and impact evaluation.</span></li>
+            <li><svg class="ic"><use href="#i-leaf"/></svg><span><b>Applied environmental research.</b> Testing hypotheses with context-specific evidence.</span></li>
+          </ul></div>
+        <div class="card"><h3><span class="ico"><svg class="ic"><use href="#i-train"/></svg></span>Training and Institutional Capacity Development</h3>
+          <p>Competency-based programs tailored to each team and its workflows.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-map"/></svg><span><b>Applied GIS and cartography.</b> Spatial analysis and map production.</span></li>
+            <li><svg class="ic"><use href="#i-satellite"/></svg><span><b>Remote sensing and Earth observation.</b> Forest cover mapping and land-cover change.</span></li>
+            <li><svg class="ic"><use href="#i-db"/></svg><span><b>Geospatial databases and field data.</b> Data organization, collection protocols and QC/QA.</span></li>
+          </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">Our contribution pathway</p><h2>From a first foundation to collective impact</h2>
+        <p>Select a stage to see how Spectra CC works with a client at that point.</p></div>
+      <div class="stages" id="stages" role="tablist" aria-label="Five-stage pathway"></div>
+      <div class="stage-detail" id="stageDetail" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="sec band">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">Why Spectra CC</p><h2>Built for projects that are still growing</h2>
+        <p>Large institutions already have mature GIS teams. Early and mid-stage projects often hold high sustainability potential but lack the spatial architecture, analytical rigor and technical staff to scale credibly. That gap is where we work.</p></div>
+      <div class="diff">
+        <div><span class="ico"><svg class="ic"><use href="#i-target"/></svg></span><div><h3>Foundational focus on growth-stage initiatives</h3><p>Purpose-built spatial architecture and analytical frameworks, instead of generic off-the-shelf deliverables.</p></div></div>
+        <div><span class="ico"><svg class="ic"><use href="#i-layers"/></svg></span><div><h3>Cumulative and aggregated impact</h3><p>We raise the technical quality and scale of many emerging initiatives at once.</p></div></div>
+        <div><span class="ico"><svg class="ic"><use href="#i-check"/></svg></span><div><h3>Scientific integrity and auditability</h3><p>Transparent, replicable methods and empirical validation that stand up to donor, investor and regulatory review.</p></div></div>
+        <div><span class="ico"><svg class="ic"><use href="#i-train"/></svg></span><div><h3>Integrated consulting, research and capacity suite</h3><p>Spatial consulting, applied studies and team training combined, so clients become self-reliant.</p></div></div>
+        <div><span class="ico"><svg class="ic"><use href="#i-network"/></svg></span><div><h3>Multidisciplinary expert network</h3><p>Specialists across remote sensing, forest ecology, hydrology, carbon accounting and environmental governance.</p></div></div>
+      </div>
+      <div class="callout" style="margin-top:44px">
+        <svg class="art" viewBox="0 0 420 300" fill="none" stroke="#2DB1B7" stroke-width="1.3" aria-hidden="true"><ellipse cx="240" cy="150" rx="190" ry="130"/><ellipse cx="240" cy="150" rx="160" ry="108"/><ellipse cx="240" cy="150" rx="130" ry="88"/><ellipse cx="240" cy="150" rx="100" ry="66"/><ellipse cx="240" cy="150" rx="70" ry="44"/><ellipse cx="240" cy="150" rx="40" ry="24"/><ellipse cx="240" cy="150" rx="14" ry="8" stroke="#fff"/></svg>
+        <p class="eyebrow">Guiding philosophy</p>
+        <h2>Strong Foundations Create Lasting Impact.</h2>
+        <p>Durable environmental progress depends on building sound technical foundations early. Spectra CC equips many growing projects and organizations with decision-grade geospatial analysis, research and technical capability today, so they mature into independent, high-performing initiatives that together deliver major environmental outcomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band"><div class="wrap"><h2>Start with a strong spatial foundation.</h2><a class="btn btn-p" href="#contact">Talk to our team<svg class="ic"><use href="#i-arrow"/></svg></a></div></section>
+</main>
+
+<!-- ============ ABOUT ============ -->
+<main class="view" id="v-about" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="170" ry="113"/><ellipse cx="330" cy="150" rx="140" ry="92"/><ellipse cx="330" cy="150" rx="110" ry="70"/><ellipse cx="330" cy="150" rx="80" ry="48"/><ellipse cx="330" cy="150" rx="50" ry="28"/><ellipse cx="330" cy="150" rx="20" ry="10"/></svg>
+    <div class="wrap"><p class="eyebrow">About Us</p><h1>A science-driven geospatial consultancy.</h1>
+      <p>Spectra Citra Cendekia mobilizes multidisciplinary experts to deliver decision-grade spatial analysis, applied scientific research and structured technical capacity building.</p>
+      <div class="subnav"><button data-jump="about-main" id="jmpMain">Main</button><button data-jump="team-section" id="jmpTeam">Our Team</button></div></div>
+  </section>
+
+  <section class="sec" id="about-main">
+    <div class="wrap">
+      <div class="two">
+        <div><p class="eyebrow">Who we are</p><h2>Foundations first, independence next</h2>
+          <p>Spectra CC focuses on early and mid-stage environmental projects and growing organizations. We establish strong geospatial and scientific foundations that let these initiatives mature on their own and generate large-scale, cumulative environmental impact.</p>
+          <p>Our core expertise is Geospatial Science for Environmental Sustainability, anchored in the Agriculture, Forestry, and Other Land Use (AFOLU) sector.</p></div>
+        <div class="vision"><p class="eyebrow">Corporate vision</p><p>A trusted center of excellence in geospatial solutions and innovation for environmental sustainability.</p></div>
+      </div>
+
+      <div class="sec-h" style="margin-top:clamp(40px,6vw,72px)"><p class="eyebrow">Mission</p><h2>What we commit to</h2></div>
+      <div class="grid3">
+        <div class="pillar" style="--c:#17324D"><span class="ico"><svg class="ic"><use href="#i-flask"/></svg></span><h3>Delivering scientific excellence</h3><p>Rigorous, reliable, science-based geospatial analysis and technical solutions that support environmental sustainability initiatives.</p></div>
+        <div class="pillar" style="--c:#168C91"><span class="ico"><svg class="ic"><use href="#i-db"/></svg></span><h3>Advancing knowledge and technical capacity</h3><p>Applied research, structured training and knowledge transfer, plus standardized workflows, institutional procedures and spatial data management for partner institutions.</p></div>
+        <div class="pillar" style="--c:#367A55"><span class="ico"><svg class="ic"><use href="#i-leaf"/></svg></span><h3>Empowering independent environmental leadership</h3><p>Stronger technical foundations and organizational capability, so institutions and emerging practitioners can run credible, independent and sustainable initiatives.</p></div>
+      </div>
+
+      <div class="sec-h" style="margin-top:clamp(40px,6vw,72px)"><p class="eyebrow">Who we serve</p><h2>Where we choose to work</h2></div>
+      <div class="cmpcols">
+        <div class="card dim"><h3>Established institutions</h3><ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>Mature geospatial infrastructure</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Standardized analytical frameworks</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Dedicated in-house GIS personnel</li></ul></div>
+        <div class="card"><h3>Early and mid-stage projects (our priority)</h3><ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>High sustainability potential</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Limited spatial architecture and analytical rigor</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Few technical staff to scale credibly</li></ul></div>
+      </div>
+
+      <div class="sec-h" style="margin-top:clamp(40px,6vw,72px)"><p class="eyebrow">Core expertise</p><h2>Practice areas</h2></div>
+      <ul class="expertise">
+        <li><span class="ico"><svg class="ic"><use href="#i-tree"/></svg></span>Forest and land cover, and carbon dynamics</li>
+        <li><span class="ico"><svg class="ic"><use href="#i-layers"/></svg></span>Land-use and land-cover change (LULCC)</li>
+        <li><span class="ico"><svg class="ic"><use href="#i-leaf"/></svg></span>Ecosystem and biodiversity assessment</li>
+        <li><span class="ico"><svg class="ic"><use href="#i-chart"/></svg></span>Environmental monitoring and evaluation</li>
+        <li><span class="ico"><svg class="ic"><use href="#i-carbon"/></svg></span>Climate change mitigation</li>
+        <li><span class="ico"><svg class="ic"><use href="#i-water"/></svg></span>Nature-based Solutions (NbS)</li>
+      </ul>
+
+      <div class="sec-h" style="margin-top:clamp(40px,6vw,72px)"><p class="eyebrow">Institutional details</p><h2>Legal and commercial standing</h2></div>
+      <div class="tblwrap"><table class="tbl"><caption class="sr" style="position:absolute;left:-9999px">Institutional and commercial legality</caption><tbody>
+        <tr><th scope="row">Registered legal name</th><td>Spectra Citra Cendekia</td></tr>
+        <tr><th scope="row">Official brand abbreviation</th><td>Spectra CC</td></tr>
+        <tr><th scope="row">Legal structure</th><td>Commercial Business Entity (PT/CV), a professional scientific and geospatial consultancy</td></tr>
+        <tr><th scope="row">Legal registration</th><td>AHU-015113.AH.01.30 Year 2025, Kubu Raya, West Kalimantan, Indonesia</td></tr>
+        <tr><th scope="row">Registration authority</th><td>Ministry of Law of the Republic of Indonesia (formerly Ministry of Law and Human Rights)</td></tr>
+      </tbody></table></div>
+    </div>
+  </section>
+
+  <section class="sec band" id="team-section">
+    <div class="wrap">
+      <div class="sec-h"><p class="eyebrow">Our Team</p><h2>A multidisciplinary expert network</h2>
+        <p>We match each engagement with qualified specialists. Select a discipline in the network to see who covers it.</p></div>
+      <div class="net-wrap">
+        <svg class="net" id="net" viewBox="0 0 520 380" role="group" aria-label="Expert network by discipline"></svg>
+        <div><h3>Specialists, mobilized by need</h3><p>Rather than one fixed bench, Spectra CC assembles the right mix of disciplines for each project and hands the know-how over to the client team.</p>
+          <div class="filters" id="teamFilters"></div></div>
+      </div>
+      <div class="team" id="teamGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CASE STUDIES ============ -->
+<main class="view" id="v-case" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="160" ry="106"/><ellipse cx="330" cy="150" rx="120" ry="78"/><ellipse cx="330" cy="150" rx="80" ry="50"/><ellipse cx="330" cy="150" rx="40" ry="22"/></svg>
+    <div class="wrap"><p class="eyebrow">Showcase</p><h1>Case Studies</h1>
+      <p>Each case follows one route from context to approach to outcome, told from the data.</p>
+      <div class="subnav"><a href="#case-studies" aria-current="page">Case Studies</a><a href="#projects">Projects</a></div></div>
+  </section>
+  <section class="sec"><div class="wrap">
+    <p class="note">These entries are sample structures. Client names, periods and results marked in square brackets are replaced with real ones before launch. Figures use generated illustrative data.</p>
+    <div id="caseList"></div>
+  </div></section>
+</main>
+
+<!-- ============ PROJECTS ============ -->
+<main class="view" id="v-projects" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><ellipse cx="330" cy="150" rx="200" ry="135"/><ellipse cx="330" cy="150" rx="150" ry="100"/><ellipse cx="330" cy="150" rx="100" ry="64"/><ellipse cx="330" cy="150" rx="50" ry="28"/></svg>
+    <div class="wrap"><p class="eyebrow">Showcase</p><h1>Projects</h1>
+      <p>A working portfolio of deliverables across our three practice areas. Filter by service or search by topic.</p>
+      <div class="subnav"><a href="#case-studies">Case Studies</a><a href="#projects" aria-current="page">Projects</a></div></div>
+  </section>
+  <section class="sec"><div class="wrap">
+    <p class="note">These entries are sample listings. Client, location and year fields in square brackets are replaced with real project details before launch.</p>
+    <div class="toolbar">
+      <div class="filters" id="pFilters" style="margin:0"></div>
+      <label class="search"><svg class="ic" style="color:var(--muted)"><use href="#i-search"/></svg><input id="pSearch" type="search" placeholder="Search projects" aria-label="Search projects"></label>
+    </div>
+    <div class="pgrid" id="pGrid"></div>
+    <p class="muted" id="pEmpty" hidden>No project matches this filter. Clear the search or pick another service.</p>
+  </div></section>
+</main>
+
+<!-- ============ CONTACT ============ -->
+<main class="view" id="v-contact" hidden>
+  <section class="page-head">
+    <svg class="art" viewBox="0 0 520 300" fill="none" stroke="#168C91" stroke-width="1.3" aria-hidden="true"><circle cx="330" cy="150" r="140"/><circle cx="330" cy="150" r="100"/><circle cx="330" cy="150" r="60"/><circle cx="330" cy="150" r="20"/></svg>
+    <div class="wrap"><p class="eyebrow">Contact</p><h1>Tell us where your project stands.</h1>
+      <p>Early stage, mid stage or a growing organization, we begin with the foundation your project needs next.</p></div>
+  </section>
+  <section class="sec"><div class="wrap"><div class="two">
+    <div>
+      <h2 style="font-size:1.5rem">Reach Spectra CC</h2>
+      <div class="cinfo" id="cinfo"></div>
+      <figure class="mapfig">
+        <svg viewBox="0 0 560 300" role="img" aria-label="Map graphic marking the registered office in Kubu Raya, West Kalimantan">
+          <rect width="560" height="300" fill="var(--soft)"/>
+          <g stroke="var(--line)" stroke-width="1"><path d="M0 50H560M0 100H560M0 150H560M0 200H560M0 250H560"/><path d="M70 0V300M140 0V300M210 0V300M280 0V300M350 0V300M420 0V300M490 0V300"/></g>
+          <g fill="none" stroke="var(--teal)" stroke-width="1.4" opacity=".7"><circle cx="280" cy="150" r="50" stroke-dasharray="3 5"/><circle cx="280" cy="150" r="100" stroke-dasharray="3 5"/><circle cx="280" cy="150" r="145" stroke-dasharray="3 5"/></g>
+          <circle class="ping" cx="280" cy="150" r="22" fill="none" stroke="var(--teal)" stroke-width="2"/>
+          <path d="M280 168s14-12 14-22a14 14 0 0 0-28 0c0 10 14 22 14 22z" fill="var(--head)"/><circle cx="280" cy="146" r="5" fill="var(--bg)"/>
+          <g font-family="Inter,sans-serif" font-size="11" fill="var(--muted)"><text x="76" y="44">00° 00′</text><text x="76" y="294">00° 00′</text><text x="494" y="44">00° 00′</text></g>
+          <text x="280" y="196" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="15" fill="var(--head)">Kubu Raya</text>
+          <text x="280" y="214" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--muted)">West Kalimantan, Indonesia</text>
+        </svg>
+        <figcaption class="meta" style="margin:8px 0 0">Registered office region. Schematic graphic, not to scale.</figcaption>
+      </figure>
+    </div>
+    <div class="card">
+      <h2 style="font-size:1.5rem">Draft your inquiry</h2>
+      <p class="muted">This page cannot send messages. Fill in the form to prepare a ready-to-send draft, then copy it into an email to the address on the left.</p>
+      <form id="cform" novalidate>
+        <div class="frow">
+          <div class="field"><label for="cf-name">Full name</label><input id="cf-name" autocomplete="name" required></div>
+          <div class="field"><label for="cf-org">Organization</label><input id="cf-org" autocomplete="organization"></div>
+        </div>
+        <div class="field"><label for="cf-mail">Email</label><input id="cf-mail" type="email" autocomplete="email" required></div>
+        <div class="field"><span class="lbl">Services of interest</span>
+          <div class="checks" id="cf-svc"><label><input type="checkbox" value="Geospatial consulting"> Geospatial consulting</label><label><input type="checkbox" value="Applied research"> Applied research</label><label><input type="checkbox" value="Training and capacity development"> Training</label></div></div>
+        <div class="field"><label for="cf-stage">Project stage</label>
+          <select id="cf-stage"><option>Early-stage project</option><option>Mid-stage project</option><option>Growing organization</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" placeholder="Describe your site, your goals and any deadline."></textarea></div>
+        <button class="btn btn-p" type="submit"><svg class="ic"><use href="#i-file"/></svg>Prepare draft</button>
+        <p class="err" id="cfErr" role="alert" hidden></p>
+      </form>
+      <div id="draftBox" hidden>
+        <pre class="draft" id="draftText"></pre>
+        <div class="btn-row"><button class="btn btn-s" id="copyDraft"><svg class="ic"><use href="#i-copy"/></svg>Copy draft</button><span class="muted" id="copyMsg" aria-live="polite" style="align-self:center;font-size:14px"></span></div>
+      </div>
+    </div>
+  </div></div></section>
+</main>
+
+<footer class="ftr">
+  <div class="rule3 rev"></div>
+  <div class="wrap">
+    <div><a class="logo rev" href="#home" aria-label="Spectra CC, home"><span data-logo></span></a><p class="tag-line">Science into Sustainable Solutions.</p><p>Geospatial · Research · Training</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#team">Our Team</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Showcase</h4><ul><li><a href="#case-studies">Case Studies</a></li><li><a href="#projects">Projects</a></li></ul></div>
+    <div><h4>Registered entity</h4><p>Spectra Citra Cendekia</p><p>Legal registration AHU-015113.AH.01.30 Year 2025</p><p>Kubu Raya, West Kalimantan, Indonesia</p></div>
+  </div>
+  <div class="legal"><div class="wrap">© 2026 Spectra Citra Cendekia. All rights reserved.</div></div>
+</footer>
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+var root=document.documentElement;
+function ic(n,c){return '<svg class="ic'+(c?' '+c:'')+'" aria-hidden="true"><use href="#'+n+'"/></svg>'}
+function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)}
+
+/* ---------- Content (edit here) ---------- */
+var CONTACT={address:'',email:'',phone:'',website:''};
+var STAGES=[
+ {t:'Scientific and Expert Mobilization',i:'i-network',d:'We match client needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.'},
+ {t:'Methodological and Spatial Execution',i:'i-layers',d:'We deliver geospatial consulting, spatial analysis, applied research, environmental assessments and tailored technical solutions grounded in scientific methods.'},
+ {t:'Decision-Grade Project Quality',i:'i-check',d:'We strengthen scientific rigor and technical reliability, so that decisions rest on evidence a donor, investor or regulator can check.'},
+ {t:'Institutional Technical Independence',i:'i-db',d:'We build internal competencies through knowledge transfer, standardized workflows, institutional procedures, spatial data infrastructure and applied analytical skills.'},
+ {t:'Sectoral Leadership and Collective Impact',i:'i-globe',d:'We contribute to a growing network of capable practitioners and institutions that together advance environmental sustainability.'}
+];
+var FIELDS=['Remote sensing','Forest ecology','Hydrology','Carbon accounting','Environmental governance','Spatial data science'];
+var FIELD_DESC={
+ 'Remote sensing':'Optical, SAR and high-resolution imagery processing, land-cover mapping and change detection.',
+ 'Forest ecology':'Forest structure, ecosystem condition and biodiversity assessment in the field and from imagery.',
+ 'Hydrology':'Water, peat and catchment dynamics that shape land-use and carbon outcomes.',
+ 'Carbon accounting':'Carbon stock estimation, emissions baselines and monitoring for climate mitigation.',
+ 'Environmental governance':'Safeguards, policy context and institutional procedures that keep projects credible.',
+ 'Spatial data science':'Predictive modeling, spatial classification, data fusion and geospatial database design.'};
+var TEAM=FIELDS.map(function(f){return {name:'[Full Name]',role:'[Job Title]',field:f,desc:FIELD_DESC[f]}});
+var CASES=[
+ {id:'c1',title:'Forest cover change analysis',pillar:'Geospatial consulting',client:'[Client name]',period:'[Month Year]',tags:['Remote sensing','LULCC','Forest cover'],
+  context:'A growing forest management initiative needed a defensible record of where forest cover had changed before it planned protection and restoration work.',
+  approach:['Assembled and corrected multi-temporal imagery for the project area.','Classified land cover for each period and checked the classes against field survey points.','Measured change by class and mapped where it concentrated.'],
+  outcome:'A land-cover change map and area statistics the team can defend to donors and regulators, plus a documented workflow their own staff can repeat.',fig:'compare'},
+ {id:'c2',title:'Baseline assessment of village forest areas',pillar:'Applied research',client:'[Client name]',period:'[Month Year]',tags:['Baseline','Village forest','Field survey'],
+  context:'Village managers needed reference conditions for their forest area before setting management targets.',
+  approach:['Derived land-cover classes from satellite imagery and verified them with field points.','Ran a landscape diagnostic to identify constraints and opportunities.','Defined indicators that the village team can track over time.'],
+  outcome:'A baseline report with maps, indicators and a monitoring starting point that village managers can plan with.',fig:'grid',seed:8},
+ {id:'c3',title:'Building an in-house GIS routine',pillar:'Training and capacity',client:'[Client name]',period:'[Month Year]',tags:['Capacity building','QC/QA','Spatial database'],
+  context:'A growing organization collected field data in many formats and had no shared spatial database.',
+  approach:['Set up a standard spatial database and naming workflow.','Wrote QC/QA protocols for field data collection.','Ran hands-on sessions in applied GIS and map production with the team.'],
+  outcome:'A team that manages its own spatial data, with written procedures that outlast the engagement.',fig:'carbon',seed:14}
+];
+var PROJECTS=[
+ {t:'Spatial carbon stock estimation',pl:'Consulting',area:'Carbon and climate analytics',kind:'carbon',seed:4,del:['Carbon stock map','Method note','Uncertainty summary']},
+ {t:'Land-use and land-cover change mapping',pl:'Consulting',area:'Remote sensing',kind:'lc',seed:31,del:['Classified maps by period','Change statistics','Accuracy assessment']},
+ {t:'Environmental baseline and landscape diagnostic',pl:'Research',area:'Environmental baseline assessments',kind:'lc',seed:17,del:['Baseline report','Reference condition maps','Constraints and opportunities']},
+ {t:'Monitoring framework and indicator design',pl:'Research',area:'Monitoring, evaluation and performance',kind:'grid',seed:22,del:['Indicator set','Monitoring protocol','Reporting template']},
+ {t:'Applied GIS and cartography training',pl:'Training',area:'Capacity development',kind:'grid',seed:6,del:['Training modules','Practice datasets','Participant map portfolio']},
+ {t:'Geospatial database and field data QC/QA',pl:'Training',area:'Geospatial data engineering',kind:'carbon',seed:27,del:['Spatial database structure','QC/QA checklist','Field data protocol']}
+];
+
+/* ---------- Helpers ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function makeNoise(seed){var r=mulberry32(seed),S=64,g=new Float32Array(S*S);for(var i=0;i<g.length;i++)g[i]=r();
+  var sm=function(t){return t*t*(3-2*t)};
+  return function(x,y){var xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
+    var a=g[((yi&63)*S)+(xi&63)],b=g[((yi&63)*S)+((xi+1)&63)],c=g[(((yi+1)&63)*S)+(xi&63)],d=g[(((yi+1)&63)*S)+((xi+1)&63)];
+    var u=sm(xf),v=sm(yf);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v}}
+function smoothPath(c,pts,ox,oy,s){var n=pts.length;
+  var P=function(i){var p=pts[(i+n)%n];return [(p[0]+ox)*s,(p[1]+oy)*s]};
+  var p=P(0);c.moveTo(p[0],p[1]);
+  for(var i=0;i<n;i++){var p0=P(i-1),p1=P(i),p2=P(i+1),p3=P(i+2);
+    c.bezierCurveTo(p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6,p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6,p2[0],p2[1])}
+  c.closePath()}
+function copyText(text,srcEl,msgEl){
+  var done=function(ok){if(msgEl)msgEl.textContent=ok?'Copied':'Select the text and copy it manually'};
+  var fallback=function(){try{var r=document.createRange();r.selectNodeContents(srcEl);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}done(false)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},fallback)}else fallback()}
+
+/* ---------- Logo ---------- */
+var MARK='<svg viewBox="-210 -210 420 420" class="mk" aria-hidden="true" fill="none" stroke-width="32" stroke-linecap="round"><path d="M-90.5 -165.9A189 189 0 1 0 163.8 -94.2" style="stroke:var(--lg-o)"/><path d="M67.5 -112.3A131 131 0 1 0 112.8 66.7" style="stroke:var(--lg-m)"/><path d="M71 0A71 71 0 1 0 0 71" style="stroke:var(--lg-i)"/><circle r="19" stroke="none" style="fill:var(--lg-d)"/></svg>';
+$$('[data-logo]').forEach(function(e){e.innerHTML=MARK+'<span class="wm"><b>Spectra CC</b><i>Citra Cendekia</i></span>'});
+
+/* ---------- Theme ---------- */
+try{var st=localStorage.getItem('scc-theme');if(st==='dark'||st==='light')root.setAttribute('data-theme',st)}catch(e){}
+function themeChanged(){$('#themeUse').setAttribute('href',isDark()?'#i-sun':'#i-moon');window.dispatchEvent(new Event('scc-theme'))}
+$('#themeBtn').addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('scc-theme',n)}catch(e){}themeChanged()});
+if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',themeChanged)}
+$('#themeUse').setAttribute('href',isDark()?'#i-sun':'#i-moon');
+
+/* ---------- Land cover generator ---------- */
+var PAL=[[54,122,85],[169,198,178],[217,203,160],[156,195,213]];
+function makeLC(w,h,seed,yr){
+  var r=mulberry32(seed),r2=mulberry32(seed+99),nz=makeNoise(seed+5),n=26,S=[];
+  for(var i=0;i<n;i++){var x=r()*w,y=r()*h,c=r(),base=c<.52?0:(c<.72?1:2),q=r2();
+    var c25=base===0?(q<.17?2:(q<.27?1:0)):(base===1?(q<.25?2:1):2);
+    S.push({x:x,y:y,c:yr===25?c25:base})}
+  var map=new Uint8Array(w*h);
+  for(var yy=0;yy<h;yy++){for(var xx=0;xx<w;xx++){
+    var j=(nz(xx/26,yy/26)-.5)*w*.07,best=1e9,bc=0;
+    for(var k=0;k<n;k++){var s=S[k],dx=xx-s.x,dy=yy-s.y,d=Math.sqrt(dx*dx+dy*dy)+((k%2)?j:-j);if(d<best){best=d;bc=s.c}}
+    var ry=h*.55+h*.12*Math.sin(xx/(w*.15)+seed)+(nz(xx/30,7)-.5)*14;
+    if(Math.abs(yy-ry)<h*.011)bc=3;
+    map[yy*w+xx]=bc}}
+  return {map:map,w:w,h:h,share:function(c){var k=0;for(var i=0;i<map.length;i++)if(map[i]===c)k++;return k/map.length}}}
+function paintLC(cv,L){var ctx=cv.getContext('2d');cv.width=L.w;cv.height=L.h;var id=ctx.createImageData(L.w,L.h),d=id.data;
+  for(var i=0;i<L.map.length;i++){var p=PAL[L.map[i]];d[i*4]=p[0];d[i*4+1]=p[1];d[i*4+2]=p[2];d[i*4+3]=255}
+  ctx.putImageData(id,0,0)}
+var RAMP=[[0,[220,234,240]],[.3,[169,198,178]],[.6,[22,140,145]],[1,[23,50,77]]];
+function ramp(v){for(var i=1;i<RAMP.length;i++){if(v<=RAMP[i][0]){var a=RAMP[i-1],b=RAMP[i],t=(v-a[0])/(b[0]-a[0]);return [a[1][0]+(b[1][0]-a[1][0])*t,a[1][1]+(b[1][1]-a[1][1])*t,a[1][2]+(b[1][2]-a[1][2])*t]}}return RAMP[RAMP.length-1][1]}
+function fillCarbon(cv,seed){var w=cv.width,h=cv.height,ctx=cv.getContext('2d'),id=ctx.createImageData(w,h),d=id.data,r=mulberry32(seed),C=[],nz=makeNoise(seed+3);
+  for(var i=0;i<9;i++)C.push([r()*w,r()*h,Math.min(w,h)*(.12+r()*.16),.5+r()*.5]);
+  for(var y=0;y<h;y++)for(var x=0;x<w;x++){var v=0;for(var k=0;k<C.length;k++){var c=C[k],dx=x-c[0],dy=y-c[1];v+=c[3]*Math.exp(-(dx*dx+dy*dy)/(2*c[2]*c[2]))}
+    v=Math.max(0,Math.min(1,v*.9+(nz(x/16,y/16)-.5)*.12));var p=ramp(v),o=(y*w+x)*4;d[o]=p[0];d[o+1]=p[1];d[o+2]=p[2];d[o+3]=235}
+  ctx.putImageData(id,0,0)}
+function gridOver(ctx,w,h,a,step){ctx.save();ctx.strokeStyle='rgba(255,255,255,'+a+')';ctx.lineWidth=1;ctx.beginPath();
+  for(var x=step;x<w;x+=step){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(var y=step;y<h;y+=step){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();ctx.restore()}
+function gridFig(cv,seed){var w=cv.width,h=cv.height,ctx=cv.getContext('2d'),r=mulberry32(seed);
+  ctx.fillStyle='#DCEAF0';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#B7CBD6';ctx.lineWidth=1;ctx.beginPath();
+  for(var x=w/10;x<w;x+=w/10){ctx.moveTo(x,0);ctx.lineTo(x,h)}for(var y=h/7;y<h;y+=h/7){ctx.moveTo(0,y);ctx.lineTo(w,y)}ctx.stroke();
+  var pts=[];for(var i=0;i<5;i++)pts.push([w*(.12+i*.18+r()*.06),h*(.18+r()*.64)]);
+  ctx.setLineDash([7,6]);ctx.strokeStyle='#17324D';ctx.lineWidth=2;ctx.beginPath();pts.forEach(function(p,i){i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.stroke();ctx.setLineDash([]);
+  ctx.strokeStyle='#168C91';ctx.lineWidth=2.5;ctx.fillStyle='#17324D';ctx.font='500 '+Math.round(w/46)+'px Inter, sans-serif';
+  pts.forEach(function(p,i){ctx.beginPath();ctx.moveTo(p[0]-9,p[1]);ctx.lineTo(p[0]+9,p[1]);ctx.moveTo(p[0],p[1]-9);ctx.lineTo(p[0],p[1]+9);ctx.stroke();ctx.fillText('00° 00′',p[0]+12,p[1]-8)})}
+function drawThumb(cv){if(cv.dataset.done)return;var kind=cv.dataset.kind,seed=+cv.dataset.seed||3;
+  if(kind==='lc'){paintLC(cv,makeLC(cv.width,cv.height,seed,25));gridOver(cv.getContext('2d'),cv.width,cv.height,.2,Math.round(cv.width/10))}
+  else if(kind==='carbon'){fillCarbon(cv,seed);gridOver(cv.getContext('2d'),cv.width,cv.height,.22,Math.round(cv.width/10))}
+  else gridFig(cv,seed);
+  cv.dataset.done='1'}
+
+/* ---------- Hero ---------- */
+var heroApi=(function(){
+  var sec=$('#hero'),c=$('#heroCanvas'),ctx=c.getContext('2d'),out=$('#heroCoord');
+  var W=1,H=1,dpr=1,px=.72,py=.45,cx=.72,cy=.45;
+  function dm(v,h,pad){var a=Math.abs(v),d=Math.floor(a),m=Math.round((a-d)*60);if(m===60){m=0;d++}return String(d).padStart(pad,'0')+'° '+String(m).padStart(2,'0')+'′ '+h}
+  function readout(){out.textContent='Cursor  '+dm(py*.6,'S',2)+'  ·  '+dm(109+px*.8,'E',3)}
+  function draw(t){ctx.clearRect(0,0,W,H);
+    ctx.lineWidth=1;ctx.strokeStyle='rgba(220,234,240,0.06)';var gs=64;ctx.beginPath();
+    for(var x=gs/2;x<W;x+=gs){ctx.moveTo(x,0);ctx.lineTo(x,H)}for(var y=gs/2;y<H;y+=gs){ctx.moveTo(0,y);ctx.lineTo(W,y)}ctx.stroke();
+    var narrow=W<760,bx=W*(narrow?.62:.74),by=H*(narrow?.7:.46),ox=(cx-.72)*W,oy=(cy-.45)*H,N=15,sc=Math.min(W,900)*(narrow?.05:.034);
+    for(var k=N;k>=0;k--){var d=k/N,rx=26+k*sc,ry=rx*.62,par=.1+(1-d)*.34,x0=bx+ox*par,y0=by+oy*par,ph=t*.00035+k*.55;
+      ctx.beginPath();var M=96;
+      for(var i=0;i<=M;i++){var a=i/M*Math.PI*2,w=1+.075*Math.sin(3*a+ph)+.045*Math.sin(5*a-ph*1.3+k)+.03*Math.sin(2*a+k),xx=x0+Math.cos(a)*rx*w,yy=y0+Math.sin(a)*ry*w;if(i)ctx.lineTo(xx,yy);else ctx.moveTo(xx,yy)}
+      ctx.closePath();
+      if(k===0){ctx.strokeStyle='rgba(235,243,247,.95)';ctx.lineWidth=2}else{ctx.strokeStyle='rgba(45,177,183,'+(0.10+(1-d)*.55).toFixed(3)+')';ctx.lineWidth=1.2}
+      ctx.stroke()}}
+  function size(){var r=sec.getBoundingClientRect();if(r.width<2)return;dpr=Math.min(2,window.devicePixelRatio||1);W=r.width;H=r.height;c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw(0)}
+  function loop(t){if(!$('#v-home').hidden){cx+=(px-cx)*.07;cy+=(py-cy)*.07;draw(t)}requestAnimationFrame(loop)}
+  sec.addEventListener('pointermove',function(e){var r=sec.getBoundingClientRect();px=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));py=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));readout();if(RM){cx=px;cy=py;draw(0)}});
+  window.addEventListener('resize',size);
+  size();readout();if(!RM)requestAnimationFrame(loop);
+  return {size:size}
+})();
+
+/* ---------- Pathway ---------- */
+(function(){
+  var wrap=$('#stages'),det=$('#stageDetail'),btns=[];
+  STAGES.forEach(function(s,i){var b=document.createElement('button');b.className='stg';b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0?'true':'false');
+    b.innerHTML='<span class="n">'+(i+1)+'</span><b>'+s.t+'</b>';b.addEventListener('click',function(){show(i)});
+    b.addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight'||k==='ArrowDown'){e.preventDefault();show((i+1)%STAGES.length,true)}else if(k==='ArrowLeft'||k==='ArrowUp'){e.preventDefault();show((i+STAGES.length-1)%STAGES.length,true)}});
+    wrap.appendChild(b);btns.push(b)});
+  function show(i,focus){btns.forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1});
+    det.innerHTML=ic(STAGES[i].i)+'<div><h3>Stage '+(i+1)+', '+STAGES[i].t+'</h3><p>'+STAGES[i].d+'</p></div>';if(focus)btns[i].focus()}
+  show(0);
+})();
+
+/* ---------- About: team and network ---------- */
+(function(){
+  var net=$('#net'),grid=$('#teamGrid'),fil=$('#teamFilters'),sel=null;
+  var cx=320,cy=190,rx=200,ry=135,nodes=[];
+  var svg='<defs></defs>';
+  FIELDS.forEach(function(f,i){var a=(-90+i*60)*Math.PI/180;nodes.push({f:f,x:cx+Math.cos(a)*rx,y:cy+Math.sin(a)*ry,c:Math.cos(a)})});
+  nodes.forEach(function(n,i){svg+='<line class="edge" data-i="'+i+'" x1="'+cx+'" y1="'+cy+'" x2="'+n.x.toFixed(1)+'" y2="'+n.y.toFixed(1)+'"/>'});
+  svg+='<circle cx="'+cx+'" cy="'+cy+'" r="46" fill="#17324D"/><svg x="'+(cx-30)+'" y="'+(cy-30)+'" width="60" height="60" viewBox="-210 -210 420 420" fill="none" stroke-width="32" stroke-linecap="round" style="--lg-o:#fff;--lg-m:#2DB1B7;--lg-i:#A9C6B2;--lg-d:#fff"><path d="M-90.5 -165.9A189 189 0 1 0 163.8 -94.2" style="stroke:var(--lg-o)"/><path d="M67.5 -112.3A131 131 0 1 0 112.8 66.7" style="stroke:var(--lg-m)"/><path d="M71 0A71 71 0 1 0 0 71" style="stroke:var(--lg-i)"/><circle r="19" stroke="none" style="fill:var(--lg-d)"/></svg>';
+  nodes.forEach(function(n,i){var anchor=n.c>.3?'start':(n.c<-.3?'end':'middle'),tx=n.x+(n.c>.3?26:(n.c<-.3?-26:0)),ty=n.y+(Math.abs(n.c)<=.3?(n.y<cy?-26:34):5);
+    svg+='<g class="node" data-i="'+i+'" tabindex="0" role="button" aria-pressed="false" aria-label="'+n.f+'"><circle cx="'+n.x.toFixed(1)+'" cy="'+n.y.toFixed(1)+'" r="17"/><text x="'+tx.toFixed(1)+'" y="'+ty.toFixed(1)+'" style="text-anchor:'+anchor+'">'+n.f+'</text></g>'});
+  net.innerHTML=svg;
+  function render(){grid.innerHTML=TEAM.filter(function(m){return !sel||m.field===sel}).map(function(m){
+    return '<article class="card member"><div class="av">'+MARK+'</div><h3>'+m.name+'</h3><p class="role">'+m.role+'</p><div class="chips"><span class="chip">'+ic('i-network')+m.field+'</span></div><p>'+m.desc+'</p></article>'}).join('');
+    $$('.node',net).forEach(function(g,i){var on=FIELDS[i]===sel;g.classList.toggle('on',on);g.setAttribute('aria-pressed',on?'true':'false')});
+    $$('.edge',net).forEach(function(l,i){l.classList.toggle('on',FIELDS[i]===sel)});
+    $$('.fbtn',fil).forEach(function(b){b.setAttribute('aria-pressed',((b.dataset.f||null)===sel)?'true':'false')})}
+  function set(f){sel=(f===sel)?null:f;render()}
+  fil.innerHTML='<button class="fbtn" data-f="" aria-pressed="true">All disciplines</button>'+FIELDS.map(function(f){return '<button class="fbtn" data-f="'+f+'" aria-pressed="false">'+f+'</button>'}).join('');
+  $$('.fbtn',fil).forEach(function(b){b.addEventListener('click',function(){sel=b.dataset.f||null;render()})});
+  $$('.node',net).forEach(function(g,i){g.addEventListener('click',function(){set(FIELDS[i])});g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();set(FIELDS[i])}})});
+  render();
+  $$('[data-jump]').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.dataset.jump);if(t)t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})})});
+})();
+
+/* ---------- Case studies ---------- */
+var caseDone=false;
+function initCases(){if(caseDone)return;caseDone=true;
+  var html=CASES.map(function(c){var fig='';
+    if(c.fig==='compare')fig='<figure class="fig"><div class="cmp" id="cmp" style="--p:50%"><canvas class="before" aria-hidden="true"></canvas><canvas class="after" aria-hidden="true"></canvas><span class="yr l">2015</span><span class="yr r">2025</span><div class="hd"></div><input type="range" min="2" max="98" value="50" id="cmpIn" aria-label="Compare land cover between 2015 and 2025"></div>'+
+      '<div class="legend"><span><i style="background:#367A55"></i>Forest</span><span><i style="background:#A9C6B2"></i>Regrowth</span><span><i style="background:#D9CBA0"></i>Cleared</span><span><i style="background:#9CC3D5"></i>Water</span></div>'+
+      '<div class="stats" style="margin-top:12px"><div class="stat"><b id="cm15">0%</b><span>Forest share, 2015</span></div><div class="stat"><b id="cm25">0%</b><span>Forest share, 2025</span></div></div>'+
+      '<figcaption>Drag the slider to compare periods. Generated illustrative data, not a real site.</figcaption></figure>';
+    else fig='<figure class="fig"><canvas class="thumb" data-kind="'+c.fig+'" data-seed="'+(c.seed||3)+'" width="560" height="360" role="img" aria-label="Illustrative figure for this case study"></canvas><figcaption>Illustrative figure built from generated data.</figcaption></figure>';
+    return '<article class="case" id="'+c.id+'"><div><div class="chips"><span class="chip">'+c.pillar+'</span><span class="chip ghost">Sample case</span></div><h2>'+c.title+'</h2><p class="meta">'+c.client+' · '+c.period+'</p>'+
+      '<h3>Context</h3><p>'+c.context+'</p><h3>Approach</h3><ul class="ticks">'+c.approach.map(function(a){return '<li>'+ic('i-check')+'<span>'+a+'</span></li>'}).join('')+'</ul><h3>Outcome</h3><p>'+c.outcome+'</p>'+
+      '<div class="tags" style="margin-top:16px">'+c.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div></div><div class="case-fig">'+fig+'</div></article>'}).join('');
+  $('#caseList').innerHTML=html;
+  var root=$('#cmp');if(root){var a=makeLC(560,360,21,15),b=makeLC(560,360,21,25);paintLC($('canvas.before',root),a);paintLC($('canvas.after',root),b);
+    $('#cm15').textContent=Math.round(a.share(0)*100)+'%';$('#cm25').textContent=Math.round(b.share(0)*100)+'%';
+    $('#cmpIn').addEventListener('input',function(e){root.style.setProperty('--p',e.target.value+'%')})}
+  $$('#caseList canvas.thumb').forEach(drawThumb)}
+
+/* ---------- Projects ---------- */
+var projDone=false;
+function initProjects(){if(projDone)return;projDone=true;
+  var grid=$('#pGrid'),fil=$('#pFilters'),q=$('#pSearch'),pl='All';
+  var pillars=['All','Consulting','Research','Training'];
+  fil.innerHTML=pillars.map(function(p,i){return '<button class="fbtn" data-p="'+p+'" aria-pressed="'+(i===0?'true':'false')+'">'+p+'</button>'}).join('');
+  grid.innerHTML=PROJECTS.map(function(p,i){return '<article class="pcard" data-pl="'+p.pl+'" data-t="'+(p.t+' '+p.area).toLowerCase()+'"><canvas class="thumb" data-kind="'+p.kind+'" data-seed="'+p.seed+'" width="400" height="250" role="img" aria-label="Illustrative map for '+p.t+'"></canvas>'+
+    '<div class="pb"><div class="chips"><span class="chip">'+p.pl+'</span><span class="chip ghost">Sample entry</span></div><h3>'+p.t+'</h3><p class="meta" style="margin:0">'+p.area+'</p>'+
+    '<details><summary>'+ic('i-chev')+'Details</summary><dl><dt>Client</dt><dd>[Client]</dd><dt>Location</dt><dd>[Location]</dd><dt>Year</dt><dd>[Year]</dd><dt>Deliverables</dt><dd>'+p.del.join(', ')+'</dd></dl></details></div></article>'}).join('');
+  function apply(){var term=q.value.trim().toLowerCase(),n=0;$$('.pcard',grid).forEach(function(c){var ok=(pl==='All'||c.dataset.pl===pl)&&(!term||c.dataset.t.indexOf(term)>-1);c.hidden=!ok;if(ok)n++});
+    $('#pEmpty').hidden=n>0;$$('.fbtn',fil).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===pl?'true':'false')})}
+  $$('.fbtn',fil).forEach(function(b){b.addEventListener('click',function(){pl=b.dataset.p;apply()})});
+  q.addEventListener('input',apply);
+  $$('#pGrid canvas.thumb').forEach(drawThumb)}
+
+/* ---------- Contact ---------- */
+(function(){
+  var rows=[['i-pin','Address','address','[ADDRESS]'],['i-mail','Email','email','[EMAIL]'],['i-phone','Phone','phone','[PHONE]'],['i-globe','Website','website','[WEBSITE]']];
+  var h=rows.map(function(r){var v=CONTACT[r[2]];return '<div class="crow"><span class="ico">'+ic(r[0])+'</span><div><small>'+r[1]+'</small><span class="v'+(v?'':' ph')+'">'+(v||r[3])+'</span></div><button class="icon-btn" data-copy="'+(v||'')+'" aria-label="Copy '+r[1].toLowerCase()+'"'+(v?'':' disabled')+'>'+ic('i-copy')+'</button></div>'}).join('');
+  h+='<div class="crow"><span class="ico">'+ic('i-compass')+'</span><div><small>Registered office region</small><span class="v">Kubu Raya, West Kalimantan, Indonesia</span></div><button class="icon-btn" data-copy="Kubu Raya, West Kalimantan, Indonesia" aria-label="Copy registered office region">'+ic('i-copy')+'</button></div>';
+  $('#cinfo').innerHTML=h;
+  $$('#cinfo [data-copy]').forEach(function(b){b.addEventListener('click',function(){copyText(b.dataset.copy,b.parentNode.querySelector('.v'),null)})});
+  var form=$('#cform'),box=$('#draftBox'),txt=$('#draftText'),err=$('#cfErr');
+  form.addEventListener('submit',function(e){e.preventDefault();
+    var name=$('#cf-name').value.trim(),mail=$('#cf-mail').value.trim(),org=$('#cf-org').value.trim(),stage=$('#cf-stage').value,msg=$('#cf-msg').value.trim();
+    var svc=$$('#cf-svc input:checked').map(function(x){return x.value});
+    if(!name||mail.indexOf('@')<1){err.hidden=false;err.textContent='Enter your name and a valid email address so the draft can be completed.';box.hidden=true;return}
+    err.hidden=true;
+    txt.textContent='Subject: Inquiry to Spectra Citra Cendekia\n\nHello Spectra CC team,\n\nMy name is '+name+(org?' from '+org:'')+'.\nProject stage: '+stage+'.\nServices of interest: '+(svc.length?svc.join(', '):'to be discussed')+'.\n\n'+(msg||'I would like to discuss my project.')+'\n\nYou can reach me at '+mail+'.\n\nThank you,\n'+name;
+    box.hidden=false;$('#copyMsg').textContent=''});
+  $('#copyDraft').addEventListener('click',function(){copyText(txt.textContent,txt,$('#copyMsg'))});
+})();
+
+/* ---------- Router ---------- */
+var ROUTES={'home':'v-home','about':'v-about','team':'v-about','case-studies':'v-case','projects':'v-projects','contact':'v-contact'};
+function route(){var h=(location.hash||'#home').slice(1),key=ROUTES[h]?h:'home',id=ROUTES[key];
+  $$('.view').forEach(function(v){v.hidden=v.id!==id});
+  $$('[data-r]').forEach(function(a){var on=a.dataset.r.split(',').indexOf(key)>-1;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  $('#navPanel').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false');
+  if(id==='v-home')heroApi.size();
+  if(id==='v-case')initCases();
+  if(id==='v-projects')initProjects();
+  if(key==='team')requestAnimationFrame(function(){$('#team-section').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
+  else window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+$('#menuBtn').addEventListener('click',function(){var o=$('#navPanel').classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o?'true':'false')});
+route();
+})();
+</script>
+
+</body></html>
