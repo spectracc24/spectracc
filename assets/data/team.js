@@ -95,7 +95,7 @@ window.SCC_TEAM = {
       bio: 'lorem ipsum dolor sit amet consectetur adipiscing elit officia omnis cillum eos laborum labore eiusmod labore in tempor distinctio in ut molestias do occaecat et et sunt officia.',
       tags: ['Spatial data science']
       // linkedin: 'https://www.linkedin.com/in/username'
-    },
+    }
     // { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
     // { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
