@@ -1,33 +1,31 @@
 /* ==========================================================================
-   OUR TEAM: edit this file only. No need to touch index.html or script.js.
+   OUR TEAM: edit this file only. Two groups: `management` and `experts`.
 
    HOW TO ADD A PERSON
    1. Put the photo in  assets/img/team/  (e.g. assets/img/team/budi-santoso.jpg)
-      Tip: square or portrait photo, face centered, about 800 x 800 px, under 300 KB.
-   2. Copy one block inside `members` below, paste it, and fill in the fields.
-   3. Save, commit and push. Done.
+      Tip: square or portrait, face centered, about 800 x 800 px, under 300 KB.
+   2. Copy one block, paste it into `management` or `experts`, fill in the fields.
+   3. Save, commit and push.
 
-   FIELDS OF A MEMBER
-     name      (required)  Full name.
-     role      (required)  Job title.
-     field     (required)  A discipline from `fields` below, spelled exactly the same.
-                           For several: field: ['Remote sensing', 'Hydrology']
-     photo     (optional)  Path to the photo. Leave out to show the Spectra CC logo.
-     bio       (optional)  Short profile, 1 to 3 sentences. If left out, the discipline
-                           description is shown instead.
-     tags      (optional)  Short skill tags, e.g. ['QGIS', 'Google Earth Engine'].
-     email     (optional)  Shows an Email button.
-     linkedin  (optional)  Full URL. Shows a LinkedIn button.
-     website   (optional)  Full URL. Shows a Website button.
+   FIELDS
+     name       (required)  Full name.
+     role       (required)  Job title, e.g. 'Director', 'Finance Manager', 'Senior Remote Sensing Analyst'.
+     field      (experts)   Discipline from `fields` below, spelled the same.
+                            Several: field: ['Remote sensing', 'Hydrology']
+     photo      (optional)  e.g. 'assets/img/team/budi-santoso.jpg'. Missing: the logo is shown.
+     bio        (optional)  Profile text. The card shows the first lines; clicking opens all of it.
+                            Separate paragraphs with a blank line (\n\n).
+     education  (optional)  List, e.g. ['MSc Geoinformatics, University name, 2018']
+     experience (optional)  List, e.g. ['Senior Analyst, Organization, 2020 to now']
+     tags       (optional)  Skill tags, e.g. ['QGIS', 'Python']
+     email, linkedin, website, orcid, scholar, researchgate   (optional) Buttons in the profile.
+                            Use full URLs for all except email.
 
-   Remember: a comma after every `}` except the last one, and straight quotes ' '.
-   If a photo does not appear, check the file name (case-sensitive on GitHub Pages).
+   Commas: after every } except the last one in a list. Use straight quotes.
    ========================================================================== */
 
 window.SCC_TEAM = {
 
-  /* Disciplines shown in the network diagram and filter buttons.
-     Six fits the diagram best. If you rename one, update the members too. */
   fields: [
     'Remote sensing',
     'Forest ecology',
@@ -46,46 +44,34 @@ window.SCC_TEAM = {
     'Spatial data science': 'Predictive modeling, spatial classification, data fusion and geospatial database design.'
   },
 
-  members: [
+  /* ---------------- MANAGEMENT ---------------- */
+  management: [
+
+    /* EXAMPLE (fully filled in). Copy it, edit it, and remove the comment marks.
     {
-      name: 'Ivannalis Saputra, S.P',
-      role: 'Senior Gospatial Analyst',
-      field: 'Spatial data science',
-      photo: 'assets/img/team/ivan.jpg',
-      bio: 'Senior Geospatial Analyst with 9 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, specializing in REDD+ projects and advanced geospatial analysis to support informed decision-making on land-use/land-cover change, land-use projections, deforestation and forest degradation, and emission reduction/removal assessments.',
-      tags: ['Google Earth Engine', 'ArcGIS', 'Python'],
-      email: 'saputra.ivannalis24@gmail.com'
-    },
-    {
-      name: 'Linda Wahyuni, S.P., M.P',
-      role: 'Food Security and Climate Change Adaptation Expert',
-      field: 'Environmental governance',
-      photo: 'assets/img/team/linda.jpg',
-      bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
-      tags: ['Food Security', 'Climage Change Adaptation', 'Good Agriculture Practices (GAP)'],
-      email: 'lindawahyuni25@gmail.com'
-    },
-    { name: '[Full Name]', role: 'Senior Geospatial Analyst', field: 'Remote sensing' },
+      name: 'Nama Lengkap',
+      role: 'Director',
+      photo: 'assets/img/team/nama-lengkap.jpg',
+      bio: 'Paragraph one of the profile.\n\nParagraph two of the profile.',
+      education: ['MSc Environmental Science, University name, 2016'],
+      experience: ['Director, Spectra Citra Cendekia, 2025 to now'],
+      tags: ['Strategy', 'Partnerships'],
+      email: 'name@example.com',
+      linkedin: 'https://www.linkedin.com/in/username'
+    }, */
+
+    { name: '[Full Name]', role: 'Director' },
+    { name: '[Full Name]', role: 'Finance and Administration' },
+    { name: '[Full Name]', role: 'Program and Operations' }
+  ],
+
+  /* ---------------- EXPERTS ---------------- */
+  experts: [
+    { name: '[Full Name]', role: '[Job Title]', field: 'Remote sensing' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Carbon accounting' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Environmental governance' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Spatial data science' }
-    // {
-    //   name: 'Dummy',
-    //   role: 'Carbon Accounting Expert',
-    //   field: 'Carbon accounting',
-    //   bio: 'lorem ipsum dolor sit amet consectetur adipiscing elit officia omnis cillum eos laborum labore eiusmod labore in tempor distinctio in ut molestias do occaecat et et sunt officia.',
-    //   tags: ['Forest carbon']
-    //   // linkedin: 'https://www.linkedin.com/in/username'
-    // },
-    // {
-    //   name: 'Dummy',
-    //   role: 'Remote Sensing Expert',
-    //   field: 'Remote sensing',
-    //   bio: 'lorem ipsum dolor sit amet consectetur adipiscing elit officia omnis cillum eos laborum labore eiusmod labore in tempor distinctio in ut molestias do occaecat et et sunt officia.',
-    //   tags: ['Spatial data science']
-    //   // linkedin: 'https://www.linkedin.com/in/username'
-    // }
   ]
 };
