@@ -57,19 +57,19 @@ function drawThumb(cv){if(cv.dataset.done)return;var kind=cv.dataset.kind,seed=+
 var LEG='<div class="legend"><span><i style="background:#367A55"></i>Forest</span><span><i style="background:#A9C6B2"></i>Regrowth</span><span><i style="background:#D9CBA0"></i>Cleared</span><span><i style="background:#9CC3D5"></i>Water</span></div>';
 
 function html(f,o){f=f||{};o=o||{};
-  return '<div class="fig-host is-loading" data-feat="'+esc(JSON.stringify({kind:f.kind||'grid',seed:f.seed||3,labels:f.labels||['2015','2025']}))+'"'+(o.full?' data-full="1"':'')+'></div>'}
+  return '<div class="fig-host is-loading" data-feat="'+esc(JSON.stringify({kind:f.kind||'grid',seed:f.seed||3,labels:f.labels||['2015','2025']}))+'"'+(o.full?' data-full="1"':'')+(o.caption?' data-cap="'+esc(o.caption)+'"':'')+'></div>'}
 
 function mount(el){
-  var f=JSON.parse(el.dataset.feat),full=!!el.dataset.full,k=f.kind,seed=+f.seed||3,out='';
+  var f=JSON.parse(el.dataset.feat),full=!!el.dataset.full,cap=el.dataset.cap||'',k=f.kind,seed=+f.seed||3,out='';
   if(k==='compare'){
     out='<div class="cmp" style="--p:50%"><canvas class="before" aria-hidden="true"></canvas><canvas class="after" aria-hidden="true"></canvas><span class="yr l">'+esc(f.labels[0])+'</span><span class="yr r">'+esc(f.labels[1])+'</span><div class="hd"></div><input type="range" min="2" max="98" value="50" aria-label="Compare '+esc(f.labels[0])+' with '+esc(f.labels[1])+'"></div>'+
-      (full?LEG+'<div class="stats" style="margin-top:12px"><div class="stat"><b class="s1">0%</b><span>Forest share, '+esc(f.labels[0])+'</span></div><div class="stat"><b class="s2">0%</b><span>Forest share, '+esc(f.labels[1])+'</span></div></div><p class="fig-cap">Drag the slider to compare periods. Generated illustrative data.</p>':'');
+      (full?LEG+'<div class="stats" style="margin-top:12px"><div class="stat"><b class="s1">0%</b><span>Forest share, '+esc(f.labels[0])+'</span></div><div class="stat"><b class="s2">0%</b><span>Forest share, '+esc(f.labels[1])+'</span></div></div><p class="fig-cap">'+esc(cap||'Drag the slider to compare periods. Generated illustrative data.')+'</p>':'');
     el.innerHTML=out;var cmp=$('.cmp',el),a=makeLC(560,360,seed,15),b=makeLC(560,360,seed,25);
     paintLC($('canvas.before',cmp),a);paintLC($('canvas.after',cmp),b);
     if(full){$('.s1',el).textContent=Math.round(a.share(0)*100)+'%';$('.s2',el).textContent=Math.round(b.share(0)*100)+'%'}
     $('input',cmp).addEventListener('input',function(e){cmp.style.setProperty('--p',e.target.value+'%')});
   }else{
-    el.innerHTML='<canvas class="thumb" data-kind="'+esc(k)+'" data-seed="'+seed+'" width="'+(full?560:400)+'" height="'+(full?360:250)+'" role="img" aria-label="Illustrative figure built from generated data"></canvas>'+(full?'<p class="fig-cap">Illustrative figure built from generated data.</p>':'');
+    el.innerHTML='<canvas class="thumb" data-kind="'+esc(k)+'" data-seed="'+seed+'" width="'+(full?560:400)+'" height="'+(full?360:250)+'" role="img" aria-label="Illustrative figure built from generated data"></canvas>'+(full?'<p class="fig-cap">'+esc(cap||'Illustrative figure built from generated data.')+'</p>':'');
     drawThumb($('canvas',el));
   }
   el.classList.remove('is-loading')}

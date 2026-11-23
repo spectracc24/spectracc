@@ -78,7 +78,7 @@ window.SCC_SETTINGS = {
     placeholder: 'generated',
     mediaRatio: '14/9',
     mediaFit: 'cover',
-    show: ['kicker', 'title', 'meta', 'summary', 'tags', 'actions'],
+    show: ['kicker', 'title', 'meta', 'summary', 'tags', 'files', 'actions'],
     summaryLines: 0,
     filters: false,
     search: false,
