@@ -32,7 +32,9 @@ window.SCC_TEAM = {
     'Hydrology',
     'Carbon accounting',
     'Environmental governance',
-    'Spatial data science'
+    'Spatial data science',
+    'Food security',
+    'Climate change adaptation'
   ],
 
   fieldDescriptions: {
