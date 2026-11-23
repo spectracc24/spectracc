@@ -39,7 +39,7 @@ window.SCC_SITE = {
     'case-studies': 'live',
     'projects': 'live',
     'publications': 'live',
-    'map': 'live'
+    'map': 'soon'
   },
 
   links: [
