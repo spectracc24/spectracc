@@ -84,7 +84,7 @@ window.SCC_TEAM = {
       photo: 'assets/img/team/linda.jpg',
       role: 'Director',
       bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
-      education: ['Master of Agriculture (Agricultural Socio-Economics), Tangjungpura University'],
+      education: [['Master of Agriculture (Agricultural Socio-Economics), Tangjungpura University'],['Bachelor of Agriculture (Agricultural Socio-Economics), Tangjungpura University']],
       email: 'lindawahyuni25@gmail.com',
       linkedin: 'https://id.linkedin.com/in/linda-wahyuni-a42741280'
     },
