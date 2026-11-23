@@ -22,7 +22,7 @@
                             Use full URLs for all except email.
 
    Commas: after every } except the last one in a list. Use straight quotes.
-   ========================================================================== */
+   ========================================================================== */ 
 
 window.SCC_TEAM = {
 
