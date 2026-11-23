@@ -22,14 +22,26 @@
 
 window.SCC_CASES = [
   {
-    id: 'c1', sample: false, title: 'MultiMulti-Source Land-Cover Data Fusion', pillar: 'Applied research',
-    period: '2026', tags: ['Remote sensing', 'LULCC', 'Forest cover'],
+    id: 'c1',
+    sample: false,
+    title: 'Multi-Source Land-Cover Data Fusion',
+    pillar: 'Applied research',
+    period: '2026',
+    tags: ['Remote sensing', 'LULCC', 'Forest cover'],
     context: 'Land-cover data are fundamental to REDD+ projects as they provide the spatial basis for quantifying differences in GHG emissions between without-project and with-project scenarios. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to address these discrepancies and improve classification accuracy.',
-    approach: ['The fusion based on a majority-voting approach with predefined decision rules', 'Boolean-rule temporal propagation for in multi-year integration.'],
+    approach: [
+      'Multi-source data fusion using a majority-voting approach with predefined decision rules.',
+      'Boolean-rule-based temporal propagation to integrate annual land-cover changes across multiple years.'
+    ],
     outcome: 'The correction reduced the dominant misclassification of non-forest areas as forest and improved the overall balance between forest and non-forest classification accuracy. However, this improvement involved a slight increase in errors in the opposite direction, indicating a redistribution rather than a uniform reduction of classification errors.',
     image: 'assets/img/cases/lc_fusion.jpg',
     feature: { kind: 'grid', seed: 8 },
-    files: [{label: 'Report and script', url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion'}]
+    files: [
+      {
+        label: 'Report and script',
+        url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion'
+      }
+    ]
   },
   {
     id: 'c2', sample: true, title: 'Baseline assessment of village forest areas', pillar: 'Applied research',
