@@ -65,7 +65,7 @@ window.SCC_TEAM = {
     {
       name: 'Ivannalis Saputra, S.P.',
       role: 'Founder & Technical Lead, Spectra CC',
-      field: 'Geospatial Data Science',
+      field: 'Spatial data science',
       photo: 'assets/img/team/ivan.jpg',
       bio: 'Senior Geospatial Analyst with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in REDD+ project development and implementation. His expertise spans geospatial data science, remote sensing, spatial analytics, and environmental modeling, integrating GIS, programming, and machine learning approaches to address land-use and environmental challenges. His technical specializations include land-use/land-cover change analysis and modeling, deforestation and forest degradation assessment, spatial predictive modeling, digital soil mapping, and spatial baseline development for estimating potential greenhouse gas emission reductions/removals. Beyond geospatial analysis, he has experience in technical project management and the application of international carbon standards, methodologies, and frameworks, including Plan Vivo PM001, VCS VM0047, Social and Biodiversity Impact Assessment (SBIA), and the IUCN Environmental and Social Management System (ESMS).',
       education: ['Bachelor of Agriculture (Major: Land Resources Management), Tangjungpura University'],
@@ -86,6 +86,7 @@ window.SCC_TEAM = {
       name: 'Linda Wahyuni, S.P.,M.P',
       photo: 'assets/img/team/linda.jpg',
       role: 'Food Security Expert',
+      field: 'Food Security',
       bio: 'Food Security Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
       education: [['Master of Agriculture (Major: Agricultural Socio-Economics), Tangjungpura University'],['Bachelor of Agriculture (Major: Agricultural Socio-Economics), Tangjungpura University']],
       email: 'lindawahyuni25@gmail.com',
