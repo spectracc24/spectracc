@@ -57,7 +57,7 @@ function drawThumb(cv){if(cv.dataset.done)return;var kind=cv.dataset.kind,seed=+
 var LEG='<div class="legend"><span><i style="background:#367A55"></i>Forest</span><span><i style="background:#A9C6B2"></i>Regrowth</span><span><i style="background:#D9CBA0"></i>Cleared</span><span><i style="background:#9CC3D5"></i>Water</span></div>';
 
 function html(f,o){f=f||{};o=o||{};
-  return '<div class="fig-host is-loading" data-feat="'+esc(JSON.stringify({kind:f.kind||'grid',seed:f.seed||3,labels:f.labels||['2015','2025']}))+'"'+(o.full?' data-full="1"':'')+(o.caption?' data-cap="'+esc(o.caption)+'"':'')+'></div>'}
+  return '<div class="fig-host is-loading" data-feat="'+esc(JSON.stringify({kind:f.kind||'grid',seed:f.seed||3,labels:f.labels||['2015','2025']}))+'"'+(o.full?' data-full="1"':'')+((o.caption||f.caption)?' data-cap="'+esc(o.caption||f.caption)+'"':'')+'></div>'}
 
 function mount(el){
   var f=JSON.parse(el.dataset.feat),full=!!el.dataset.full,cap=el.dataset.cap||'',k=f.kind,seed=+f.seed||3,out='';
