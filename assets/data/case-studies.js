@@ -36,7 +36,7 @@ window.SCC_CASES = [
     pillar: 'Applied research',
     period: '2026',
     tags: ['Remote sensing', 'LULCC', 'Forest cover'],
-    context: 'Land-cover data are fundamental to REDD+ projects as they provide the spatial basis for quantifying differences in GHG emissions between without-project and with-project scenarios. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to address these discrepancies and improve classification accuracy.',
+    context: 'Land-cover data are fundamental to REDD+ projects. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to address these discrepancies and improve classification accuracy.',
     approach: [
       'Multi-source data fusion using a majority-voting approach with predefined decision rules.',
       'Boolean-rule-based temporal propagation to integrate annual land-cover changes across multiple years.'
