@@ -45,7 +45,7 @@ window.SCC_TEAM = {
   },
 
   /* ---------------- MANAGEMENT ---------------- */
-  management: [
+  test: [
 
     /* EXAMPLE (fully filled in). Copy it, edit it, and remove the comment marks.
     {
