@@ -75,9 +75,9 @@ window.SCC_TEAM = {
         'Spatial data science'
       ],
       email: 'saputra.ivannalis24@gmail.com',
-    },
-    { name: '[Full Name]', role: 'Finance and Administration' },
-    { name: '[Full Name]', role: 'Program and Operations' }
+    }
+    // { name: '[Full Name]', role: 'Finance and Administration' },
+    // { name: '[Full Name]', role: 'Program and Operations' }
   ],
 
   /* ---------------- EXPERTS ---------------- */
