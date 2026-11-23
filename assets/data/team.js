@@ -85,8 +85,8 @@ window.SCC_TEAM = {
     {
       name: 'Linda Wahyuni, S.P.,M.P',
       photo: 'assets/img/team/linda.jpg',
-      role: 'Food Security and Climate Change Adaptation',
-      bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
+      role: 'Food Security Expert',
+      bio: 'Food Security Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
       education: [['Master of Agriculture (Major: Agricultural Socio-Economics), Tangjungpura University'],['Bachelor of Agriculture (Major: Agricultural Socio-Economics), Tangjungpura University']],
       email: 'lindawahyuni25@gmail.com',
       linkedin: 'https://id.linkedin.com/in/linda-wahyuni-a42741280'
