@@ -12,18 +12,10 @@
      outcome   (required) what the client got
      tags      (optional)
      image     (optional) 'assets/img/cases/name.jpg'
-     caption   (optional) one or two sentences shown under the image or feature figure
-                 (what it shows, period, data source). For a generated figure it replaces
-                 the default "generated data" note.
      feature   (optional) 'compare' makes an interactive before/after slider:
                  { kind: 'compare', seed: 21, labels: ['2015', '2025'] }
                or a generated figure: { kind: 'lc' | 'carbon' | 'grid', seed: 8 }
-               (ignored when `image` is set)
-     files     (optional) downloads hosted on this site:
-                 [{ label: 'Download case brief', url: 'assets/files/...', format: 'PDF', size: '1 MB' }]
-     links     (optional) any number of links to outside pages (repo, report, dataset, article, web app):
-                 [{ label: 'Report and script (GitHub)', url: 'https://...' }, { label: '...', url: '...' }]
-               Use `files` for a file you upload, `links` for anything that lives elsewhere. Both can be used together.
+     files     (optional) [{ label: 'Download case brief', url: 'assets/files/...', format: 'PDF', size: '1 MB' }]
      status    (optional) 'soon' shows a "Coming soon" badge
      sample    (optional) true shows "Sample case". Delete for real entries.
    ========================================================================== */
@@ -43,9 +35,12 @@ window.SCC_CASES = [
     ],
     outcome: 'The correction reduced the dominant misclassification of non-forest areas as forest and improved the overall balance between forest and non-forest classification accuracy. However, this improvement involved a slight increase in errors in the opposite direction, indicating a redistribution rather than a uniform reduction of classification errors.',
     image: 'assets/img/cases/lc_fusion.jpg',
-    caption: 'Original versus corrected land cover for 2015, shown beside satellite imagery, with the annual area comparison for 2015-2025 (Google Earth Engine app).',
-    links: [
-      { label: 'Report and script (GitHub)', url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion' }
+    feature: { kind: 'grid', seed: 8 },
+    files: [
+      {
+        label: 'Report and script',
+        url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion'
+      }
     ]
   },
   {

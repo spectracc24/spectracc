@@ -9,7 +9,7 @@
 
    Normalized item:
      id, kicker, title, meta:[...], summary, tags:[...],
-     media:{ image, alt, feature, caption }, files:[{label,url,format,size}], links:[{label,url}] (or one link:{url,label}),
+     media:{ image, alt, feature }, files:[{label,url,format,size}], link:{url,label},
      status ('soon'), featured, sample, filterKey, searchText, sortDate,
      detail(item) -> HTML for the opened window   (null = no window)
      story(item)  -> HTML for the 'story' layout body
@@ -37,16 +37,9 @@ function badges(it,kickerOn){
   if(it.status==='soon')h+='<span class="soon-b">Coming soon</span>';
   return h?'<div class="chips">'+h+'</div>':''}
 
-function linkList(it){
-  var a=(it.links&&it.links.length)?it.links:(it.link?[it.link]:[]);
-  return a.filter(function(l){return l&&l.url})}
-
 function linkBtn(it){
-  if(it.status==='soon')return '';
-  return linkList(it).map(function(l){
-    return '<a class="it-link" href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer">'+esc(l.label||'Open link')+ic('i-external')+'</a>'}).join('')}
-
-function capHtml(m){return m&&m.caption?'<p class="fig-cap">'+esc(m.caption)+'</p>':''}
+  if(!it.link||!it.link.url||it.status==='soon')return '';
+  return '<a class="it-link" href="'+esc(it.link.url)+'" target="_blank" rel="noopener noreferrer">'+esc(it.link.label||'Open link')+ic('i-external')+'</a>'}
 
 SCC.collection=function(host,items,userCfg,opts){
   var cfg={},k;for(k in DEFAULTS)cfg[k]=DEFAULTS[k];for(k in (userCfg||{}))cfg[k]=userCfg[k];
@@ -68,8 +61,8 @@ SCC.collection=function(host,items,userCfg,opts){
   function mediaHtml(it,lead){
     if(compact||cfg.media==='none')return '';
     var m=it.media||{},img=(cfg.media==='image'||cfg.media==='auto')&&m.image,feat=(cfg.media==='feature'||cfg.media==='auto')&&m.feature&&!img,h='';
-    if(img)h=SCC.img(m.image,m.alt||it.title,cfg.mediaFit)+((story||lead)?capHtml(m):'');
-    else if(feat)h=SCC.figures.html(m.feature,{full:story||lead,caption:m.caption});
+    if(img)h=SCC.img(m.image,m.alt||it.title,cfg.mediaFit);
+    else if(feat)h=SCC.figures.html(m.feature,{full:story||lead});
     else if(cfg.placeholder==='logo')h='<div class="imgw ph-logo">'+SCC.MARK+'</div>';
     else if(cfg.placeholder==='generated'){var hs=hash(it.id);h=SCC.figures.html({kind:KINDS[hs%3],seed:hs%40+1},{full:story})}
     else return '';
@@ -112,11 +105,11 @@ SCC.collection=function(host,items,userCfg,opts){
 
   function openItem(id){var it=byId[id];if(!it)return;
     var m=it.media||{},img=(cfg.media==='image'||cfg.media==='auto')&&m.image,feat=(cfg.media==='feature'||cfg.media==='auto')&&m.feature&&!img,med='';
-    if(img)med='<div class="m-media">'+SCC.img(m.image,m.alt||it.title,'cover')+capHtml(m)+'</div>';else if(feat)med='<div class="m-media">'+SCC.figures.html(m.feature,{full:true,caption:m.caption})+'</div>';
+    if(img)med='<div class="m-media">'+SCC.img(m.image,m.alt||it.title,'cover')+'</div>';else if(feat)med='<div class="m-media">'+SCC.figures.html(m.feature,{full:true})+'</div>';
     var meta=(it.meta&&it.meta.length)?'<p class="it-meta">'+it.meta.map(esc).join(' · ')+'</p>':'';
     var html=med+'<div class="m-pad">'+badges(it,true)+'<h2 id="mTitle">'+esc(it.title)+'</h2>'+meta+'<div class="m-text">'+(it.detail?it.detail(it):'')+'</div>'+
       (it.tags&&it.tags.length?'<div class="tags" style="margin-top:16px">'+it.tags.map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join('')+'</div>':'')+
-      filesHtml(it,'big')+(linkBtn(it)?'<div class="it-act" style="margin-top:14px">'+linkBtn(it)+'</div>':'')+'</div>';
+      filesHtml(it,'big')+(it.link&&it.link.url?'<div class="it-act" style="margin-top:14px">'+linkBtn(it)+'</div>':'')+'</div>';
     SCC.modal.open({html:html,cls:'m-item',onOpen:function(b){if(SCC.figures)SCC.figures.lazy(b)}})}
 
   host.addEventListener('click',function(e){
