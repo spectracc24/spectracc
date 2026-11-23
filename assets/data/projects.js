@@ -31,7 +31,7 @@ window.SCC_PROJECTS = [
     summary: 'Limited funding prevents local communities from accessing adequate navigation and spatial tracking equipment, which are essential for documenting conservation activities and monitoring natural resources. TAPAK addresses this challenge through an open-source, Android-based, and user-friendly navigation and spatial tracking tool. It enables communities to collect geospatial data, track field activities, and document conservation efforts using readily available smartphones at no additional cost. ',
     deliverables: ['TAPAK android application', 'User guide and technical Documentation'], tags: ['Spatial monitoring tools'],
     feature: { kind: 'carbon', seed: 4 }
-  },
+  }, 
   {
     id: 'p-lulc', sample: true, title: 'Land-use and land-cover change mapping', pillar: 'Consulting', area: 'Remote sensing',
     client: '[Client]', location: '[Location]', year: '[Year]',
