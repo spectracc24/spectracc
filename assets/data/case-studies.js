@@ -36,10 +36,10 @@ window.SCC_CASES = [
     pillar: 'Applied research',
     period: '2026',
     tags: ['Remote sensing', 'LULCC', 'Forest cover'],
-    context: 'Land-cover data are fundamental to REDD+ projects. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to address these discrepancies and improve classification accuracy.',
+    context: 'Land-cover data are fundamental to REDD+ projects. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to improve classification accuracy.',
     approach: [
       'Multi-source data fusion using a majority-voting approach with predefined decision rules.',
-      'Boolean-rule-based temporal propagation to integrate annual land-cover changes across multiple years.'
+      'Boolean-rule multi-temporal propagation.'
     ],
     outcome: 'The correction reduced the dominant misclassification of non-forest areas as forest and improved the overall balance between forest and non-forest classification accuracy. However, this improvement involved a slight increase in errors in the opposite direction, indicating a redistribution rather than a uniform reduction of classification errors.',
     image: 'assets/img/cases/lc_fusion.jpg',
