@@ -28,7 +28,7 @@ window.SCC_CASES = [
     approach: ['The fusion based on a majority-voting approach with predefined decision rules', 'Boolean-rule temporal propagation for in multi-year integration.', 'Measured change by class and mapped where it concentrated.'],
     outcome: 'The correction reduced the dominant misclassification of non-forest areas as forest and improved the overall balance between forest and non-forest classification accuracy. However, this improvement involved a slight increase in errors in the opposite direction, indicating a redistribution rather than a uniform reduction of classification errors.',
     // image: 'assets/img/cases/name.jpg',
-    feature: { kind: 'grid', seed: 8 },
+    feature: { kind: 'grid', seed: 8 }
     // files: [{label: 'Report and script', url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion'}]
   },
   {
