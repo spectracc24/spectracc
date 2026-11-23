@@ -67,15 +67,9 @@ window.SCC_TEAM = {
       photo: 'assets/img/team/ivan.jpg',
       bio: 'Senior Geospatial Analyst and Technical Unit Manager with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in REDD+ project development and implementation. His expertise spans geospatial data science, remote sensing, spatial analytics, and environmental modeling, integrating GIS, programming, and machine learning approaches to address land-use and environmental challenges. His technical specializations include land-use/land-cover change analysis and modeling, deforestation and forest degradation assessment, spatial predictive modeling, digital soil mapping, and spatial baseline development for estimating potential greenhouse gas emission reductions and removals. Beyond geospatial analysis, he has experience in technical project management and the application of international carbon standards, methodologies, and frameworks, including Plan Vivo PM001, VCS VM0047, Social and Biodiversity Impact Assessment (SBIA), and the IUCN Environmental and Social Management System (ESMS).',
       tags: [
-        'Remote Sensing',
-        'Google Earth Engine',
-        'GIS & Spatial Analytics',
-        'Spatial Machine Learning',
-        'Python',
-        'Environmental Modeling',
-        'REDD+',
-        'Carbon Standards & Methodologies',
-        'AFOLU Project Management'
+        'Remote sensing',
+        'Carbon accounting',
+        'Spatial data science'
       ],
       email: 'saputra.ivannalis24@gmail.com',
     },
