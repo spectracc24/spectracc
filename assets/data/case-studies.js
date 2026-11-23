@@ -22,12 +22,13 @@
 
 window.SCC_CASES = [
   {
-    id: 'c1', sample: true, title: 'Forest cover change analysis', pillar: 'Geospatial consulting',
-    client: '[Client name]', period: '[Month Year]', tags: ['Remote sensing', 'LULCC', 'Forest cover'],
-    context: 'A growing forest management initiative needed a defensible record of where forest cover had changed before it planned protection and restoration work.',
-    approach: ['Assembled and corrected multi-temporal imagery for the project area.', 'Classified land cover for each period and checked the classes against field survey points.', 'Measured change by class and mapped where it concentrated.'],
-    outcome: 'A land-cover change map and area statistics the team can defend to donors and regulators, plus a documented workflow their own staff can repeat.',
-    feature: { kind: 'compare', seed: 21, labels: ['2015', '2025'] }
+    id: 'c1', title: 'MultiMulti-Source Land-Cover Data Fusion', pillar: 'Spatial Analysis',
+    period: '2026', tags: ['Remote sensing', 'LULCC', 'Forest cover'],
+    context: 'Land-cover data are fundamental to REDD+ projects as they provide the spatial basis for quantifying differences in GHG emissions between without-project and with-project scenarios. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to address these discrepancies and improve classification accuracy.',
+    approach: ['The fusion based on a majority-voting approach with predefined decision rules', 'Boolean-rule temporal propagation for in multi-year integration.', 'Measured change by class and mapped where it concentrated.'],
+    outcome: 'The correction reduced the dominant misclassification of non-forest areas as forest and improved the overall balance between forest and non-forest classification accuracy. However, this improvement involved a slight increase in errors in the opposite direction, indicating a redistribution rather than a uniform reduction of classification errors.',
+    feature: { kind: 'compare', seed: 21, labels: ['2015', '2025'] },
+    files: [{label: 'Report and script', url: 'https://github.com/ivannalissaputra24/GEE_land_cover_fusion'}]
   },
   {
     id: 'c2', sample: true, title: 'Baseline assessment of village forest areas', pillar: 'Applied research',
