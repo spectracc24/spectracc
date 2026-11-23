@@ -61,13 +61,23 @@ window.SCC_TEAM = {
     }, */
 
     {
-      name: 'Linda Wahyuni, S.P.,M.P',
-      photo: 'assets/img/team/linda.jpg',
-      role: 'Director',
-      bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
-      education: ['Master of Agriculture (Agricultural Socio-Economics), Tangjungpura University'],
-      email: 'lindawahyuni25@gmail.com',
-      linkedin: 'https://id.linkedin.com/in/linda-wahyuni-a42741280'
+      name: 'Ivannalis Saputra, S.P.',
+      role: 'Founder & Technical Lead, Spectra CC',
+      field: 'Geospatial Data Science & AFOLU',
+      photo: 'assets/img/team/ivan.jpg',
+      bio: 'Senior Geospatial Analyst and Technical Unit Manager with over 10 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, particularly in REDD+ project development and implementation. His expertise spans geospatial data science, remote sensing, spatial analytics, and environmental modeling, integrating GIS, programming, and machine learning approaches to address land-use and environmental challenges. His technical specializations include land-use/land-cover change analysis and modeling, deforestation and forest degradation assessment, spatial predictive modeling, digital soil mapping, and spatial baseline development for estimating potential greenhouse gas emission reductions and removals. Beyond geospatial analysis, he has experience in technical project management and the application of international carbon standards, methodologies, and frameworks, including Plan Vivo PM001, VCS VM0047, Social and Biodiversity Impact Assessment (SBIA), and the IUCN Environmental and Social Management System (ESMS).',
+      tags: [
+        'Remote Sensing',
+        'Google Earth Engine',
+        'GIS & Spatial Analytics',
+        'Spatial Machine Learning',
+        'Python',
+        'Environmental Modeling',
+        'REDD+',
+        'Carbon Standards & Methodologies',
+        'AFOLU Project Management'
+      ],
+      email: 'saputra.ivannalis24@gmail.com',
     },
     { name: '[Full Name]', role: 'Finance and Administration' },
     { name: '[Full Name]', role: 'Program and Operations' }
@@ -76,13 +86,13 @@ window.SCC_TEAM = {
   /* ---------------- EXPERTS ---------------- */
   experts: [
     {
-      name: 'Ivannalis Saputra, S.P',
-      role: 'Senior Gospatial Analyst',
-      field: 'Spatial data science',
-      photo: 'assets/img/team/ivan.jpg',
-      bio: 'Senior Geospatial Analyst with 9 years of experience in the Agriculture, Forestry, and Other Land Use (AFOLU) sector, specializing in REDD+ projects and advanced geospatial analysis to support informed decision-making on land-use/land-cover change, land-use projections, deforestation and forest degradation, and emission reduction/removal assessments.',
-      tags: ['Google Earth Engine', 'ArcGIS', 'Python'],
-      email: 'saputra.ivannalis24@gmail.com'
+      name: 'Linda Wahyuni, S.P.,M.P',
+      photo: 'assets/img/team/linda.jpg',
+      role: 'Director',
+      bio: 'Food Security and Climate Change Adaptation Expert with over 10 years of experience, particularly in working with smallholder oil palm farmers, sustainable agricultural practices, and RSPO certification. She currently serves as a lecturer in the Agroecotechnology Study Program at Shanti Bhuana Institute.',
+      education: ['Master of Agriculture (Agricultural Socio-Economics), Tangjungpura University'],
+      email: 'lindawahyuni25@gmail.com',
+      linkedin: 'https://id.linkedin.com/in/linda-wahyuni-a42741280'
     },
     { name: '[Full Name]', role: '[Job Title]', field: 'Forest ecology' },
     { name: '[Full Name]', role: '[Job Title]', field: 'Hydrology' },
