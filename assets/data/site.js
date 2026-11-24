@@ -23,7 +23,7 @@
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-25',
+  version: '2026-11-25-course-library',
 
   contact: {
     address: '',
@@ -39,6 +39,7 @@ window.SCC_SITE = {
     'case-studies': 'live',
     'projects': 'live',
     'publications': 'live',
+    'courses': 'live',
     'map': 'soon'
   },
 
