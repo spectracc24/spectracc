@@ -35,7 +35,7 @@ window.SCC_SITE = {
   region: 'Kubu Raya, West Kalimantan, Indonesia',
 
   // Public Cloudflare Turnstile site key. Set this after creating the widget.
-  turnstileSiteKey: '',
+  turnstileSiteKey: '0x4AAAAAAGRN_Rl7hLO8fKKz',
   contactEndpoint: '/api/contact',
 
   pages: {
