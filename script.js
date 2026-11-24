@@ -258,6 +258,8 @@
     'case-studies': { view: 'v-case', page: 'cases', label: 'Case Studies', flag: 'case-studies', deps: [D + 'case-studies.js', [J + 'lib/figures.js', J + 'lib/collection.js'], J + 'pages/showcase.js'] },
     'projects': { view: 'v-projects', page: 'projects', label: 'Projects', flag: 'projects', deps: [D + 'projects.js', [J + 'lib/figures.js', J + 'lib/collection.js'], J + 'pages/showcase.js'] },
     'publications': { view: 'v-pubs', page: 'publications', label: 'Publications', flag: 'publications', deps: [D + 'publications.js', [J + 'lib/figures.js', J + 'lib/collection.js'], J + 'pages/publications.js'] },
+    'courses': { view: 'v-courses', page: 'courses', label: 'Course', flag: 'courses', deps: [D + 'courses.js', J + 'pages/courses.js'] },
+    'course-detail': { alias: 'courses', label: 'Course detail', flag: 'courses' },
     'map': { view: 'v-map', page: 'map', label: 'Map', flag: 'map', deps: [[D + 'map.js', V + 'leaflet.css'], V + 'leaflet.js', J + 'pages/map.js'] },
     'contact': { view: 'v-contact', title: 'Contact' },
     'find-us': { alias: 'contact', scroll: 'find-us', label: 'Find Us' }
@@ -282,7 +284,7 @@
     var key = ROUTES[raw] ? raw : 'home', def = ROUTES[key], tkey = def.alias || key, tdef = ROUTES[tkey], st = statusOf(key);
     if (st === 'hidden') { location.replace('#home'); return }
     $('#navPanel').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false');
-    Modal.close(); setNav(key);
+    Modal.close(); setNav(key === 'course-detail' ? 'courses' : key);
     var label = def.label || tdef.label || tdef.title || 'Page';
     document.title = (label === 'Home' ? '' : label + ' | ') + 'Spectra Citra Cendekia';
     function finish() {

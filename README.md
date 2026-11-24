@@ -33,3 +33,13 @@ After changing data files, change `version` in `assets/data/site.js` so visitors
 - `assets/js/pages/` one file per page, loaded only when the page is opened
 - `assets/vendor/leaflet/` map library (bundled, no CDN needed)
 - `assets/css/style.css` all styles
+
+## Course Library
+
+- Course catalog and metadata: `assets/data/courses.js`
+- Course catalog/detail rendering: `assets/js/pages/courses.js`
+- Course images (when available): `assets/img/courses/`
+
+Add a course object to `window.SCC_COURSES` in `assets/data/courses.js`. Give each course a unique `id`; the detail page is available at `#course-detail/<id>`. Set `type` to `free` or `paid`, choose a `category`, and add the external `access_url` where the actual course, document, video, or other learning material is hosted. `visitors` and `buyers` are manually maintained display counters, not live analytics. Set `image` to a path such as `assets/img/courses/course-cover.jpg`; leave it empty to show the built-in image placeholder.
+
+This is a static catalog and external-link directory. It does not upload files, process payments, authenticate learners, or automatically count visits/purchases. Those functions require a backend or a third-party course platform. Update the `version` value in `assets/data/site.js` after changing catalog data or assets.
