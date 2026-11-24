@@ -34,7 +34,7 @@
           media: { image: p.image, alt: p.title, feature: p.feature, caption: p.caption }, files: p.files, link: p.link, links: p.links, status: p.status, sample: p.sample, filterKey: p.pillar,
           searchText: low([p.title, p.area, p.pillar, p.client, p.location, p.summary, (p.deliverables || []).join(' '), (p.tags || []).join(' ')]), sortDate: p.year || '',
           detail: function () {
-            var rows = [['Client', p.client], ['Location', p.location], ['Year', p.year], ['Practice area', p.area], ['Deliverables', (p.deliverables || []).join(', ')]].filter(function (r) { return r[1] });
+            var rows = [['Partner', p.client], ['Location', p.location], ['Year', p.year], ['Practice area', p.area], ['Outputs', (p.deliverables || []).join(', ')]].filter(function (r) { return r[1] });
             return (p.summary ? '<p>' + esc(p.summary) + '</p>' : '') + (rows.length ? '<dl class="dl-grid">' + rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>' }).join('') + '</dl>' : '')
           }
         }

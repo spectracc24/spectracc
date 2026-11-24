@@ -23,7 +23,7 @@
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-23',
+  version: '2026-11-25',
 
   contact: {
     address: '',
@@ -44,8 +44,8 @@ window.SCC_SITE = {
 
   links: [
     { platform: 'fiverr',    label: 'Fiverr',    handle: '', url: '', featured: true,
-      desc: 'Order focused mapping and GIS tasks as ready-made gigs.', cta: 'Visit our Fiverr profile' },
-    { platform: 'linkedin',  label: 'LinkedIn',  handle: '', url: '', desc: 'Company updates, news and opportunities.' },
+      desc: 'Request focused mapping and GIS tasks as ready-made gigs.', cta: 'Visit our Fiverr profile' },
+    { platform: 'linkedin',  label: 'LinkedIn',  handle: '', url: '', desc: 'Organization updates, news and opportunities.' },
     { platform: 'instagram', label: 'Instagram', handle: '', url: '', desc: 'Field notes and behind the scenes.' },
     { platform: 'youtube',   label: 'YouTube',   handle: '', url: '', desc: 'Tutorials, webinars and project walkthroughs.' },
     { platform: 'facebook',  label: 'Facebook',  handle: '', url: '', desc: 'Community news and event announcements.' },

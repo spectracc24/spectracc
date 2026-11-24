@@ -155,9 +155,9 @@
      HOME
      ========================================================================== */
   var STAGES = [
-    { t: 'Scientific and Expert Mobilization', i: 'i-network', d: 'We match client needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.' },
-    { t: 'Methodological and Spatial Execution', i: 'i-layers', d: 'We deliver geospatial consulting, spatial analysis, applied research, environmental assessments and tailored technical solutions grounded in scientific methods.' },
-    { t: 'Decision-Grade Project Quality', i: 'i-check', d: 'We strengthen scientific rigor and technical reliability, so that decisions rest on evidence a donor, investor or regulator can check.' },
+    { t: 'Scientific and Expert Mobilization', i: 'i-network', d: 'We match partner needs and program objectives with qualified specialists across geospatial science, forestry and other land-use sectors, environmental science and related disciplines.' },
+    { t: 'Methodological and Spatial Execution', i: 'i-layers', d: 'We provide geospatial analysis, technical support, applied research, environmental assessments and tailored technical solutions grounded in scientific methods.' },
+    { t: 'Decision-Ready Project Quality', i: 'i-check', d: 'We strengthen scientific rigor and technical reliability, so that decisions rest on evidence a donor, investor or regulator can check.' },
     { t: 'Institutional Technical Independence', i: 'i-db', d: 'We build internal competencies through knowledge transfer, standardized workflows, institutional procedures, spatial data infrastructure and applied analytical skills.' },
     { t: 'Sectoral Leadership and Collective Impact', i: 'i-globe', d: 'We contribute to a growing network of capable practitioners and institutions that together advance environmental sustainability.' }
   ];

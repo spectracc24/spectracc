@@ -4,7 +4,7 @@
    FIELDS
      id           (required) unique, no spaces
      title        (required)
-     pillar       (required) 'Consulting' | 'Research' | 'Training' (used by the filter buttons)
+     pillar       (required) 'Technical support' | 'Research' | 'Training' (used by the filter buttons)
      area         (optional) practice area, shown under the title
      client       (optional) shown in the opened details
      location     (optional)
@@ -23,7 +23,7 @@
 window.SCC_PROJECTS = [
   {
     id: 'p-platform', sample: false, 
-    title: 'TAPAK (Teknologi Akuisisi dan Pencatatan Hutan Kita)', pillar: 'Consulting', area: 'Monitoring tools',
+    title: 'TAPAK (Teknologi Akuisisi dan Pencatatan Hutan Kita)', pillar: 'Technical support', area: 'Monitoring tools',
     client: 'Village Forest Management Institutions (LDPH)', 
     location: 'Kapuas Hulu District', 
     year: '2026',
@@ -33,7 +33,7 @@ window.SCC_PROJECTS = [
     feature: { kind: 'carbon', seed: 4 }
   }, 
   {
-    id: 'p-lulc', sample: true, title: 'Land-use and land-cover change mapping', pillar: 'Consulting', area: 'Remote sensing',
+    id: 'p-lulc', sample: true, title: 'Land-use and land-cover change mapping', pillar: 'Technical support', area: 'Remote sensing',
     client: '[Client]', location: '[Location]', year: '[Year]',
     summary: 'Classified land-cover maps for several periods, with change statistics and an accuracy assessment.',
     deliverables: ['Classified maps by period', 'Change statistics', 'Accuracy assessment'], tags: ['LULCC'],

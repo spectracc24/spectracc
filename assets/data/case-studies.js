@@ -4,12 +4,12 @@
    FIELDS
      id        (required) unique, no spaces
      title     (required)
-     pillar    (required) 'Geospatial consulting' | 'Applied research' | 'Training and capacity'
+     pillar    (required) 'Geospatial analysis and support' | 'Applied research' | 'Training and capacity'
      client    (optional)
      period    (optional)
      context   (required) the starting situation (also used as the short summary)
      approach  (required) list of steps
-     outcome   (required) what the client got
+     outcome   (required) what the partner gained
      tags      (optional)
      image     (optional) 'assets/img/cases/name.jpg'
      caption   (optional) one or two sentences shown under the image or feature figure
@@ -61,7 +61,7 @@ window.SCC_CASES = [
     client: '[Client name]', period: '[Month Year]', tags: ['Capacity building', 'QC/QA', 'Spatial database'],
     context: 'A growing organization collected field data in many formats and had no shared spatial database.',
     approach: ['Set up a standard spatial database and naming workflow.', 'Wrote QC/QA protocols for field data collection.', 'Ran hands-on sessions in applied GIS and map production with the team.'],
-    outcome: 'A team that manages its own spatial data, with written procedures that outlast the engagement.',
+    outcome: 'A team that manages its own spatial data, with written procedures that outlast the collaboration.',
     feature: { kind: 'carbon', seed: 14 }
   }
 ];
