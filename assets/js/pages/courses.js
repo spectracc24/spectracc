@@ -12,18 +12,19 @@
   }
   function card(c) {
     var media = c.image ? '<img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy">' : '<div class="course-placeholder"><span>COURSE IMAGE</span><small>Image area</small></div>';
-    var count = c.type === 'paid' ? (Number(c.buyers) || 0) + ' buyers' : (Number(c.visitors) || 0) + ' visitors';
+    var idLang = window.SCC_LANG === 'id';
+    var count = c.type === 'paid' ? (Number(c.buyers) || 0) + (idLang ? ' pembeli' : ' buyers') : (Number(c.visitors) || 0) + (idLang ? ' pengunjung' : ' visitors');
     return '<a class="course-card" href="#course-detail/' + encodeURIComponent(c.id) + '">' +
       '<div class="course-card-media">' + media + '<span class="course-access ' + (c.type === 'paid' ? 'paid' : 'free') + '">' + (c.type === 'paid' ? 'Paid' : 'Free') + '</span></div>' +
       '<div class="course-card-body"><div class="course-card-meta"><span>' + esc(c.category || 'Learning') + '</span><span>' + esc(c.format || 'Course') + '</span></div>' +
-      '<h3>' + esc(c.title) + '</h3><p>' + esc(c.summary || '') + '</p><div class="course-card-foot"><span>' + esc(count) + '</span><span class="course-open">View course ' + SCC.ic('i-arrow') + '</span></div></div></a>';
+      '<h3>' + esc(c.title) + '</h3><p>' + esc(c.summary || '') + '</p><div class="course-card-foot"><span>' + esc(count) + '</span><span class="course-open">' + (idLang ? 'Lihat kursus ' : 'View course ') + SCC.ic('i-arrow') + '</span></div></div></a>';
   }
   function renderCatalog(root) {
     var cats = categories();
     root.innerHTML = '<div class="course-toolbar"><label class="course-search"><span class="sr-only">Search courses</span>' + SCC.ic('i-search') + '<input id="courseSearch" type="search" placeholder="Search courses, topics, or skills…" value="' + esc(searchTerm) + '"></label>' +
       '<label class="course-filter"><span>Category</span><select id="courseCategory">' + cats.map(function (c) { return '<option value="' + esc(c) + '"' + (c === activeCategory ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select></label>' +
       '<label class="course-filter"><span>Access</span><select id="courseType"><option value="all">All access</option><option value="free"' + (activeType === 'free' ? ' selected' : '') + '>Free</option><option value="paid"' + (activeType === 'paid' ? ' selected' : '') + '>Paid</option></select></label></div>' +
-      '<div class="course-results-line"><span id="courseCount"></span><span>Curated learning resources by Spectra CC</span></div><div class="course-grid" id="courseGrid"></div>';
+      '<div class="course-results-line"><span id="courseCount"></span><span>' + (window.SCC_LANG === 'id' ? 'Sumber pembelajaran pilihan dari Spectra CC' : 'Curated learning resources by Spectra CC') + '</span></div><div class="course-grid" id="courseGrid"></div>';
     $('#courseSearch', root).addEventListener('input', function (e) { searchTerm = e.target.value; drawCards(root); });
     $('#courseCategory', root).addEventListener('change', function (e) { activeCategory = e.target.value; drawCards(root); });
     $('#courseType', root).addEventListener('change', function (e) { activeType = e.target.value; drawCards(root); });
@@ -35,7 +36,7 @@
       var hay = [c.title, c.category, c.summary, c.format, c.level, (c.tags || []).join(' ')].join(' ').toLowerCase();
       return (activeCategory === 'All' || c.category === activeCategory) && (activeType === 'all' || c.type === activeType) && (!q || hay.indexOf(q) > -1);
     });
-    $('#courseCount', root).textContent = filtered.length + (filtered.length === 1 ? ' learning resource' : ' learning resources');
+    $('#courseCount', root).textContent = filtered.length + (window.SCC_LANG === 'id' ? ' sumber pembelajaran' : (filtered.length === 1 ? ' learning resource' : ' learning resources'));
     $('#courseGrid', root).innerHTML = filtered.length ? filtered.map(card).join('') : '<div class="course-empty"><span class="ico">' + SCC.ic('i-search') + '</span><h3>No courses found</h3><p>Try another keyword or change the filters.</p></div>';
   }
   function renderDetail(root) {
@@ -53,7 +54,7 @@
       (c.price ? '<div class="course-info-row"><span>Price</span><b>' + esc(c.price) + '</b></div>' : '') + (c.format ? '<div class="course-info-row"><span>Format</span><b>' + esc(c.format) + '</b></div>' : '') +
       (c.level ? '<div class="course-info-row"><span>Level</span><b>' + esc(c.level) + '</b></div>' : '') + (c.duration ? '<div class="course-info-row"><span>Duration</span><b>' + esc(c.duration) + '</b></div>' : '') +
       (c.provider ? '<div class="course-info-row"><span>Provider</span><b>' + esc(c.provider) + '</b></div>' : '') + '<div class="course-stats">' + stats + '</div>' +
-      (c.access_url ? '<a class="btn btn-p course-access-btn" href="' + esc(c.access_url) + '" target="_blank" rel="noopener noreferrer">' + (c.type === 'paid' ? 'Access / Purchase course' : 'Access learning resource') + ' ' + SCC.ic('i-external') + '</a>' : '<div class="course-link-pending">Access link will be available soon.</div>') +
+      (c.access_url ? '<a class="btn btn-p course-access-btn" href="' + esc(c.access_url) + '" target="_blank" rel="noopener noreferrer">' + (c.type === 'paid' ? 'Access / Purchase course' : 'Access learning resource') + ' ' + SCC.ic('i-external') + '</a>' : '<div class="course-link-pending">Enrollment information is not currently available.</div>') +
       '<p class="course-external-note">You will be redirected to the external platform hosting this learning resource.</p></div></aside></div>';
   }
   SCC.registerPage('courses', {

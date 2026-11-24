@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-11-25-production-review-1">
   <style>
     #boot {
       position: fixed;
@@ -253,6 +253,7 @@
           </li>
         </ul>
       </nav>
+      <button class="icon-btn lang-btn" id="langBtn" type="button" aria-label="Switch language" title="Switch language">ID</button>
       <button class="icon-btn" id="themeBtn" aria-label="Switch between light and dark theme"><svg class="ic">
           <use id="themeUse" href="#i-moon" />
         </svg></button>
@@ -878,9 +879,8 @@
             </figure>
           </div>
           <div class="card">
-            <h2 style="font-size:1.5rem">Draft your inquiry</h2>
-            <p class="muted">This page cannot send messages. Fill in the form to prepare a ready-to-send draft, then
-              copy it into an email to the address on the left.</p>
+            <h2 style="font-size:1.5rem">Send us a message</h2>
+            <p class="muted">Send your inquiry directly to the Spectra CC team. We will use your details only to respond to this message.</p>
             <form id="cform" novalidate>
               <div class="frow">
                 <div class="field"><label for="cf-name">Full name</label><input id="cf-name" autocomplete="name"
@@ -904,20 +904,19 @@
                   <option>Not sure yet</option>
                 </select>
               </div>
-              <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg"
+              <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required minlength="10" maxlength="5000"
                   placeholder="Describe your site, your goals and any deadline."></textarea></div>
-              <button class="btn btn-p" type="submit"><svg class="ic">
-                  <use href="#i-file" />
-                </svg>Prepare draft</button>
+              <div class="field" id="captchaField"><span class="lbl">Security verification</span>
+                <div id="turnstileWidget"></div>
+                <small class="muted" id="captchaHelp">Complete the verification before sending your message.</small>
+              </div>
+              <div class="hp-field" aria-hidden="true"><label for="cf-website">Leave this field empty</label><input id="cf-website" name="website" tabindex="-1" autocomplete="off"></div>
+              <button class="btn btn-p" id="sendInquiry" type="submit"><svg class="ic">
+                  <use href="#i-mail" />
+                </svg>Send inquiry</button>
               <p class="err" id="cfErr" role="alert" hidden></p>
+              <p class="success" id="cfSuccess" role="status" hidden></p>
             </form>
-            <div id="draftBox" hidden>
-              <pre class="draft" id="draftText"></pre>
-              <div class="btn-row"><button class="btn btn-s" id="copyDraft"><svg class="ic">
-                    <use href="#i-copy" />
-                  </svg>Copy draft</button><span class="muted" id="copyMsg" aria-live="polite"
-                  style="align-self:center;font-size:14px"></span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -927,7 +926,7 @@
         <div class="sec-h">
           <p class="eyebrow">Find us</p>
           <h2>Follow our work, or collaborate with us directly.</h2>
-          <p>Our channels in one place. Cards marked "Coming soon" will link to the profile once it goes live.</p>
+          <p>Connect with Spectra CC through our official channels.</p>
         </div>
         <div class="find-grid" id="findGrid"></div>
       </div>
@@ -974,10 +973,11 @@
     </div>
   </footer>
 
-  <script src="assets/data/site.js"></script>
-  <script src="assets/data/settings.js"></script>
-  <script src="assets/js/lib/icons.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/data/site.js?v=2026-11-25-production-review-1"></script>
+  <script src="assets/data/settings.js?v=2026-11-25-production-review-1"></script>
+  <script src="assets/js/lib/icons.js?v=2026-11-25-production-review-1"></script>
+  <script src="assets/js/i18n.js?v=2026-11-25-production-review-1"></script>
+  <script src="script.js?v=2026-11-25-production-review-1"></script>
   <script>
     /* If the main script never starts, replace the loading screen's text so people are not left waiting. */
     setTimeout(function () { var b = document.getElementById('boot'); if (b && !b.hidden && !(window.SCC && window.SCC.booted)) { var s = document.getElementById('bootMsg'); if (s) s.textContent = 'Still loading. If nothing changes, refresh the page.' } }, 12000);

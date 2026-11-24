@@ -51,7 +51,7 @@ window.SCC_SETTINGS = {
     sort: 'date-desc',
     pageSize: 8,
     detail: 'modal',
-    sampleNote: 'These entries are samples. Replace them in assets/data/publications.js.'
+    sampleNote: ''
   },
 
   projects: {
@@ -68,7 +68,7 @@ window.SCC_SETTINGS = {
     sort: 'manual',
     pageSize: 0,
     detail: 'modal',
-    sampleNote: 'These entries are samples. Replace them in assets/data/projects.js.'
+    sampleNote: ''
   },
 
   cases: {
@@ -85,7 +85,7 @@ window.SCC_SETTINGS = {
     sort: 'manual',
     pageSize: 0,
     detail: 'modal',
-    sampleNote: 'These entries are samples. Replace them in assets/data/case-studies.js.'
+    sampleNote: ''
   },
 
   /* Our Team page */

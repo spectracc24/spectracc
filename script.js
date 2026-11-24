@@ -212,28 +212,57 @@
      ========================================================================== */
   (function () {
     var C = SITE.contact || {};
-    var rows = [['i-pin', 'Address', 'address', '[ADDRESS]'], ['i-mail', 'Email', 'email', '[EMAIL]'], ['i-phone', 'Phone', 'phone', '[PHONE]'], ['i-globe', 'Website', 'website', '[WEBSITE]']];
+    var rows = [['i-pin', 'Address', 'address'], ['i-mail', 'Email', 'email'], ['i-phone', 'Phone', 'phone'], ['i-globe', 'Website', 'website']];
     var region = SITE.region || 'Kubu Raya, West Kalimantan, Indonesia';
-    var h = rows.map(function (r) { var v = C[r[2]]; return '<div class="crow"><span class="ico">' + ic(r[0]) + '</span><div><small>' + r[1] + '</small><span class="v' + (v ? '' : ' ph') + '">' + esc(v || r[3]) + '</span></div><button class="icon-btn" data-copy="' + esc(v || '') + '" aria-label="Copy ' + r[1].toLowerCase() + '"' + (v ? '' : ' disabled') + '>' + ic('i-copy') + '</button></div>' }).join('');
+    var h = rows.filter(function (r) { return C[r[2]]; }).map(function (r) { var v = C[r[2]]; return '<div class="crow"><span class="ico">' + ic(r[0]) + '</span><div><small>' + r[1] + '</small><span class="v">' + esc(v) + '</span></div><button class="icon-btn" data-copy="' + esc(v) + '" aria-label="Copy ' + r[1].toLowerCase() + '">' + ic('i-copy') + '</button></div>' }).join('');
     h += '<div class="crow"><span class="ico">' + ic('i-compass') + '</span><div><small>Registered office region</small><span class="v">' + esc(region) + '</span></div><button class="icon-btn" data-copy="' + esc(region) + '" aria-label="Copy registered office region">' + ic('i-copy') + '</button></div>';
     $('#cinfo').innerHTML = h;
     $$('#cinfo [data-copy]').forEach(function (b) { b.addEventListener('click', function () { copyText(b.dataset.copy, b.parentNode.querySelector('.v'), null) }) });
 
-    var form = $('#cform'), box = $('#draftBox'), txt = $('#draftText'), err = $('#cfErr');
+    var form = $('#cform'), err = $('#cfErr'), success = $('#cfSuccess'), sendBtn = $('#sendInquiry');
+    var turnstileToken = '', widgetId = null;
+    function setCaptchaMessage(message) { var el = $('#captchaHelp'); if (el) el.textContent = message; }
+    function renderCaptcha() {
+      if (!SITE.turnstileSiteKey) { setCaptchaMessage('CAPTCHA has not been configured. Please contact the website administrator.'); return; }
+      if (!window.turnstile) return;
+      if (widgetId !== null) { try { window.turnstile.remove(widgetId); } catch (e) {} }
+      widgetId = window.turnstile.render('#turnstileWidget', { sitekey: SITE.turnstileSiteKey, appearance: 'always', size: 'normal',
+        callback: function (token) { turnstileToken = token; },
+        'expired-callback': function () { turnstileToken = ''; },
+        'error-callback': function () { turnstileToken = ''; setCaptchaMessage('Verification could not be completed. Please try again.'); }
+      });
+      setCaptchaMessage('Complete the verification before sending your message.');
+    }
+    if (SITE.turnstileSiteKey) {
+      var ts = document.createElement('script'); ts.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; ts.async = true; ts.defer = true;
+      ts.onload = renderCaptcha; document.head.appendChild(ts);
+    } else { renderCaptcha(); }
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = $('#cf-name').value.trim(), mail = $('#cf-mail').value.trim(), org = $('#cf-org').value.trim(), stage = $('#cf-stage').value, msg = $('#cf-msg').value.trim();
-      var svc = $$('#cf-svc input:checked').map(function (x) { return x.value });
-      if (!name || mail.indexOf('@') < 1) { err.hidden = false; err.textContent = 'Enter your name and a valid email address so the draft can be completed.'; box.hidden = true; return }
-      err.hidden = true;
-      txt.textContent = 'Subject: Inquiry to Spectra Citra Cendekia\n\nHello Spectra CC team,\n\nMy name is ' + name + (org ? ' from ' + org : '') + '.\nProject stage: ' + stage + '.\nServices of interest: ' + (svc.length ? svc.join(', ') : 'to be discussed') + '.\n\n' + (msg || 'I would like to discuss my project.') + '\n\nYou can reach me at ' + mail + '.\n\nThank you,\n' + name;
-      box.hidden = false; $('#copyMsg').textContent = ''
+      e.preventDefault(); err.hidden = true; success.hidden = true;
+      var payload = {
+        name: $('#cf-name').value.trim(), email: $('#cf-mail').value.trim(), organization: $('#cf-org').value.trim(),
+        services: $$('#cf-svc input:checked').map(function (x) { return x.value; }),
+        stage: $('#cf-stage').value, message: $('#cf-msg').value.trim(), website: $('#cf-website').value.trim(),
+        turnstileToken: turnstileToken
+      };
+      if (!payload.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) || payload.message.length < 10) {
+        err.hidden = false; err.textContent = 'Please enter your name, a valid email address, and a message of at least 10 characters.'; return;
+      }
+      if (!SITE.turnstileSiteKey || !turnstileToken) {
+        err.hidden = false; err.textContent = 'Security verification is not ready. Please complete the CAPTCHA or contact the website administrator.'; return;
+      }
+      sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+      fetch(SITE.contactEndpoint || '/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || 'Message could not be sent. Please try again later.'); return j; }); })
+        .then(function () { form.reset(); turnstileToken = ''; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); success.hidden = false; success.textContent = 'Thank you. Your inquiry has been sent to the Spectra CC team.'; })
+        .catch(function (e) { err.hidden = false; err.textContent = e.message || 'Message could not be sent. Please try again later.'; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); turnstileToken = ''; })
+        .finally(function () { sendBtn.disabled = false; sendBtn.innerHTML = ic('i-mail') + 'Send inquiry'; });
     });
-    $('#copyDraft').addEventListener('click', function () { copyText(txt.textContent, txt, $('#copyMsg')) });
 
     /* Find us */
-    var links = (SITE.links || []).filter(function (l) { return l && l.platform });
+    var links = (SITE.links || []).filter(function (l) { return l && l.platform && l.url; });
     var known = window.SCC_BRANDS || [];
+    var findSection = $('#find-us'); if (findSection && !links.length) { findSection.hidden = true; $$('[href="#find-us"]').forEach(function (a) { var li = a.closest('li'); if (li) li.hidden = true; else a.hidden = true; }); }
     $('#findGrid').innerHTML = links.map(function (l) {
       var live = !!l.url, icon = known.indexOf(l.platform) > -1 ? bic(l.platform) : ic('i-globe'),
         inner = '<span class="find-ico">' + icon + '</span><span class="find-tx"><b>' + esc(l.label || l.platform) + '</b>' + (l.handle ? '<small>' + esc(l.handle) + '</small>' : '') + (l.desc ? '<span class="find-d">' + esc(l.desc) + '</span>' : '') + '</span>' +

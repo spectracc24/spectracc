@@ -13,26 +13,30 @@
                fiverr, whatsapp, researchgate, googlescholar, orcid, telegram, medium
      label     name shown on the card
      handle    @username or short text shown under the label (optional)
-     url       full address. Leave '' and the card shows "Coming soon".
+     url       full address. Only entries with a valid URL are displayed to visitors.
      desc      one line about what people find there (optional)
      cta       button text (optional)
      featured  true makes the card wide and highlighted (use for Fiverr)
-   Order here = order on the page. Delete a block to remove it.
+   Order here = order on the page. Delete a block to remove it. Empty links are not displayed.
    ========================================================================== */
 
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-25-course-library',
+  version: '2026-11-25-production-review-1',
 
   contact: {
     address: '',
-    email: '',
+    email: 'cc.spectra24@gmail.com',
     phone: '',
     website: ''
   },
 
   region: 'Kubu Raya, West Kalimantan, Indonesia',
+
+  // Public Cloudflare Turnstile site key. Set this after creating the widget.
+  turnstileSiteKey: '',
+  contactEndpoint: '/api/contact',
 
   pages: {
     'team': 'live',
@@ -40,20 +44,8 @@ window.SCC_SITE = {
     'projects': 'live',
     'publications': 'live',
     'courses': 'live',
-    'map': 'soon'
+    'map': 'hidden'
   },
 
-  links: [
-    { platform: 'fiverr',    label: 'Fiverr',    handle: '', url: '', featured: true,
-      desc: 'Request focused mapping and GIS tasks as ready-made gigs.', cta: 'Visit our Fiverr profile' },
-    { platform: 'linkedin',  label: 'LinkedIn',  handle: '', url: '', desc: 'Organization updates, news and opportunities.' },
-    { platform: 'instagram', label: 'Instagram', handle: '', url: '', desc: 'Field notes and behind the scenes.' },
-    { platform: 'youtube',   label: 'YouTube',   handle: '', url: '', desc: 'Tutorials, webinars and project walkthroughs.' },
-    { platform: 'facebook',  label: 'Facebook',  handle: '', url: '', desc: 'Community news and event announcements.' },
-    { platform: 'x',         label: 'X',         handle: '', url: '', desc: 'Short updates and links.' },
-    { platform: 'tiktok',    label: 'TikTok',    handle: '', url: '', desc: 'Short videos about mapping and the field.' },
-    { platform: 'github',    label: 'GitHub',    handle: '', url: '', desc: 'Open code, scripts and datasets.' },
-    { platform: 'whatsapp',  label: 'WhatsApp',  handle: '', url: '', desc: 'Quick questions to our team.' }
-    /* More you can add: researchgate, googlescholar, orcid, telegram, medium */
-  ]
+  links: []
 };

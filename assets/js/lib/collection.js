@@ -107,7 +107,8 @@ SCC.collection=function(host,items,userCfg,opts){
     list.innerHTML=html;SCC.hydrate(list);if(SCC.figures)SCC.figures.lazy(list);
     empty.hidden=all.length>0;list.hidden=all.length===0;
     more.hidden=all.length<=vis.length;
-    count.textContent=all.length?(cfg.pageSize>0?'Showing '+vis.length+' of '+all.length+' '+noun:all.length+' '+(all.length===1?noun.replace(/s$/,''):noun)):'';
+    var idLang=window.SCC_LANG==='id', nounId=noun==='projects'?'proyek':(noun==='publications'?'publikasi':(noun==='case studies'?'studi kasus':'item'));
+    count.textContent=all.length?(cfg.pageSize>0?(idLang?'Menampilkan '+vis.length+' dari '+all.length+' '+nounId:'Showing '+vis.length+' of '+all.length+' '+noun):(idLang?all.length+' '+nounId:all.length+' '+(all.length===1?noun.replace(/s$/,''):noun))):'';
     $$('.fbtn',host).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===state.f?'true':'false')})}
 
   function openItem(id){var it=byId[id];if(!it)return;
