@@ -4,7 +4,7 @@
    FIELDS
      id        (required) unique, no spaces
      title     (required)
-     pillar    (required) 'Geospatial analysis and support' | 'Applied research' | 'Training and capacity'
+     pillar    (required) 'Geospatial analysis and support' | 'Applied studies' | 'Training and capacity'
      client    (optional)
      period    (optional)
      context   (required) the starting situation (also used as the short summary)
@@ -33,7 +33,7 @@ window.SCC_CASES = [
     id: 'c1',
     sample: false,
     title: 'Multi-Source Land-Cover Data Fusion',
-    pillar: 'Applied research',
+    pillar: 'Applied studies',
     period: '2026',
     tags: ['Remote sensing', 'LULCC', 'Forest cover'],
     context: 'Land-cover data are fundamental to REDD+ projects. However, the performance of global land-cover products may vary across landscape characteristics, forest types, and land-use patterns, potentially resulting in omission and commission errors when compared with local conditions. Integrating multiple land-cover datasets can provide complementary spatial evidence to improve classification accuracy.',
@@ -49,7 +49,7 @@ window.SCC_CASES = [
     ]
   },
   {
-    id: 'c2', sample: true, title: 'Baseline assessment of village forest areas', pillar: 'Applied research',
+    id: 'c2', sample: true, title: 'Baseline assessment of village forest areas', pillar: 'Applied studies',
     client: '[Client name]', period: '[Month Year]', tags: ['Baseline', 'Village forest', 'Field survey'],
     context: 'Village managers needed reference conditions for their forest area before setting management targets.',
     approach: ['Derived land-cover classes from satellite imagery and verified them with field points.', 'Ran a landscape diagnostic to identify constraints and opportunities.', 'Defined indicators that the village team can track over time.'],

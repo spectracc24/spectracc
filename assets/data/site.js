@@ -50,15 +50,15 @@ window.SCC_SITE = {
   links: [
     {
       platform: 'fiverr', label: 'Fiverr', handle: '@spectra24', url: 'https://www.fiverr.com/spectra24', featured: true,
-      desc: 'Work with our geospatial team on GIS, remote sensing and spatial analysis projects.', cta: 'View our gigs'
+      desc: 'Work with our team on mapping, GIS, remote sensing, and spatial projects.', cta: 'View our gigs'
     },
     {
       platform: 'instagram', label: 'Instagram', handle: '@cc.spectra24', url: 'https://www.instagram.com/cc.spectra24',
-      desc: 'Daily geospatial insights and updates.'
+      desc: 'Updates, field notes, and ideas from our geospatial work.'
     },
     {
       platform: 'youtube', label: 'YouTube', handle: '@spectracc24', url: 'https://youtube.com/@spectracc24',
-      desc: 'Videos  on geospatial science and mapping.'
+      desc: 'Videos on mapping, geospatial tools, and environmental topics.'
     },
     {
       platform: 'linkedin', label: 'LinkedIn', handle: 'Spectra CC', url: 'https://www.linkedin.com/in/spectra-cc-aa3280452/',
@@ -66,7 +66,7 @@ window.SCC_SITE = {
     },
     {
       platform: 'github', label: 'GitHub', handle: 'spectracc24', url: 'https://github.com/spectracc24',
-      desc: 'Open scripts and datasets for geospatial analysis.'
+      desc: 'Open tools, scripts, and resources from our projects.'
     }
   ]
 };

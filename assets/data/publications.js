@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PUBLICATIONS: articles, guidelines, institutional reports, scientific articles, and more.
+   PUBLICATIONS: articles, practical guides, institutional reports, and selected research.
    Edit this file only. How the list looks is set in settings.js (section `publications`).
 
    HOW TO ADD ONE
@@ -11,7 +11,7 @@
    FIELDS
      id         (required) unique short name, no spaces: 'mangrove-guideline-2026'
      title      (required)
-     type       (required) category used by the filter buttons, e.g. 'Scientific article',
+     type       (required) category used by the filter buttons, e.g. 'Research article',
                 'Guideline', 'Institutional report', 'Article', 'Policy brief', 'Dataset'
      date       (recommended) 'YYYY-MM-DD' or 'YYYY-MM' or 'YYYY'
      authors    (optional) 'A. Surname, B. Surname'
@@ -50,8 +50,8 @@ window.SCC_PUBLICATIONS = [
   }, */
 
   { id: 'sample-article', sample: true, featured: true,
-    title: '[Sample] Title of a scientific article',
-    type: 'Scientific article', date: '2026-06-10', authors: '[Author names]',
+    title: '[Sample] Title of a research article',
+    type: 'Research article', date: '2026-06-10', authors: '[Author names]',
     summary: 'Replace this with a two or three sentence summary of the article: the question, the method and the main finding.',
     body: 'This is the longer description shown when someone opens the item.\n\nUse a second paragraph for the method, the data and why the work matters.',
     tags: ['Remote sensing', 'Peer reviewed'],
@@ -92,7 +92,7 @@ window.SCC_PUBLICATIONS = [
 
   { id: 'sample-soon', sample: true, status: 'soon',
     title: '[Sample] Upcoming publication',
-    type: 'Scientific article', date: '2026-12',
+    type: 'Research article', date: '2026-12',
     summary: 'An item marked as coming soon shows a badge and disables its buttons.',
     tags: ['In preparation'] }
 ];

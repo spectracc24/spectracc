@@ -4,7 +4,7 @@
    FIELDS
      id           (required) unique, no spaces
      title        (required)
-     pillar       (required) 'Technical support' | 'Research' | 'Training' (used by the filter buttons)
+     pillar       (required) 'Technical support' | 'Applied studies' | 'Training' (used by the filter buttons)
      area         (optional) practice area, shown under the title
      client       (optional) shown in the opened details
      location     (optional)
@@ -28,7 +28,7 @@ window.SCC_PROJECTS = [
     location: 'Kapuas Hulu District', 
     year: '2026',
     image: 'assets/img/projects/tapak_app_new.jpg',
-    summary: 'Limited funding prevents local communities from accessing adequate navigation and spatial tracking equipment, which are essential for documenting conservation activities and monitoring natural resources. TAPAK addresses this challenge through an open-source, Android-based, and user-friendly navigation and spatial tracking tool. It enables communities to collect geospatial data, track field activities, and document conservation efforts using readily available smartphones at no additional cost. ',
+    summary: 'Many local communities have limited access to navigation and spatial tracking equipment for documenting conservation activities and monitoring natural resources. TAPAK offers an open-source, user-friendly Android tool that lets communities collect location data, track field activities, and document conservation efforts using readily available smartphones at no additional cost. ',
     deliverables: ['TAPAK android application', 'User guide and technical Documentation'], tags: ['Spatial monitoring tools'],
     feature: { kind: 'carbon', seed: 4 }
   }, 
@@ -40,14 +40,14 @@ window.SCC_PROJECTS = [
     feature: { kind: 'lc', seed: 31 }
   },
   {
-    id: 'p-baseline', sample: true, title: 'Environmental baseline and landscape diagnostic', pillar: 'Research', area: 'Environmental baseline assessments',
+    id: 'p-baseline', sample: true, title: 'Environmental baseline and landscape diagnostic', pillar: 'Applied studies', area: 'Environmental baseline assessments',
     client: '[Client]', location: '[Location]', year: '[Year]',
     summary: 'Reference conditions and a diagnostic of constraints and opportunities for a project landscape.',
     deliverables: ['Baseline report', 'Reference condition maps', 'Constraints and opportunities'], tags: ['Baseline'],
     feature: { kind: 'lc', seed: 17 }
   },
   {
-    id: 'p-monitoring', sample: true, title: 'Monitoring framework and indicator design', pillar: 'Research', area: 'Monitoring, evaluation and performance',
+    id: 'p-monitoring', sample: true, title: 'Monitoring framework and indicator design', pillar: 'Applied studies', area: 'Monitoring, evaluation and performance',
     client: '[Client]', location: '[Location]', year: '[Year]',
     summary: 'Indicators, a monitoring protocol and a reporting template a project team can run on its own.',
     deliverables: ['Indicator set', 'Monitoring protocol', 'Reporting template'], tags: ['Monitoring'],
