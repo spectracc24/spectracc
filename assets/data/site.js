@@ -23,7 +23,7 @@
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-25-english-v1',
+  version: '2026-11-25-motion-v1',
 
   contact: {
     address: '',

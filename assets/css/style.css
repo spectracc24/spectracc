@@ -3485,3 +3485,64 @@ a.find-card:hover {
 .course-toolbar{align-items:stretch;box-shadow:0 8px 24px rgba(20,45,55,.035)}
 .course-search:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(22,140,145,.10)}
 @media(max-width:680px){.course-filter{min-height:52px}.course-filter select{min-height:44px}}
+
+/* --------------------------------------------------------------------------
+   Motion polish — restrained page transitions and interaction feedback
+   -------------------------------------------------------------------------- */
+@keyframes sccPageEnter {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.view.route-enter { animation: sccPageEnter .48s cubic-bezier(.2,.72,.25,1) both; }
+.motion-item {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity .52s ease, transform .58s cubic-bezier(.2,.72,.25,1);
+  will-change: opacity, transform;
+}
+.motion-item.motion-visible { opacity: 1; transform: translate3d(0,0,0); }
+.pillar, .course-card, .find-card, .project-card, .case-card, .pub-card, .team-card, .stg, .btn, .icon-btn {
+  transition-property: transform, box-shadow, border-color, background-color, color, opacity;
+  transition-duration: .22s;
+  transition-timing-function: ease;
+}
+.pillar:hover, .course-card:hover, .find-card:hover, .project-card:hover, .case-card:hover, .pub-card:hover, .team-card:hover {
+  transform: translateY(-3px);
+}
+.btn:active, .icon-btn:active, button:active, .course-card:active, .find-card:active, .stg:active {
+  transform: translateY(1px) scale(.985);
+}
+.tap-feedback { animation: sccTap .34s ease; }
+@keyframes sccTap { 0% { filter: brightness(1); } 45% { filter: brightness(1.08); } 100% { filter: brightness(1); } }
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin .72s linear infinite;
+}
+.btn.is-sending { cursor: wait; opacity: .82; }
+input, select, textarea { transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease; }
+:focus-visible { scroll-margin-top: 100px; }
+@media (prefers-reduced-motion: reduce) {
+  .view.route-enter, .motion-item, .tap-feedback, .btn-spinner { animation: none !important; transition: none !important; }
+  .motion-item { opacity: 1 !important; transform: none !important; }
+  .pillar:hover, .course-card:hover, .find-card:hover, .project-card:hover, .case-card:hover, .pub-card:hover, .team-card:hover { transform: none; }
+}
+
+/* Interactive panels and dynamically generated collection cards */
+.item, .member, .node, .mtabs button, .filters button, .course-filter, .course-search {
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background-color .22s ease, color .22s ease;
+}
+.item.is-click:hover, .member.is-click:hover { transform: translateY(-3px); }
+.filters button:active, .mtabs button:active, .node:active { transform: scale(.975); }
+.mpan:not([hidden]) { animation: sccPanelIn .28s ease both; }
+@keyframes sccPanelIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.modal.in .m-box { animation: sccPanelIn .24s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  .mpan:not([hidden]), .modal.in .m-box { animation: none !important; }
+}

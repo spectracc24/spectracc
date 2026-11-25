@@ -104,7 +104,7 @@ SCC.collection=function(host,items,userCfg,opts){
     if(cfg.layout==='featured'&&vis.length){var li=0;for(var j=0;j<vis.length;j++){if(vis[j].featured){li=j;break}}
       var lead=vis[li];html=itemHtml(lead,0,true)+vis.filter(function(_,j){return j!==li}).map(function(it,i){return itemHtml(it,i)}).join('')}
     else html=vis.map(function(it,i){return itemHtml(it,i)}).join('');
-    list.innerHTML=html;SCC.hydrate(list);if(SCC.figures)SCC.figures.lazy(list);
+    list.innerHTML=html;SCC.hydrate(list);if(SCC.figures)SCC.figures.lazy(list);if(SCC.motion)SCC.motion(host);
     empty.hidden=all.length>0;list.hidden=all.length===0;
     more.hidden=all.length<=vis.length;
     var idLang=window.SCC_LANG==='id', nounId=noun==='projects'?'proyek':(noun==='publications'?'publikasi':(noun==='case studies'?'studi kasus':'item'));

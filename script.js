@@ -251,12 +251,12 @@
       if (!SITE.turnstileSiteKey || !turnstileToken) {
         err.hidden = false; err.textContent = 'Security verification is not ready. Please complete the CAPTCHA or contact the website administrator.'; return;
       }
-      sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+      sendBtn.disabled = true; sendBtn.classList.add('is-sending'); sendBtn.setAttribute('aria-busy', 'true'); sendBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>Sending…';
       fetch(SITE.contactEndpoint || '/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || 'Message could not be sent. Please try again later.'); return j; }); })
         .then(function () { form.reset(); turnstileToken = ''; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); success.hidden = false; success.textContent = 'Thank you. Your inquiry has been sent to the Spectra CC team.'; })
         .catch(function (e) { err.hidden = false; err.textContent = e.message || 'Message could not be sent. Please try again later.'; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); turnstileToken = ''; })
-        .finally(function () { sendBtn.disabled = false; sendBtn.innerHTML = ic('i-mail') + 'Send inquiry'; });
+        .finally(function () { sendBtn.disabled = false; sendBtn.classList.remove('is-sending'); sendBtn.removeAttribute('aria-busy'); sendBtn.innerHTML = ic('i-mail') + 'Send inquiry'; });
     });
 
     /* Find us */
@@ -306,6 +306,28 @@
   $$('.ftr [data-r]').forEach(function (a) { var k = a.dataset.r; if (ROUTES[k] && statusOf(k) === 'hidden') { var li = a.closest('li'); if (li) li.hidden = true } });
 
   var token = 0, firstRoute = true;
+  var motionObserver = null;
+  function enhanceMotion(host) {
+    if (!host) return;
+    var targets = $$('.sec-h, .pillar, .item, .member, .course-card, .find-card, .project-card, .case-card, .pub-card, .team-card, .map-panel, .node, .two > div, .course-detail-section, .course-access-panel', host);
+    if (!RM && 'IntersectionObserver' in window) {
+      if (!motionObserver) motionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('motion-visible'); motionObserver.unobserve(entry.target) }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+      targets.forEach(function (el) { if (!el.classList.contains('motion-visible')) { el.classList.add('motion-item'); motionObserver.observe(el) } });
+    } else targets.forEach(function (el) { el.classList.add('motion-visible') });
+  }
+  SCC.motion = enhanceMotion;
+  function animateView(viewEl) {
+    if (!viewEl) return;
+    viewEl.classList.remove('route-enter');
+    void viewEl.offsetWidth;
+    viewEl.classList.add('route-enter');
+    setTimeout(function () { viewEl.classList.remove('route-enter') }, RM ? 0 : 720);
+    enhanceMotion(viewEl);
+  }
   function showView(id) { $$('.view').forEach(function (v) { v.hidden = v.id !== id }) }
   function setNav(key) { $$('[data-r]').forEach(function (a) { var on = a.dataset.r.split(',').indexOf(key) > -1; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current') }) }
   function route() {
@@ -319,6 +341,7 @@
     function finish() {
       if (my !== token) return;
       if (tdef.view === 'v-home') heroApi.size();
+      var activeView = $('#' + tdef.view); animateView(activeView);
       if (def.scroll) requestAnimationFrame(function () { var t = document.getElementById(def.scroll); if (t) t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }) });
       else window.scrollTo(0, 0);
       if (firstRoute) { firstRoute = false; Boot.set(85, 'Almost ready…') }
@@ -347,6 +370,12 @@
     }).then(Loader.done)
   }
   window.addEventListener('hashchange', route);
+  document.addEventListener('click', function (e) {
+    var control = e.target.closest('.btn, .icon-btn, button, .course-card, .find-card, .stg, [role="tab"]');
+    if (!control || control.disabled || RM) return;
+    control.classList.remove('tap-feedback'); void control.offsetWidth; control.classList.add('tap-feedback');
+    setTimeout(function () { control.classList.remove('tap-feedback') }, 360);
+  });
   $('#menuBtn').addEventListener('click', function () { var o = $('#navPanel').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded', o ? 'true' : 'false') });
   $$('[data-jump]').forEach(function (b) { b.addEventListener('click', function () { var t = document.getElementById(b.dataset.jump); if (t) t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }) }) });
 
