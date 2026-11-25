@@ -47,5 +47,10 @@ window.SCC_SITE = {
     'map': 'hidden'
   },
 
-  links: []
+  links: [
+  { platform: 'fiverr', label: 'Fiverr', handle: '@username', url: 'https://www.fiverr.com/username', featured: true,
+    desc: '...', cta: 'View our gigs' },
+  { platform: 'instagram', label: 'Instagram', handle: '@username', url: 'https://instagram.com/username',
+    desc: 'Field notes and behind the scenes.' }
+]
 };
