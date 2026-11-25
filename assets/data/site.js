@@ -27,7 +27,7 @@ window.SCC_SITE = {
 
   contact: { 
     address: '',
-    email: 'cc.spectra24@gmail.com',
+    email: 'mail@spectracc.sbs',
     phone: '',
     website: ''
   },
