@@ -62,11 +62,11 @@ window.SCC_SITE = {
     },
     {
       platform: 'linkedin', label: 'LinkedIn', handle: 'Spectra CC', url: 'https://www.linkedin.com/in/spectra-cc-aa3280452/',
-      desc: 'Organization updates, news and professional opportunities in geospatial science.'
+      desc: 'Our updates, news and professional opportunities in geospatial science.'
     },
     {
       platform: 'github', label: 'GitHub', handle: 'spectracc24', url: 'https://github.com/spectracc24',
-      desc: 'Open code, scripts and datasets for geospatial analysis.'
+      desc: 'Open scripts and datasets for geospatial analysis.'
     }
   ]
 };
