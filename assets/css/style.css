@@ -3470,8 +3470,18 @@ a.find-card:hover {
 @media(max-width:900px){.course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.course-detail-layout{grid-template-columns:minmax(0,1fr) 290px;gap:24px}}
 @media(max-width:680px){.course-intro{grid-template-columns:1fr;gap:12px}.course-toolbar{grid-template-columns:1fr}.course-results-line{flex-direction:column;gap:4px}.course-grid{grid-template-columns:1fr}.course-detail-layout{grid-template-columns:1fr}.course-detail-aside{position:static;grid-row:1}.course-detail-main{grid-row:2}.course-detail-media{aspect-ratio:16/9}.detail-placeholder{min-height:190px}}
 
-/* Production contact form and language switch */
-.lang-btn{font-size:12px;font-weight:800;letter-spacing:.04em;min-width:38px;padding:0 9px}
+/* Production contact form */
 .hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .success{color:#16764a;background:rgba(22,118,74,.08);border:1px solid rgba(22,118,74,.22);padding:12px 14px;border-radius:10px;margin-top:12px}
 #turnstileWidget{min-height:0}
+
+/* Course Library — refined native select controls */
+.course-filter{position:relative;min-width:0;transition:border-color .18s ease,box-shadow .18s ease;background:var(--card)}
+.course-filter:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(22,140,145,.12)}
+.course-filter span{font-size:11px;font-weight:650;letter-spacing:.045em;color:var(--muted)}
+.course-filter select{appearance:none;-webkit-appearance:none;min-height:44px;padding:0 34px 0 4px;cursor:pointer;font:600 13px var(--bf);color:var(--head);border:0;outline:0;background-color:transparent;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23717f88' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;background-size:15px}
+.course-filter select option{padding:10px 12px;background:var(--card);color:var(--ink);font:500 13px var(--bf)}
+.course-filter select:focus-visible{outline:0}
+.course-toolbar{align-items:stretch;box-shadow:0 8px 24px rgba(20,45,55,.035)}
+.course-search:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(22,140,145,.10)}
+@media(max-width:680px){.course-filter{min-height:52px}.course-filter select{min-height:44px}}

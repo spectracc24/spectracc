@@ -1,13 +1,12 @@
 # Spectra Citra Cendekia website
 
-Static frontend with no build step. The production contact form uses a Cloudflare Pages Function; GitHub Pages or a plain static host can serve the pages but cannot run the email endpoint.
+Static English-only frontend with no build step. The production contact form uses a Cloudflare Pages Function; GitHub Pages or a plain static host can serve the pages but cannot run the email endpoint.
 
 ## Where to edit
 
 | What | File |
 |---|---|
-| Contact details, social links, language and page visibility | `assets/data/site.js` |
-| English / Indonesian interface translations | `assets/js/i18n.js` |
+| Contact details, social links and page visibility | `assets/data/site.js` |
 | How lists look (layout, columns, image or not, order of blocks, filters) | `assets/data/settings.js` |
 | Our Team (management and experts) | `assets/data/team.js` |
 | Publications and downloads | `assets/data/publications.js` |
@@ -30,7 +29,6 @@ After changing data files, change `version` in `assets/data/site.js` so visitors
 
 - `index.html` markup only
 - `script.js` core: loading screens, lazy loader, modal, router, home, contact, Find us
-- `assets/js/i18n.js` bilingual interface dictionary and language switcher
 - `functions/api/contact.js` server-side CAPTCHA verification and email delivery
 - `assets/js/lib/` shared: `collection.js` (design system), `figures.js`, `icons.js`
 - `assets/js/pages/` one file per page, loaded only when the page is opened
