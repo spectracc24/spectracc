@@ -1,3 +1,4 @@
-name = "spectra-cc-website"
+# name = "spectra-cc-website"
+name = 'spectracc'
 compatibility_date = "2026-11-25"
 pages_build_output_dir = "."
