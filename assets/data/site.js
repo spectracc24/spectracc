@@ -24,7 +24,7 @@ window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
   version: '2026-11-25-links-v1',
-   
+
   contact: {
     address: '',
     email: 'cc.spectra24@gmail.com',
@@ -48,9 +48,21 @@ window.SCC_SITE = {
   },
 
   links: [
-  { platform: 'fiverr', label: 'Fiverr', handle: '@username', url: 'https://www.fiverr.com/username', featured: true,
-    desc: '...', cta: 'View our gigs' },
-  { platform: 'instagram', label: 'Instagram', handle: '@username', url: 'https://instagram.com/username',
-    desc: 'Field notes and behind the scenes.' }
-]
+    {
+      platform: 'fiverr', label: 'Fiverr', handle: '@spectra24', url: 'https://www.fiverr.com/spectra24', featured: true,
+      desc: 'Work with our geospatial team on GIS, remote sensing and spatial analysis projects.', cta: 'View our gigs'
+    },
+    {
+      platform: 'instagram', label: 'Instagram', handle: '@cc.spectra24', url: 'https://www.instagram.com/cc.spectra24',
+      desc: 'Daily geospatial insights, field notes and behind-the-scenes updates.'
+    },
+    {
+      platform: 'youtube', label: 'YouTube', handle: '@spectracc24', url: 'https://youtube.com/@spectracc24',
+      desc: 'Tutorials and explainers on geospatial science and environmental mapping.'
+    },
+    {
+      platform: 'linkedin', label: 'LinkedIn', handle: 'Spectra CC', url: 'https://www.linkedin.com/in/spectra-cc-aa3280452/',
+      desc: 'Organization updates, news and professional opportunities in geospatial science.'
+    }
+  ]
 };
