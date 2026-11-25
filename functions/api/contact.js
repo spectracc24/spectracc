@@ -8,18 +8,18 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
 });
 const clean = (value, max = 5000) => String(value || '').trim().slice(0, max);
-const escapeHtml = (value) => clean(value).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const escapeHtml = (value) => clean(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 export async function onRequestPost({ request, env }) {
   const origin = request.headers.get('Origin');
   if (origin && origin !== new URL(request.url).origin) return json({ error: 'Request origin is not allowed.' }, 403);
   if (!env.TURNSTILE_SECRET || !env.RESEND_API_KEY || !env.CONTACT_FROM) {
-  const missing = ['TURNSTILE_SECRET', 'RESEND_API_KEY', 'CONTACT_FROM'].filter((k) => !env[k]);
-  return json({
-    error: 'Contact service not configured. Missing: ' + missing.join(', '),
-    visibleKeys: Object.keys(env)
-  }, 503);
-}
+    const missing = ['TURNSTILE_SECRET', 'RESEND_API_KEY', 'CONTACT_FROM'].filter((k) => !env[k]);
+    return json({
+      error: 'Contact service not configured. Missing: ' + missing.join(', '),
+      visibleKeys: Object.keys(env)
+    }, 503);
+  }
   let data;
   try { data = await request.json(); } catch { return json({ error: 'Invalid request.' }, 400); }
   // Quietly accept the honeypot field to avoid telling bots how detection works.
