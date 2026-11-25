@@ -13,7 +13,7 @@
 
       root.innerHTML =
         '<div class="team-group" id="grp-management"' + (groups.management.length ? '' : ' hidden') + '><div class="grp-h"><p class="eyebrow">Leadership</p><h3 class="grp-t">Management</h3><p class="muted">The people who lead Spectra CC and run the organization day to day.</p></div><div class="team" id="mgmtGrid"></div></div>' +
-        '<div class="team-group" id="grp-experts"' + (groups.experts.length ? '' : ' hidden') + '><div class="grp-h"><p class="eyebrow">Expert network</p><h3 class="grp-t">Associate Expert</h3><p class="muted">We match each collaboration with qualified specialists. Select a discipline to see who covers it.</p></div>' +
+        '<div class="team-group" id="grp-experts"' + (groups.experts.length ? '' : ' hidden') + '><div class="grp-h"><p class="eyebrow">Expert network</p><h3 class="grp-t">Associated Experts</h3><p class="muted">We match each collaboration with qualified specialists. Select a discipline to see who covers it.</p></div>' +
         (cfg.showNetwork ? '<div class="net-wrap"><svg class="net" id="net" viewBox="-50 0 620 380" role="group" aria-label="Expert network by discipline"></svg><div><h3>Specialists, mobilized by need</h3><p>Rather than one fixed bench, Spectra CC assembles the right mix of disciplines for each project and hands the know-how over to the client team.</p><div class="filters" id="teamFilters"></div></div></div>' :
           (cfg.showFilters ? '<div class="filters" id="teamFilters"></div>' : '')) +
         '<div class="team" id="expGrid"></div><p class="muted" id="expEmpty" hidden>No expert is listed for this discipline yet.</p></div>';
