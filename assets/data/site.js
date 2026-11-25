@@ -54,15 +54,15 @@ window.SCC_SITE = {
     },
     {
       platform: 'instagram', label: 'Instagram', handle: '@cc.spectra24', url: 'https://www.instagram.com/cc.spectra24',
-      desc: 'Daily geospatial insights, field notes and behind-the-scenes updates.'
+      desc: 'Daily geospatial insights and updates.'
     },
     {
       platform: 'youtube', label: 'YouTube', handle: '@spectracc24', url: 'https://youtube.com/@spectracc24',
-      desc: 'Tutorials and explainers on geospatial science and environmental mapping.'
+      desc: 'Videos  on geospatial science and mapping.'
     },
     {
       platform: 'linkedin', label: 'LinkedIn', handle: 'Spectra CC', url: 'https://www.linkedin.com/in/spectra-cc-aa3280452/',
-      desc: 'Our updates, news and professional opportunities in geospatial science.'
+      desc: 'Our updates, news and professional opportunities.'
     },
     {
       platform: 'github', label: 'GitHub', handle: 'spectracc24', url: 'https://github.com/spectracc24',
