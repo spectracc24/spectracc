@@ -23,8 +23,8 @@
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-25-motion-v1',
-
+  version: '2026-11-25-links-v1',
+   
   contact: {
     address: '',
     email: 'cc.spectra24@gmail.com',
