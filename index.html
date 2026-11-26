@@ -823,17 +823,18 @@
       </svg>
       <div class="wrap">
         <p class="eyebrow">Contact</p>
-        <h1>Tell us about your project.</h1>
-        <p>Whether you are starting out or ready to grow, we can help identify the next practical step for your project.</p>
+        <h1>Let’s talk about your project.</h1>
+        <p>Whether you are starting out or ready to grow, send us a short email and we will help identify the next practical step.</p>
       </div>
     </section>
     <section class="sec">
       <div class="wrap">
-        <div class="two">
-          <div>
-            <h2 style="font-size:1.5rem">Reach Spectra CC</h2>
+        <div class="ct-grid">
+          <div class="ct-left">
+            <div class="ct-mail" id="ctMail"></div>
             <div class="cinfo" id="cinfo"></div>
-            <figure class="mapfig">
+          </div>
+          <figure class="mapfig">
               <svg viewBox="0 0 560 300" role="img"
                 aria-label="Map graphic marking the registered office in Kubu Raya, West Kalimantan">
                 <rect width="560" height="300" fill="var(--soft)" />
@@ -856,50 +857,34 @@
                 <text x="280" y="214" text-anchor="middle" font-family="Inter,sans-serif" font-size="12"
                   fill="var(--muted)">West Kalimantan, Indonesia</text>
               </svg>
-              <figcaption class="meta" style="margin:8px 0 0">Registered office region. Schematic graphic, not to scale.
-              </figcaption>
+              <figcaption class="meta" style="margin:8px 0 0">Registered office region. Schematic graphic, not to scale.</figcaption>
             </figure>
+        </div>
+
+        <div class="ct-brief">
+          <div class="sec-h">
+            <p class="eyebrow">Before you write</p>
+            <h2>A short brief helps us reply with something useful.</h2>
+            <p>There is no form to fill in. Just cover these four points in your email.</p>
           </div>
-          <div class="card">
-            <h2 style="font-size:1.5rem">Send us a message</h2>
-            <p class="muted">Send your inquiry directly to the Spectra CC team. We will use your details only to respond to this message.</p>
-            <form id="cform" novalidate>
-              <div class="frow">
-                <div class="field"><label for="cf-name">Full name</label><input id="cf-name" autocomplete="name"
-                    required></div>
-                <div class="field"><label for="cf-org">Organization</label><input id="cf-org"
-                    autocomplete="organization"></div>
-              </div>
-              <div class="field"><label for="cf-mail">Email</label><input id="cf-mail" type="email" autocomplete="email"
-                  required></div>
-              <div class="field"><span class="lbl">Services of interest</span>
-                <div class="checks" id="cf-svc"><label><input type="checkbox" value="Geospatial analysis and technical support"> Geospatial analysis
-                    and technical support</label><label><input type="checkbox" value="Applied studies"> Applied
-                    studies</label><label><input type="checkbox" value="Training and capacity development">
-                    Training</label></div>
-              </div>
-              <div class="field"><label for="cf-stage">Project stage</label>
-                <select id="cf-stage">
-                  <option>Early-stage project</option>
-                  <option>Mid-stage project</option>
-                  <option>Growing organization</option>
-                  <option>Not sure yet</option>
-                </select>
-              </div>
-              <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required minlength="10" maxlength="5000"
-                  placeholder="Describe your site, your goals and any deadline."></textarea></div>
-              <div class="field" id="captchaField"><span class="lbl">Security verification</span>
-                <div id="turnstileWidget"></div>
-                <small class="muted" id="captchaHelp">Complete the verification before sending your message.</small>
-              </div>
-              <div class="hp-field" aria-hidden="true"><label for="cf-website">Leave this field empty</label><input id="cf-website" name="website" tabindex="-1" autocomplete="off"></div>
-              <button class="btn btn-p" id="sendInquiry" type="submit"><svg class="ic">
-                  <use href="#i-mail" />
-                </svg>Send inquiry</button>
-              <p class="err" id="cfErr" role="alert" hidden></p>
-              <p class="success" id="cfSuccess" role="status" hidden></p>
-            </form>
-          </div>
+          <ol class="ct-steps">
+            <li class="ct-step"><span class="ct-n">1</span>
+              <h3>Who you are</h3>
+              <p>Your name, organization and role in the project.</p>
+            </li>
+            <li class="ct-step"><span class="ct-n">2</span>
+              <h3>Your site and goals</h3>
+              <p>Where the project is located and what you want to achieve.</p>
+            </li>
+            <li class="ct-step"><span class="ct-n">3</span>
+              <h3>Services of interest</h3>
+              <p>Geospatial analysis and technical support, applied studies, or training.</p>
+            </li>
+            <li class="ct-step"><span class="ct-n">4</span>
+              <h3>Stage and timing</h3>
+              <p>Early, mid-stage or growing, and any deadline we should know about.</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>

@@ -212,52 +212,41 @@
      ========================================================================== */
   (function () {
     var C = SITE.contact || {};
-    var rows = [['i-pin', 'Address', 'address'], ['i-mail', 'Email', 'email'], ['i-phone', 'Phone', 'phone'], ['i-globe', 'Website', 'website']];
+
+    /* Main card: email is the primary way to reach us (no form). */
+    var mailBox = $('#ctMail');
+    if (C.email) {
+      var subject = 'Project inquiry for Spectra CC';
+      var body = [
+        'Hello Spectra CC team,', '',
+        'Name:', 'Organization and role:', '',
+        'Project site / area:', 'Services of interest (geospatial analysis and technical support / applied studies / training):',
+        'Project stage (early, mid-stage, growing organization, not sure yet):', 'Timeline or deadline:', '',
+        'About the project and what we would like to achieve:', '', ''
+      ].join('\r\n');
+      var href = 'mailto:' + C.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      mailBox.innerHTML = '<p class="ct-k">' + ic('i-mail') + 'Email us</p>' +
+        '<a class="ct-addr" href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a>' +
+        '<p class="ct-note">Write to us directly. The button opens your email app with a short template that you can edit.</p>' +
+        '<div class="ct-actions"><a class="btn ct-b1" href="' + href + '">' + ic('i-mail') + 'Write an email</a>' +
+        '<button class="btn ct-b2" type="button" id="ctCopy">' + ic('i-copy') + 'Copy address</button>' +
+        '<span class="ct-copied" id="ctCopied" role="status" aria-live="polite"></span></div>';
+      $('#ctCopy').addEventListener('click', function () {
+        var msg = $('#ctCopied'); copyText(C.email, $('#ctMail .ct-addr'), msg);
+        clearTimeout(msg._t); msg._t = setTimeout(function () { msg.textContent = '' }, 2200);
+      });
+    } else {
+      mailBox.innerHTML = '<p class="ct-k">' + ic('i-mail') + 'Get in touch</p><p class="ct-note" style="margin:0">Our email address is being set up. In the meantime, please reach us through the channels below.</p>' +
+        '<div class="ct-actions"><a class="btn ct-b1" href="#find-us">Find us online' + ic('i-arrow') + '</a></div>';
+    }
+
+    /* Other details (only those filled in) + region */
+    var rows = [['i-pin', 'Address', 'address'], ['i-phone', 'Phone', 'phone'], ['i-globe', 'Website', 'website']];
     var region = SITE.region || 'Kubu Raya, West Kalimantan, Indonesia';
     var h = rows.filter(function (r) { return C[r[2]]; }).map(function (r) { var v = C[r[2]]; return '<div class="crow"><span class="ico">' + ic(r[0]) + '</span><div><small>' + r[1] + '</small><span class="v">' + esc(v) + '</span></div><button class="icon-btn" data-copy="' + esc(v) + '" aria-label="Copy ' + r[1].toLowerCase() + '">' + ic('i-copy') + '</button></div>' }).join('');
     h += '<div class="crow"><span class="ico">' + ic('i-compass') + '</span><div><small>Registered office region</small><span class="v">' + esc(region) + '</span></div><button class="icon-btn" data-copy="' + esc(region) + '" aria-label="Copy registered office region">' + ic('i-copy') + '</button></div>';
     $('#cinfo').innerHTML = h;
     $$('#cinfo [data-copy]').forEach(function (b) { b.addEventListener('click', function () { copyText(b.dataset.copy, b.parentNode.querySelector('.v'), null) }) });
-
-    var form = $('#cform'), err = $('#cfErr'), success = $('#cfSuccess'), sendBtn = $('#sendInquiry');
-    var turnstileToken = '', widgetId = null;
-    function setCaptchaMessage(message) { var el = $('#captchaHelp'); if (el) el.textContent = message; }
-    function renderCaptcha() {
-      if (!SITE.turnstileSiteKey) { setCaptchaMessage('CAPTCHA has not been configured. Please contact the website administrator.'); return; }
-      if (!window.turnstile) return;
-      if (widgetId !== null) { try { window.turnstile.remove(widgetId); } catch (e) {} }
-      widgetId = window.turnstile.render('#turnstileWidget', { sitekey: SITE.turnstileSiteKey, appearance: 'always', size: 'normal',
-        callback: function (token) { turnstileToken = token; },
-        'expired-callback': function () { turnstileToken = ''; },
-        'error-callback': function () { turnstileToken = ''; setCaptchaMessage('Verification could not be completed. Please try again.'); }
-      });
-      setCaptchaMessage('Complete the verification before sending your message.');
-    }
-    if (SITE.turnstileSiteKey) {
-      var ts = document.createElement('script'); ts.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; ts.async = true; ts.defer = true;
-      ts.onload = renderCaptcha; document.head.appendChild(ts);
-    } else { renderCaptcha(); }
-    form.addEventListener('submit', function (e) {
-      e.preventDefault(); err.hidden = true; success.hidden = true;
-      var payload = {
-        name: $('#cf-name').value.trim(), email: $('#cf-mail').value.trim(), organization: $('#cf-org').value.trim(),
-        services: $$('#cf-svc input:checked').map(function (x) { return x.value; }),
-        stage: $('#cf-stage').value, message: $('#cf-msg').value.trim(), website: $('#cf-website').value.trim(),
-        turnstileToken: turnstileToken
-      };
-      if (!payload.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) || payload.message.length < 10) {
-        err.hidden = false; err.textContent = 'Please enter your name, a valid email address, and a message of at least 10 characters.'; return;
-      }
-      if (!SITE.turnstileSiteKey || !turnstileToken) {
-        err.hidden = false; err.textContent = 'Security verification is not ready. Please complete the CAPTCHA or contact the website administrator.'; return;
-      }
-      sendBtn.disabled = true; sendBtn.classList.add('is-sending'); sendBtn.setAttribute('aria-busy', 'true'); sendBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>Sending…';
-      fetch(SITE.contactEndpoint || '/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || 'Message could not be sent. Please try again later.'); return j; }); })
-        .then(function () { form.reset(); turnstileToken = ''; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); success.hidden = false; success.textContent = 'Thank you. Your inquiry has been sent to the Spectra CC team.'; })
-        .catch(function (e) { err.hidden = false; err.textContent = e.message || 'Message could not be sent. Please try again later.'; if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId); turnstileToken = ''; })
-        .finally(function () { sendBtn.disabled = false; sendBtn.classList.remove('is-sending'); sendBtn.removeAttribute('aria-busy'); sendBtn.innerHTML = ic('i-mail') + 'Send inquiry'; });
-    });
 
     /* Find us */
     var links = (SITE.links || []).filter(function (l) { return l && l.platform && l.url; });
@@ -309,7 +298,7 @@
   var motionObserver = null;
   function enhanceMotion(host) {
     if (!host) return;
-    var targets = $$('.sec-h, .pillar, .item, .member, .course-card, .find-card, .project-card, .case-card, .pub-card, .team-card, .map-panel, .node, .two > div, .course-detail-section, .course-access-panel', host);
+    var targets = $$('.sec-h, .pillar, .ct-mail, .ct-step, .item, .member, .course-card, .find-card, .project-card, .case-card, .pub-card, .team-card, .map-panel, .node, .two > div, .course-detail-section, .course-access-panel', host);
     if (!RM && 'IntersectionObserver' in window) {
       if (!motionObserver) motionObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {

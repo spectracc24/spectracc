@@ -1,6 +1,6 @@
 # Spectra Citra Cendekia website
 
-Static English-only frontend with no build step. The production contact form uses a Cloudflare Pages Function; GitHub Pages or a plain static host can serve the pages but cannot run the email endpoint.
+Static English-only frontend with no build step. It can be served from GitHub Pages, Cloudflare Pages or any plain static host; no server-side code is needed.
 
 ## Where to edit
 
@@ -29,7 +29,6 @@ After changing data files, change `version` in `assets/data/site.js` so visitors
 
 - `index.html` markup only
 - `script.js` core: loading screens, lazy loader, modal, router, home, contact, Find us
-- `functions/api/contact.js` server-side CAPTCHA verification and email delivery
 - `assets/js/lib/` shared: `collection.js` (design system), `figures.js`, `icons.js`
 - `assets/js/pages/` one file per page, loaded only when the page is opened
 - `assets/vendor/leaflet/` map library (bundled, no CDN needed)
@@ -45,20 +44,6 @@ Add a course object to `window.SCC_COURSES` in `assets/data/courses.js`. Give ea
 
 This is a static catalog and external-link directory. It does not upload files, process payments, authenticate learners, or automatically count visits/purchases. Those functions require a backend or a third-party course platform. Update the `version` value in `assets/data/site.js` after changing catalog data or assets.
 
-## Production contact form (Cloudflare Pages + Turnstile + Resend)
+## Contact page
 
-The contact form submits to the same-origin `/api/contact` endpoint. The endpoint is implemented as a Cloudflare Pages Function in `functions/api/contact.js`; it verifies the Cloudflare Turnstile token on the server and sends the inquiry through Resend. No email credentials are exposed in browser JavaScript.
-
-### Deployment checklist
-
-1. Deploy this repository as a **Cloudflare Pages** project with the repository root (`/`) as the build output directory. The `functions/` directory must be included in the deployment.
-2. Create a Cloudflare Turnstile widget for the production website hostname. Copy its **site key** into `turnstileSiteKey` in `assets/data/site.js`.
-3. Create a Resend account, verify the sender domain, and choose a sender address on that verified domain.
-4. In Cloudflare Pages > Settings > Variables and Secrets, add these values for Production (and Preview if needed):
-   - `TURNSTILE_SECRET` - Turnstile secret key (secret).
-   - `RESEND_API_KEY` - Resend API key (secret).
-   - `CONTACT_FROM` - verified sender, for example `Spectra CC Website <website@your-verified-domain>`.
-   - `CONTACT_TO` - optional; defaults to `cc.spectra24@gmail.com`.
-5. Redeploy after setting the variables. Test the form on the deployed domain, including a failed CAPTCHA and a successful message.
-
-The contact form will not send messages until the Turnstile site key and Cloudflare environment secrets are configured. Do not commit secret keys to this repository.
+The Contact page has no form. Visitors reach the team by email: the main card shows the address from `contact.email` in `assets/data/site.js`, with a **Write an email** button (opens the visitor's email app with a short editable template) and a **Copy address** button. Address, phone and website appear below it only when filled in. The "Before you write" steps are plain text in `index.html`, and social links come from `links` in `site.js`.

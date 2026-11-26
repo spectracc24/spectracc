@@ -23,7 +23,7 @@
 window.SCC_SITE = {
 
   /* Change this value after you edit data files so visitors' browsers fetch the new version. */
-  version: '2026-11-25-links-v1',
+  version: '2026-11-26-contact-v2',
 
   contact: { 
     address: '',
@@ -33,10 +33,6 @@ window.SCC_SITE = {
   },
 
   region: 'Kubu Raya, West Kalimantan, Indonesia',
-
-  // Public Cloudflare Turnstile site key. Set this after creating the widget.
-  turnstileSiteKey: '0x4AAAAAAGRN_Rl7hLO8fKKz',
-  contactEndpoint: '/api/contact',
 
   pages: {
     'team': 'live',
